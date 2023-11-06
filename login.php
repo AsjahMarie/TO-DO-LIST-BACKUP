@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Database connection parameters
     $servername = "127.0.0.1";
     $db_username = "root";
-    $db_password = "asjah724!";
+    $db_password = "Asjah724!";
     $dbname = "userauthentication";
 
     // Establish the connection
