@@ -1,0 +1,39 @@
+/* General styling */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.login-container .forms {
+    text-align: center;
+}
+
+.login-container .form {
+    display: none;
+    animation: fadeIn 1s forwards;
+}
+
+.login-container .active{
+    display: block;
+}
+
+/* Animations */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
