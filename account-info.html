@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Information</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <ul>
+            <li><a href="homepage.html"><i class="fa-solid fa-house fa-bounce"></i> Home</a></li>
+            <li><a href="FullCalendar.html"><i class="fa-regular fa-calendar-days fa-bounce"></i> Calendar</a></li>
+            <li><a href="task-list.html"><i class="fa-solid fa-list-check fa-bounce"></i> Task List</a></li>
+            <li><a href="settings.html"><i class="fa-solid fa-gear fa-bounce"></i> Settings</a></li>
+            <li><a href="account-info.html"><i class="fa-solid fa-user fa-bounce"></i> Account Information</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h1>Account Information</h1>
+        <div class="user-details">
+            <p>Username: <span id="username">JohnDoe123</span></p>
+            <div>
+                <label for="password">Password: </label>
+                <input type="password" id="password">
+                <button onclick="updatePassword()">Update</button>
+            </div>
+            <p>Email: <span id="email">johndoe@example.com</span></p>
+            <!-- Add more account details as needed -->
+        </div>
+    </div>
+
+    <script>
+        function updatePassword() {
+            const newPassword = document.getElementById('password').value;
+            // Implement logic to update password (e.g., sending to server, updating database, etc.)
+            // Example: alert('Password updated successfully!');
+        }
+    </script>
+</body>
+</html>
