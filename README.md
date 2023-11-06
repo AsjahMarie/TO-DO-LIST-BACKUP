@@ -1,2 +1,2 @@
 # TO-DO-LIST-BACKUP
-Hey team, here is a back up of our project in case something happens to the first one.
+Hey team, This is our new repository so delete the old one and contribute/look at this one!
