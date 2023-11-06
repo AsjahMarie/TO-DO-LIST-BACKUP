@@ -5,19 +5,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Connect to your MySQL database
-    $conn = new mysqli("localhost", "username", "password", "your_db");
+    // Database connection parameters
+    $servername = "127.0.0.1";
+    $db_username = "root";
+    $db_password = "asjah724!";
+    $dbname = "userauthentication";
 
-    $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-    $result = $conn->query($query);
+    // Establish the connection
+    $conn = new mysqli($servername, $db_username, $db_password, $dbname);
 
-    if ($result->num_rows == 1) {
-        // Valid login, redirect to home page
-        $_SESSION['username'] = $username;
-        header("Location: homepage.html");
-        exit();
-    } else {
-        echo "Invalid username or password.";
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
+
+    // Prepare the SQL query
+    $sql = "SELECT id, password FROM users WHERE username = ?";
+
+    // Create a prepared statement
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+
+    // Store the result
+    $stmt->store_result();
+
+    if ($stmt->num_rows == 1) {
+        // Bind the fetched password
+        $stmt->bind_result($id, $hashed_password);
+        $stmt->fetch();
+
+        // Verify the entered password with the stored hashed password
+        if (password_verify($password, $hashed_password)) {
+            echo "Login successful!"; // Change this according to your application flow
+            // Set session variables, redirect to home page, etc.
+        } else {
+            echo "Incorrect password!";
+        }
+    } else {
+        echo "User not found!";
+    }
+
+    // Close statement and connection
+    $stmt->close();
+    $conn->close();
 }
 ?>
