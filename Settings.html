@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckMate - Settings</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Settings</h1>
+        <div>
+            <h2>Theme</h2>
+            <label>
+                <input type="radio" name="theme" value="light" checked> Light Mode
+            </label>
+            <label>
+                <input type="radio" name="theme" value="dark"> Dark Mode
+            </label>
+        </div>
+        <div>
+            <h2>Task Color Customization</h2>
+            <label>Choose Task Color:
+                <input type="color" id="taskColorPicker">
+            </label>
+        </div>
+        <button onclick="changeTaskColor()">Apply Color</button>
+        <div>
+            <h2>User</h2>
+            <button onclick="logout()">Log Out</button>
+        </div>
+    </div>
+
+    <script>
+        function changeTaskColor() {
+            const color = document.getElementById('taskColorPicker').value;
+            // Apply the color change logic for tasks
+            // For instance, you might have a class for tasks and update their color
+            // Example: document.querySelectorAll('.task').forEach(task => task.style.backgroundColor = color);
+        }
+
+        function logout() {
+            // Implement logout functionality here
+            // Redirect to logout page or perform necessary actions
+        }
+    </script>
+</body>
+</html>
