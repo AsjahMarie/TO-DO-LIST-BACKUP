@@ -5,7 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CheckMate - Calendar</title>
     <link rel="stylesheet" href="styles.css">
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css' rel='stylesheet' />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js'></script>
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendar = $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                defaultView: 'month',
+                editable: true, // Allow event dragging/resizing
+                eventLimit: true, // When too many events in a day, hide the rest behind a "+x more" link
+                events: [
+                    {
+                        title: 'Your Task',
+                        start: '2023-11-03' // Date format: 'YYYY-MM-DD'
+                    }
+                ],
+                eventClick: function(event) {
+                    // Handle event click (e.g., display event details)
+                    alert('Event: ' + event.title);
+                }
+                // Other configuration options go here
+            });
+        });
+    </script>
     <script src="https://kit.fontawesome.com/4b5b4d807f.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -20,9 +49,8 @@
     </div>
 
     <div class="container">
-        <!-- Calendar related content and functionality -->
         <h1>Calendar</h1>
-        <!-- Display calendar view and events/tasks -->
+        <div id='calendar'></div>
     </div>
 </body>
 </html>
