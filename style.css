@@ -96,3 +96,12 @@ body.dark-mode {
     text-align: center;
 }
     
+.account-container{
+    max-width: 60px;
+    margin:0 auto;
+    text-align: center;
+}
+
+.account-container .user-details{
+    text-align: left;
+}
