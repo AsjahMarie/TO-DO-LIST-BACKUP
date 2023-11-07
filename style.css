@@ -88,4 +88,11 @@ body.dark-mode {
     display: inline-block;
     margin: 20pc auto; /*add margin to center the calendar*/
 }
+
+/*centering the task-list information*/
+.task-container{
+    max-width: 60px;
+    margin: 0 auto;
+    text-align: center;
+}
     
