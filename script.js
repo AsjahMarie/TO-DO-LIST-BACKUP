@@ -19,17 +19,25 @@ document.addEventListener('DOMContentLoaded', function() {
             // Handle event drop action (e.g., update event on drop)
         }
         // JavaScript to toggle dark mode
-const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+// Select all radio buttons with name 'theme'
+const themeRadios = document.querySelectorAll('input[type="radio"][name="theme"]');
 
-function switchTheme(e) {
-    if (e.target.checked) {
-        document.body.classList.add('dark-mode');
-    } else {
-        document.body.classList.remove('dark-mode');
-    }
+// Function to handle theme change
+function changeTheme() {
+    // Loop through each radio button
+    themeRadios.forEach(radio => {
+        if (radio.checked) {
+            if (radio.value === 'dark') {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
+        }
+    });
 }
 
-toggleSwitch.addEventListener('change', switchTheme);
-    });
+// Add event listeners to radio buttons for theme change
+themeRadios.forEach(radio => {
+    radio.addEventListener('change', changeTheme);
 });
 
