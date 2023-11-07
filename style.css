@@ -50,11 +50,6 @@ body.dark-mode {
 }
 
 /*moving nav bar to the left side*/
-body{
-    margin:0;
-    padding:0;
-    display:flex
-}
 .navbar-container{
     width: 200px; /* Width of the navbar */
     height: 100vh; /* Full height of the viewport */
@@ -74,9 +69,5 @@ body{
 .navbar li{
     padding: 10px;
 }
-.content-container{
-    margin-left: 200px;
-    padding: 20px;
-}
-    
+
     
