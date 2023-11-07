@@ -48,7 +48,8 @@
     </div>
 
     <script>
-        const toggleSwitch = document.querySelector('.theme-switch input[type="radio"]');
+// Select all radio buttons with name 'theme'
+const themeRadios = document.querySelectorAll('input[type="radio"][name="theme"]');
 
 // Function to handle theme change
 function changeTheme() {
@@ -68,6 +69,7 @@ function changeTheme() {
 themeRadios.forEach(radio => {
     radio.addEventListener('change', changeTheme);
 });
+
 
     </script>
 
