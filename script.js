@@ -18,26 +18,4 @@ document.addEventListener('DOMContentLoaded', function() {
             alert(event.title + ' was dropped on ' + event.start.format());
             // Handle event drop action (e.g., update event on drop)
         }
-        // JavaScript to toggle dark mode
-// Select all radio buttons with name 'theme'
-const themeRadios = document.querySelectorAll('input[type="radio"][name="theme"]');
-
-// Function to handle theme change
-function changeTheme() {
-    // Loop through each radio button
-    themeRadios.forEach(radio => {
-        if (radio.checked) {
-            if (radio.value === 'dark') {
-                document.body.classList.add('dark-mode');
-            } else {
-                document.body.classList.remove('dark-mode');
-            }
-        }
-    });
-}
-
-// Add event listeners to radio buttons for theme change
-themeRadios.forEach(radio => {
-    radio.addEventListener('change', changeTheme);
-});
 
