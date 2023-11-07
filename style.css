@@ -80,4 +80,12 @@ body.dark-mode {
     padding: 20px;
 }
 
+.content-calendar{
+    text-align: center; /*center align the calendar*/
+}
+
+.content-calendar #calendar{
+    display: inline-block;
+    margin: 20pc auto; /*add margin to center the calendar*/
+}
     
