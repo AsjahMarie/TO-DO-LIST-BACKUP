@@ -71,29 +71,37 @@ body.dark-mode {
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh; /* Full height of the screen */
-    width: 70px; /* Adjust the width based on your design */
-    background: #f2f2f2; /* Example background color */
+    height: 100%; /* Full height of the screen */
+    width: 115px; /* Adjust the width based on your design */
+    background: #98c1d9; /* Example background color */
     /* we can add other styling as needed */
 
 }
-
-.navbar ul{
-    padding: 0;
-    list-style: none;
+.navbar a{
+    display: flex;
     text-align: center;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #3d5a80;
 }
-.navbar li{
-    margin-bottom: 20px;
+.navbar a:active{
+    background-color: #f0f0f0;
+}
+.navbar a:hover{
+    transform: scale(1.1,1.1);
 }
 .content{
     margin-left: 70px;
     padding: 20 px;
 }
-
+/*could maybe combine above and below*/
 .content{
     flex: 1;
     padding: 20px;
+}
+#taskTitle{
+    text-align: center;
 }
 
 .content-calendar{
@@ -105,16 +113,31 @@ body.dark-mode {
     margin: 20px auto; /*add margin to center the calendar*/
 }
 
-/*centering the task-list information*/
+/*centering the task-list information -> Task-list.html*/
+/*decided to change to grid container for visuals -emma*/
 .task-container{
+    display: grid;
+    column-gap: 3px;
+    row-gap: 3px;
+    /*flex-direction: column;
     max-width: 60px;
     margin: 0 auto;
-    text-align: center;
+    text-align: center;*/
+}
+
+#taskColorPicker{
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+#taskButton{
+    grid-column-start: 1;
+    grid-column-end: 3;
 }
     
 .account-container{
     max-width: 60px;
-    margin:0 auto;
+    margin: 0 auto;
     text-align: center;
 }
 
