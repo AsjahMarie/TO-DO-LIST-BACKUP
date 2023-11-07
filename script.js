@@ -18,4 +18,21 @@ document.addEventListener('DOMContentLoaded', function() {
             alert(event.title + ' was dropped on ' + event.start.format());
             // Handle event drop action (e.g., update event on drop)
         }
+            function toggleDarkMode() {
+    const body = document.body;
+    body.classList.toggle('dark-mode');
+
+    // Save user preference to local storage
+    const isDarkMode = body.classList.contains('dark-mode');
+    localStorage.setItem('isDarkMode', isDarkMode);
+}
+
+// Check the user's preference from local storage on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const isDarkMode = localStorage.getItem('isDarkMode') === 'true';
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+    }
+});
+
 
