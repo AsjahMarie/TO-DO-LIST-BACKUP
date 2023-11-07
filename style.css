@@ -4,6 +4,8 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
+    display:flex;
+    justify-content: center;
 }
 
 .login-container {
@@ -50,22 +52,23 @@ body.dark-mode {
 }
 
 /*moving nav bar to the left side*/
-body{
-    margin:0
-    padding:0;
+.container{
     display: flex;
+    width: 100%; /* Full width of the page */
+    max-width: 1200px; /* Adjust as needed */
+    margin: 0 auto; /* Center the content */
 }
-.navbar{
+
+.navbar {
+    background-color: #333;
+    color: #fff;
     width: 200px; /* Width of the navbar */
     height: 100vh; /* Full height of the viewport */
-    position: fixed;
-    top: 0;
-    left: 0;
-    overflow-y: auto;
+    padding-top: 20px; /* Adjust for space at the top */
 }
 
 .navbar ul{
-    padding:0;
+    padding: 0;
     list-style: none;
 }
 .navbar li{
@@ -73,7 +76,7 @@ body{
 }
 
 .content{
-    margin-left: 200px;
+    flex: 1;
     padding: 20px;
 }
 
