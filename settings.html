@@ -8,16 +8,17 @@
     <script src="script.js"></script>
 </head>
 <body>
+    <div class="navbar-container">
     <div class="navbar">
-        <ul>
-            <li><a href="homepage.html"><i class="fa-solid fa-house fa-bounce"></i> Home</a></li>
-            <li><a href="FullCalendar.html"><i class="fa-regular fa-calendar-days fa-bounce"></i> Calendar</a></li>
-            <li><a href="Task-list.html"><i class="fa-solid fa-list-check fa-bounce"></i> Task List</a></li>
-            <li><a href="settings.html"><i class="fa-solid fa-gear fa-bounce"></i> Settings</a></li>
-            <li><a href="account-info.html"><i class="fa-solid fa-user fa-bounce"></i> Account Information</a></li>
-        </ul>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="FullCalendar.html">Calendar</a></li>
+                <li><a href="Task-list.html">Task List</a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a href="account-info.html">Account Information</a></li>
+            </ul>
+        </div>
     </div>
-
     <div class="container">
         <h1>Settings</h1>
         <div>
@@ -40,11 +41,14 @@
             <h2>User</h2>
             <button onclick="logout()">Log Out</button>
         </div>
+        <div class="theme-switch">
+            <input type="radio" id="radio" />
+            <label for="radio"></label>
+        </div>
     </div>
 
     <script>
-       // Select all radio buttons with name 'theme'
-const themeRadios = document.querySelectorAll('input[type="radio"][name="theme"]');
+        const toggleSwitch = document.querySelector('.theme-switch input[type="radio"]');
 
 // Function to handle theme change
 function changeTheme() {
