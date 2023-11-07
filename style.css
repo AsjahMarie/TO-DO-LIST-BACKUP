@@ -9,7 +9,7 @@ body, html {
 }
 .index-container{
     display:flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     height: 100vh;
 }
