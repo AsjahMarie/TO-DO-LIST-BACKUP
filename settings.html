@@ -40,7 +40,25 @@
             <h2>User</h2>
             <button onclick="logout()">Log Out</button>
         </div>
+        <div class="theme-switch">
+            <input type="checkbox" id="toggle" />
+            <label for="toggle"></label>
+        </div>
     </div>
+
+    <script>
+        const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+
+        function switchTheme(e) {
+            if (e.target.checked) {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
+        }
+
+        toggleSwitch.addEventListener('change', switchTheme);
+    </script>
 
     <script>
         function changeTaskColor() {
