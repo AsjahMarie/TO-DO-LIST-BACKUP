@@ -66,19 +66,29 @@ body.dark-mode {
 }
 
 .navbar {
-    background-color: #333;
-    color: #fff;
-    width: 200px; /* Width of the navbar */
-    height: 100vh; /* Full height of the viewport */
-    padding-top: 20px; /* Adjust for space at the top */
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh; /* Full height of the screen */
+    width: 70px; /* Adjust the width based on your design */
+    background: #f2f2f2; /* Example background color */
+    /* we can add other styling as needed */
+
 }
 
 .navbar ul{
     padding: 0;
     list-style: none;
+    text-align: center;
 }
 .navbar li{
-    padding: 10px;
+    margin-bottom: 20px;
+}
+.content{
+    margin-left: 70px;
+    padding: 20 px;
 }
 
 .content{
