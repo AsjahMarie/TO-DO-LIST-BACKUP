@@ -18,6 +18,18 @@ document.addEventListener('DOMContentLoaded', function() {
             alert(event.title + ' was dropped on ' + event.start.format());
             // Handle event drop action (e.g., update event on drop)
         }
+        // JavaScript to toggle dark mode
+const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+
+function switchTheme(e) {
+    if (e.target.checked) {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+}
+
+toggleSwitch.addEventListener('change', switchTheme);
     });
 });
 
