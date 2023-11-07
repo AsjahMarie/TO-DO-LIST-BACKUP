@@ -102,7 +102,7 @@ body.dark-mode {
 
 .content-calendar #calendar{
     display: inline-block;
-    margin: 20pc auto; /*add margin to center the calendar*/
+    margin: 20px auto; /*add margin to center the calendar*/
 }
 
 /*centering the task-list information*/
