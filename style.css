@@ -47,14 +47,16 @@ body, html {
 }
 /* Default Light Mode */
 body {
-    background-color: #f0f0f0;
-    color: #333;
+    background-color: #f3fdfe;
+    color: #293241;
+    font-family: sans-serif;
 }
 
 /* Dark Mode */
 body.dark-mode {
     background-color: #333;
     color: #fff;
+    font-family: sans-serif;
 }
 
 /*moving nav bar to the left side*/
@@ -83,23 +85,47 @@ body.dark-mode {
     align-items: center;
     justify-content: center;
     height: 100%;
-    color: #3d5a80;
+    color: #293241;
+    text-decoration: none;
 }
 .navbar a:active{
-    background-color: #f0f0f0;
+    background-color: #f3fdfe;
 }
 .navbar a:hover{
     transform: scale(1.1,1.1);
 }
+/*editing placement of icons*/
+.navbar a i{
+    padding-left: 10px;
+}
+
 .content{
-    margin-left: 70px;
+    margin-left: 110px;
     padding: 20 px;
 }
-/*could maybe combine above and below*/
+
 .content{
     flex: 1;
     padding: 20px;
 }
+
+.content #tasks{
+    border: 1px solid #293241;
+    border-radius: 5px;
+    padding: 0;
+}
+
+.content #tasks li{
+    padding: 7px;
+    margin: 3px;
+    list-style-type: none;
+    border-radius: 5px;
+    
+}
+.content #tasks li:hover{
+    cursor: pointer;
+}
+
 #taskTitle{
     text-align: center;
 }
@@ -119,10 +145,6 @@ body.dark-mode {
     display: grid;
     column-gap: 3px;
     row-gap: 3px;
-    /*flex-direction: column;
-    max-width: 60px;
-    margin: 0 auto;
-    text-align: center;*/
 }
 
 #taskColorPicker{
