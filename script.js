@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
             alert(event.title + ' was dropped on ' + event.start.format());
             // Handle event drop action (e.g., update event on drop)
         }
-            function toggleDarkMode() {
+        function toggleDarkMode() {
     const body = document.body;
     body.classList.toggle('dark-mode');
 
