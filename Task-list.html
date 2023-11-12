@@ -22,29 +22,40 @@
         <div class="task-container">
             <input type="text" id="taskInput" placeholder="Enter a task">
             <input type="color" value="#f3fdfe" id="taskColorPicker">
+            <label for="dueDateInput">Due Date:</label>
+            <input type="date" id="dueDateInput">
             <button onclick="addTask()" id="taskButton">Add Task</button>
         </div>
         <ul id="tasks"></ul>
+        <!-- Button to navigate to addTaskPage -->
+        <button onclick="goToAddTaskPage()" id="addTaskPageButton">Add Task Page</button>
     </div>
 
     <script>
         function addTask() {
             const taskInput = document.getElementById('taskInput');
             const taskColor = document.getElementById('taskColorPicker').value;
+            const dueDate = document.getElementById('dueDateInput').value;
 
             if (taskInput.value.trim() !== '') {
                 const taskList = document.getElementById('tasks');
                 const li = document.createElement('li');
-                li.textContent = taskInput.value;
+                li.textContent = taskInput.value + (dueDate ? ` (Due: ${dueDate})` : '');
                 li.style.backgroundColor = taskColor; // Set task color
                 li.onclick = function() {
                     this.remove(); // Delete task on click
                 };
                 taskList.appendChild(li);
                 taskInput.value = ''; // Clear the task input field
+                document.getElementById('dueDateInput').value = ''; // Clear the due date input field
             } else {
                 alert('Please enter a task.');
             }
+        }
+
+        function goToAddTaskPage() {
+            // You can redirect to the add task page or perform any other action here
+            window.location.href = 'addTaskPage.html'; // Update with the correct page URL
         }
     </script>
 </body>
