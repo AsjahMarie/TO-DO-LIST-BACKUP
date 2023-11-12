@@ -32,7 +32,23 @@
                     // Handle event click (e.g., display event details)
                     alert('Event: ' + event.title);
                 }
-                // Other configuration options go here
+                    //listens for task additions from Task-List!
+               window.addEventListener('message', function(event){
+                   if(event.data.type === 'task'{
+                       const dueDate = event.data.dueDate;
+                       cont taskName = event.data.name;
+
+                       if (dueDate){
+                           calender.fuullcalendar('renderEvent', {
+                               title: taskName,
+                               start: dueDate,
+                               allDay:true
+                           }, true); //sticks to existing calendar view
+                       }
+                       
+                   }
+               }
+                   
             });
         });
     </script>
