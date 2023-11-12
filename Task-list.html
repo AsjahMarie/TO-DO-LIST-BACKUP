@@ -55,8 +55,17 @@
 
         function goToAddTaskPage() {
             // You can redirect to the add task page or perform any other action here
-            window.location.href = 'Task-list.html'; // Update with the correct page URL
+            window.location.href = 'addTaskPage.html'; // Update with the correct page URL
         }
+        document.addEventListener('DOMContentLoaded. function(){
+            const taskButton.addEventListner('click', addTask);
+            const addTaskpageButton = document.getElementById('addTaskPageButton');
+            if (taskButton){
+                taskButton.addEventListner('click', addTask)
+        }
+            if (addTaskPageButton){
+                addTaskPageButton.addEventListner('click', goToAddTaskPage);
+            }
     </script>
 </body>
 </html>
