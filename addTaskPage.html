@@ -40,15 +40,15 @@
             const dueDate = document.getElementById('dueDateInput').value;
 
             if (taskName.trim() !== '') {
-                const taskList = window.opener.document.getElementById('tasks');
-                const li = document.createElement('li');
-                li.textContent = taskName + (dueDate ? ` (Due: ${dueDate})` : '');
-                li.style.backgroundColor = taskColor; // Set task color
-                li.onclick = function() {
-                    this.remove(); // Delete task on click
+                const taskData = {
+                    name: taskName,
+                    color: taskColor,
+                    dueDate: dueDate
                 };
-                taskList.appendChild(li);
-                window.close(); // Close the addTaskPage.html window after adding the task
+
+                // Post the task data to the main window
+                window.opener.postMessage(taskData, '*');
+                window.close(); // Close the addTaskPage.html window after posting the task data
             } else {
                 alert('Please enter a task name.');
             }
