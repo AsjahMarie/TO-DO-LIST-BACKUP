@@ -47,7 +47,7 @@
                 };
 
                 // Post the task data to the main window
-                window.opener.postMessage(taskData, '*');
+                window.opener.postMessage(type: 'task', data: taskData, '*');
                 window.close(); // Close the addTaskPage.html window after posting the task data
             } else {
                 alert('Please enter a task name.');
