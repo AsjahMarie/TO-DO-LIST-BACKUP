@@ -23,7 +23,7 @@
                 defaultView: 'month',
                 editable: true, // Allow event dragging/resizing
                 eventLimit: true, // When too many events in a day, hide the rest behind a "+x more" link,
-                events: [], // Initialize with an empty array
+                events: getStoredTasks(), // Initialize with an empty array
                 eventClick: function(event) {
                     // Handle event click (e.g., display event details)
                     alert('Event: ' + event.title);
@@ -33,11 +33,25 @@
 
             // Function to add tasks to the calendar
             function addTaskToCalendar(taskName, dueDate) {
+                var calendar = $('calendar');
                 calendar.fullCalendar('renderEvent', {
                     title: taskName,
                     start: dueDate,
                     allDay: true
                 }, true); // Stick to existing calendar view
+                //update the task list after adding new tasks
+                updateTaskList();
+
+                //get existing tasks from local storage
+
+                const tasks = getStoredTasks();
+
+                //add a new task
+                tasks.push({name: taskName, dueDate:dueDate)};
+
+            //store the updated tasks in local storage
+
+            storeTasks(tasks);
             }
 
             // Function to update task list
@@ -59,7 +73,6 @@
 
                     if (dueDate) {
                         addTaskToCalendar(taskName, dueDate);
-                        updateTaskList();
                     }
                 }
             });
@@ -75,6 +88,18 @@
                window.location.href = 'addTaskPage.html'
             });
         });
+
+        //function to get stored tasks from local storage
+        function getStoredTasks(){
+            const storedTasks = localStorage.getItem('tasks');
+            return storedTasks ? JSON.parse(storedTasks) : [];
+        }
+
+        //function to store tasks in local storage
+        function storeTasks(tasks){
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+            
     </script>
     <script src="https://kit.fontawesome.com/4b5b4d807f.js" crossorigin="anonymous"></script>
 </head>
