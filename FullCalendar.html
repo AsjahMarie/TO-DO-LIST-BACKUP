@@ -12,46 +12,47 @@
     <script src="script.js"></script>
     <script src="dark-mode.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendar = $('#calendar').fullCalendar({
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,agendaWeek,agendaDay'
-                },
-                defaultView: 'month',
-                editable: true, // Allow event dragging/resizing
-                eventLimit: true, // When too many events in a day, hide the rest behind a "+x more" link
-                events: [
-                    {
-                        title: 'Your Task',
-                        start: '2023-11-03' // Date format: 'YYYY-MM-DD'
-                    }
-                ],
-                eventClick: function(event) {
-                    // Handle event click (e.g., display event details)
-                    alert('Event: ' + event.title);
+        <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendar = $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            defaultView: 'month',
+            editable: true, // Allow event dragging/resizing
+            eventLimit: true, // When too many events in a day, hide the rest behind a "+x more" link
+            events: [
+                {
+                    title: 'Your Task',
+                    start: '2023-11-03' // Date format: 'YYYY-MM-DD'
                 }
-                    //listens for task additions from Task-List!
-               window.addEventListener('message', function(event){
-                   if(event.data.type === 'task'{
-                       const dueDate = event.data.dueDate;
-                       cont taskName = event.data.name;
-
-                       if (dueDate){
-                           calender.fuullcalendar('renderEvent', {
-                               title: taskName,
-                               start: dueDate,
-                               allDay:true
-                           }, true); //sticks to existing calendar view
-                       }
-                       
-                   }
-               }
-                   
-            });
+            ],
+            eventClick: function(event) {
+                // Handle event click (e.g., display event details)
+                alert('Event: ' + event.title);
+            }
         });
-    </script>
+
+        // Listens for task additions from Task-List
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'task') {
+                const dueDate = event.data.dueDate;
+                const taskName = event.data.name;
+
+                if (dueDate) {
+                    calendar.fullCalendar('renderEvent', {
+                        title: taskName,
+                        start: dueDate,
+                        allDay: true
+                    }, true); // Sticks to the existing calendar view
+                }
+            }
+        });
+    });
+</script>
+
     <script src="https://kit.fontawesome.com/4b5b4d807f.js" crossorigin="anonymous"></script>
 </head>
 <body>
