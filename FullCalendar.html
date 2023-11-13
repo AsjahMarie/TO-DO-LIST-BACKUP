@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,6 +13,7 @@
     <script src="dark-mode.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the calendar
             var calendar = $('#calendar').fullCalendar({
                 header: {
                     left: 'prev,next today',
@@ -20,33 +22,78 @@
                 },
                 defaultView: 'month',
                 editable: true, // Allow event dragging/resizing
-                eventLimit: true, // When too many events in a day, hide the rest behind a "+x more" link
-                events: [
-                    {title: 'Your Task',
-                        start: '2023-11-03' // Date format: 'YYYY-MM-DD'
-                    }
-                ],
+                eventLimit: true, // When too many events in a day, hide the rest behind a "+x more" link,
+                events: [], // Initialize with an empty array
                 eventClick: function(event) {
                     // Handle event click (e.g., display event details)
                     alert('Event: ' + event.title);
                 }
                 // Other configuration options go here
             });
+
+            // Function to add tasks to the calendar
+            function addTaskToCalendar(taskName, dueDate) {
+                calendar.fullCalendar('renderEvent', {
+                    title: taskName,
+                    start: dueDate,
+                    allDay: true
+                }, true); // Stick to existing calendar view
+            }
+
+            // Function to update task list
+            function updateTaskList() {
+                var taskList = $('#taskList');
+                taskList.empty(); // Clear existing tasks
+
+                // Iterate through calendar events and display tasks
+                calendar.fullCalendar('clientEvents').forEach(function(event) {
+                    taskList.append('<li>' + event.title + ' (Due: ' + moment(event.start).format('YYYY-MM-DD') + ')</li>');
+                });
+            }
+
+            // Event listener for receiving tasks from Task List
+            window.addEventListener('message', function(event) {
+                if (event.data.type === 'task') {
+                    const dueDate = event.data.dueDate;
+                    const taskName = event.data.name;
+
+                    if (dueDate) {
+                        addTaskToCalendar(taskName, dueDate);
+                        updateTaskList();
+                    }
+                }
+            });
+
+            // Button click event to list tasks
+            $('#listTasksButton').on('click', function() {
+                updateTaskList();
+            });
+
+            // Button click event to add a task
+            $('#addTaskButton').on('click', function() {
+                // You can add a logic to open a modal or a form for adding a task
+                alert('Open a form to add a task');
+            });
         });
     </script>
     <script src="https://kit.fontawesome.com/4b5b4d807f.js" crossorigin="anonymous"></script>
 </head>
-<body><div class="container">
+<body>
+    <div class="container">
         <nav class="navbar">
             <a href="homepage.html">Home<i class="fa-sharp fa-solid fa-house-user fa-beat fa-lg" style="color: #00364a;"></i></a>
             <a href="Task-list.html">Task List<i class="fa-solid fa-list-check fa-beat fa-lg"></i></a>
             <a href="FullCalendar.html">Calendar<i class="fa-regular fa-calendar-days fa-beat fa-lg"></i></a>
-            <a href="settings.html">Settings<i class="fa-solid fa-user-gear fa-beat fa-lg"></i></a>            
+            <a href="settings.html">Settings<i class="fa-solid fa-user-gear fa-beat fa-lg"></i></a>
             <a href="account-info.html">Account<i class="fa-solid fa-circle-info fa-beat fa-lg"></i></a>
         </nav>
-    <div class="content content-calender">
-        <h1>Calendar</h1>
-        <div id='calendar'></div>
+        <div class="content content-calendar">
+            <h1>Calendar</h1>
+            <button id="listTasksButton">List Tasks</button>
+            <button id="addTaskButton">Add Task</button>
+            <div id='calendar'></div>
+            <ul id="taskList"></ul>
+        </div>
     </div>
 </body>
 </html>
