@@ -5,98 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CheckMate - Calendar</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/4b5b4d807f.js" crossorigin="anonymous"></script>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            background-color: #f2f2f2;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-
-        .navbar {
-            background-color: #00364a;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .calendar {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-
-        .month-header {
-            width: 100%;
-            text-align: center;
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-
-        .day {
-            width: calc(14.2857% - 2px); /* 100% / 7 days in a week */
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-            padding: 10px;
-            height: 100px;
-            margin-bottom: 2px;
-        }
-
-        .arrow {
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <nav class="navbar">
-            <a href="homepage.html">Home<i class="fa-sharp fa-solid fa-house-user fa-beat fa-lg"></i></a>
-            <a href="Task-list.html">Task List<i class="fa-solid fa-list-check fa-beat fa-lg"></i></a>
-            <a href="FullCalendar.html">Calendar<i class="fa-regular fa-calendar-days fa-beat fa-lg"></i></a>
-            <a href="settings.html">Settings<i class="fa-solid fa-user-gear fa-beat fa-lg"></i></a>
-            <a href="account-info.html">Account<i class="fa-solid fa-circle-info fa-beat fa-lg"></i></a>
-        </nav>
-        <div class="content content-calender">
-            <h1 class="month-header" id="monthHeader"></h1>
-            <div class="calendar" id="calendar"></div>
-            <div class="arrow" onclick="prevMonth()"><i class="fa-solid fa-chevron-left fa-beat fa-lg"></i></div>
-            <div class="arrow" onclick="nextMonth()"><i class="fa-solid fa-chevron-right fa-beat fa-lg"></i></div>
-        </div>
-    </div>
-
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css' rel='stylesheet' />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js'></script>
+    <script src="script.js"></script>
+    <script src="dark-mode.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const calendarContainer = document.getElementById('calendar');
-            const monthHeader = document.getElementById('monthHeader');
-            const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-            let currentMonth = new Date().getMonth();
-            renderCalendar(currentMonth);
-
-            function renderCalendar(month) {
-                // Clear previous content
-                calendarContainer.innerHTML = '';
-
-                // Create calendar header
-                daysOfWeek.forEach(day => {
-                    const dayHeader = document.createElement('div');
-                    dayHeader.className = 'day';
-                    dayHeader.textContent = day;
-                    calendarContainer.appendChild(dayHeader);
-                });
-
-                // Create calendar days
-                const firstDay = new Date(new Date().getFullYear(), month, 1).getDay();
-                const lastDay = new Date(new Date().getFullYear(), month + 1, 0).getDate();
-
-                for (let i
