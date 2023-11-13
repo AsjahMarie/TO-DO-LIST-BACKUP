@@ -155,11 +155,30 @@ body.dark-mode {
 #taskColorPicker{
     grid-column-start: 3;
     grid-column-end: 4;
+    border: none;
+    height: 40px;
+    padding: 0;
+    background-color: transparent;
+}
+
+#taskColorPicker:hover{
+    cursor: pointer;
 }
 
 #taskButton{
     grid-column-start: 4;
     grid-column-end: 6;
+    background-color: #ee6c4d;
+    color: white;
+    border: none;
+    padding: 8px 13px;
+    box-shadow: 2px 2px 5px #293241;
+    border-radius: 4px;
+}
+
+#taskButton:hover{
+    transform: scale(1.03, 1.03);
+    cursor: pointer;
 }
 
 #dueDateInput{
@@ -167,6 +186,8 @@ body.dark-mode {
     grid-column-end: 3;
     grid-row-start: 1;
 }
+
+
     
 .account-container{
     max-width: 60px;
