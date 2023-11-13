@@ -74,6 +74,14 @@
                 // You can add a logic to open a modal or a form for adding a task
                 window.location.href='addTaskPage.html'
             });
+            var intialTasks = getStoredTasks();
+            initialTasks.forEach(function(task){
+                addTaskToCalendar(task.title, task.start);
+            });
+            function getStoredTasks(){
+                const storedTasks = localStorage.getItem('tasks');
+                return storedTasks ? JSON.parse(storedTasks) : [];
+            }
         });
     </script>
     <script src="https://kit.fontawesome.com/4b5b4d807f.js" crossorigin="anonymous"></script>
