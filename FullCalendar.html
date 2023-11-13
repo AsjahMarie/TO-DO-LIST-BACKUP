@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,6 +9,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js'></script>
     <script src="script.js"></script>
+    <script src="dark-mode.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendar = $('#calendar').fullCalendar({
@@ -22,8 +22,7 @@
                 editable: true, // Allow event dragging/resizing
                 eventLimit: true, // When too many events in a day, hide the rest behind a "+x more" link
                 events: [
-                    {
-                        title: 'Your Task',
+                    {title: 'Your Task',
                         start: '2023-11-03' // Date format: 'YYYY-MM-DD'
                     }
                 ],
@@ -37,18 +36,14 @@
     </script>
     <script src="https://kit.fontawesome.com/4b5b4d807f.js" crossorigin="anonymous"></script>
 </head>
-<body>
-        <div class="container">
-        <div class="navbar">
-            <ul>
-                <li><a href="homepage.html"><i class="fa-sharp fa-solid fa-house-user fa-beat fa-lg" style="color: #00364a;"></i>Home</a></li>
-                <li><a href="FullCalendar.html">Calendar<i class="fa-regular fa-calendar-days fa-beat fa-lg"></i></a></li>
-                <li><a href="Task-list.html">Task List<i class="fa-solid fa-list-check fa-beat fa-lg"></i></a></li>
-                <li><a href="settings.html">Settings<i class="fa-solid fa-user-gear fa-beat fa-lg"></i></a></li>
-                <li><a href="account-info.html">Account Information<i class="fa-solid fa-circle-info fa-beat fa-lg"></i></a></li>
-            </ul>
-        </div>
-    <div class="content">
+<body><div class="container">
+        <nav class="navbar">
+            <a href="homepage.html">Home<i class="fa-sharp fa-solid fa-house-user fa-beat fa-lg" style="color: #00364a;"></i></a>
+            <a href="Task-list.html">Task List<i class="fa-solid fa-list-check fa-beat fa-lg"></i></a>
+            <a href="FullCalendar.html">Calendar<i class="fa-regular fa-calendar-days fa-beat fa-lg"></i></a>
+            <a href="settings.html">Settings<i class="fa-solid fa-user-gear fa-beat fa-lg"></i></a>            
+            <a href="account-info.html">Account<i class="fa-solid fa-circle-info fa-beat fa-lg"></i></a>
+        </nav>
     <div class="content content-calender">
         <h1>Calendar</h1>
         <div id='calendar'></div>
