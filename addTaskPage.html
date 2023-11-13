@@ -39,18 +39,31 @@
             const taskColor = document.getElementById('taskColorPicker').value;
             const dueDate = document.getElementById('dueDateInput').value;
 
-            if (taskName.trim() !== '') {
-                const taskData = {
-                    name: taskName,
-                    color: taskColor,
-                    dueDate: dueDate
-                };
+            if (taskInput.vslue.trim() !== '') {
+               const taskList = document.getElementById('task');
+               const li = document.createElement('li');
+               const taskDetails = taskInput.value + (dueDate ? '(Due: $ {dueDate})' : '');
+
+               li.textContent = taskDetails;
+               li.style.backgroundColor = taskColor;
+               li.onclick = function(){
+                   this.remove();
+                }
+
+                removeTaskFromCalendar(taskDetails);
+                taskList.appendChild(li);
+                taskInput.value = '';
+                document.getElementById('dueDateInput').value = '';
+                
 
                 // Post the task data to the main window
-                window.opener.postMessage(type: 'task', data: taskData, '*');
-                window.close(); // Close the addTaskPage.html window after posting the task data
-            } else {
-                alert('Please enter a task name.');
+                window.opener.postMessage(taskData, '*');
+            }else{
+                alert('Please enter a task.')
+            }
+
+            function removeTaskFromCalendar(taskDetails){
+                console.log('Removing task from FullCalendar:', taskDetails);
             }
         }
     </script>
