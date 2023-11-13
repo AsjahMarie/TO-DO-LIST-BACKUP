@@ -13,7 +13,6 @@
     <script src="dark-mode.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize the calendar
             var calendar = $('#calendar').fullCalendar({
                 header: {
                     left: 'prev,next today',
@@ -23,7 +22,7 @@
                 defaultView: 'month',
                 editable: true, // Allow event dragging/resizing
                 eventLimit: true, // When too many events in a day, hide the rest behind a "+x more" link,
-                events: getStoredTasks(), // Initialize with an empty array
+                events: getStoredTasks(), // Initialize with stored tasks
                 eventClick: function(event) {
                     // Handle event click (e.g., display event details)
                     alert('Event: ' + event.title);
@@ -31,27 +30,24 @@
                 // Other configuration options go here
             });
 
+            // Function to get stored tasks from localStorage
+            function getStoredTasks() {
+                const storedTasks = localStorage.getItem('tasks');
+                return storedTasks ? JSON.parse(storedTasks) : [];
+            }
+
+            // Function to store tasks in localStorage
+            function storeTasks(tasks) {
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+            }
+
             // Function to add tasks to the calendar
             function addTaskToCalendar(taskName, dueDate) {
-                var calendar = $('calendar');
                 calendar.fullCalendar('renderEvent', {
                     title: taskName,
                     start: dueDate,
                     allDay: true
                 }, true); // Stick to existing calendar view
-                //update the task list after adding new tasks
-                updateTaskList();
-
-                //get existing tasks from local storage
-
-                const tasks = getStoredTasks();
-
-                //add a new task
-                tasks.push({name: taskName, dueDate:dueDate)};
-
-            //store the updated tasks in local storage
-
-            storeTasks(tasks);
             }
 
             // Function to update task list
@@ -73,6 +69,16 @@
 
                     if (dueDate) {
                         addTaskToCalendar(taskName, dueDate);
+                        updateTaskList();
+
+                        // Get existing tasks from localStorage
+                        const tasks = getStoredTasks();
+                        
+                        // Add the new task
+                        tasks.push({ title: taskName, start: dueDate });
+                        
+                        // Store the updated tasks in localStorage
+                        storeTasks(tasks);
                     }
                 }
             });
@@ -85,21 +91,9 @@
             // Button click event to add a task
             $('#addTaskButton').on('click', function() {
                 // You can add a logic to open a modal or a form for adding a task
-               window.location.href = 'addTaskPage.html'
+               window.location.href = 'addTaskPage.html';
             });
         });
-
-        //function to get stored tasks from local storage
-        function getStoredTasks(){
-            const storedTasks = localStorage.getItem('tasks');
-            return storedTasks ? JSON.parse(storedTasks) : [];
-        }
-
-        //function to store tasks in local storage
-        function storeTasks(tasks){
-            localStorage.setItem('tasks', JSON.stringify(tasks));
-        }
-            
     </script>
     <script src="https://kit.fontawesome.com/4b5b4d807f.js" crossorigin="anonymous"></script>
 </head>
