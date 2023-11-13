@@ -13,7 +13,7 @@
     <script src="dark-mode.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            $('#calendar').fullCalendar({
+            var calendar = $('#calendar').fullCalendar({
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -35,7 +35,7 @@
                 // Other configuration options go here
             });
         });
-       
+    </script>
     <script src="https://kit.fontawesome.com/4b5b4d807f.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -44,16 +44,12 @@
             <a href="homepage.html">Home<i class="fa-sharp fa-solid fa-house-user fa-beat fa-lg" style="color: #00364a;"></i></a>
             <a href="Task-list.html">Task List<i class="fa-solid fa-list-check fa-beat fa-lg"></i></a>
             <a href="FullCalendar.html">Calendar<i class="fa-regular fa-calendar-days fa-beat fa-lg"></i></a>
-            <a href="settings.html">Settings<i class="fa-solid fa-user-gear fa-beat fa-lg"></i></a>
+            <a href="settings.html">Settings<i class="fa-solid fa-user-gear fa-beat fa-lg"></i></a>            
             <a href="account-info.html">Account<i class="fa-solid fa-circle-info fa-beat fa-lg"></i></a>
         </nav>
-        <div class="content content-calendar">
-            <h1>Calendar</h1>
-            <button id="listTasksButton">List Tasks</button>
-            <button id="addTaskButton">Add Task</button>
-            <div id='calendar'></div>
-            <ul id="taskList"></ul>
-        </div>
+    <div class="content content-calender">
+        <h1>Calendar</h1>
+        <div id='calendar'></div>
     </div>
 </body>
 </html>
