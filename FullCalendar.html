@@ -23,13 +23,24 @@
                 defaultView: 'month',
                 editable: true, // Allow event dragging/resizing
                 eventLimit: true, // When too many events in a day, hide the rest behind a "+x more" link,
-                events: [], // Initialize with an empty array
+                events: getStoredTasks(), // Initialize with stored tasks
                 eventClick: function(event) {
                     // Handle event click (e.g., display event details)
                     alert('Event: ' + event.title);
                 }
                 // Other configuration options go here
             });
+
+            // Function to get stored tasks from localStorage
+            function getStoredTasks() {
+                const storedTasks = localStorage.getItem('tasks');
+                return storedTasks ? JSON.parse(storedTasks) : [];
+            }
+
+            // Function to store tasks in localStorage
+            function storeTasks(tasks) {
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+            }
 
             // Function to add tasks to the calendar
             function addTaskToCalendar(taskName, dueDate) {
@@ -60,6 +71,15 @@
                     if (dueDate) {
                         addTaskToCalendar(taskName, dueDate);
                         updateTaskList();
+
+                        // Get existing tasks from localStorage
+                        const tasks = getStoredTasks();
+                        
+                        // Add the new task
+                        tasks.push({ title: taskName, start: dueDate });
+                        
+                        // Store the updated tasks in localStorage
+                        storeTasks(tasks);
                     }
                 }
             });
@@ -71,8 +91,8 @@
 
             // Button click event to add a task
             $('#addTaskButton').on('click', function() {
-                // You can add a logic to open a modal or a form for adding a task
-                alert('Open a form to add a task');
+                // Navigate to addTaskPage.html
+                window.location.href = 'addTaskPage.html'; // Update with the correct page URL
             });
         });
     </script>
@@ -87,13 +107,4 @@
             <a href="settings.html">Settings<i class="fa-solid fa-user-gear fa-beat fa-lg"></i></a>
             <a href="account-info.html">Account<i class="fa-solid fa-circle-info fa-beat fa-lg"></i></a>
         </nav>
-        <div class="content content-calendar">
-            <h1>Calendar</h1>
-            <button id="listTasksButton">List Tasks</button>
-            <button id="addTaskButton">Add Task</button>
-            <div id='calendar'></div>
-            <ul id="taskList"></ul>
-        </div>
-    </div>
-</body>
-</html>
+        <div class="content content
