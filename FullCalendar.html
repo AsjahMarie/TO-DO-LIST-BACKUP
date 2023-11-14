@@ -224,12 +224,12 @@ function updateTasks(date) {
   let tasks = "";
   tasksArr.forEach((task) => {
     if (
-      date === event.day &&
-      month + 1 === event.month &&
-      year === event.year
+      date === task.day &&
+      month + 1 === task.month &&
+      year === task.year
     ) {
-      task.tasks.forEach((task) => {
-        events += `<div class="task">
+      task.tasks.forEach((taskItem) => {
+        tasks += `<div class="task">
             <div class="title">
               <i class="fas fa-circle"></i>
               <h3 class="task-title">${task.title}</h3>
