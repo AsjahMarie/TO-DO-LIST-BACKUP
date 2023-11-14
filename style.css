@@ -488,16 +488,16 @@ background-color: darkorchid;
     margin-bottom: 20px;
     text-transform: capitalize;
   }
-  .right .today-date .event-day {
+  .right .today-date .task-day {
     font-size: 2rem;
     font-weight: 500;
   }
-  .right .today-date .event-date {
+  .right .today-date .task-date {
     font-size: 1rem;
     font-weight: 400;
     color: #878895;
   }
-  .events {
+  .tasks {
     width: 100%;
     height: 100%;
     max-height: 600px;
@@ -507,7 +507,7 @@ background-color: darkorchid;
     flex-direction: column;
     padding-left: 4px;
   }
-  .events .event {
+  .tasks .tasks {
     position: relative;
     width: 95%;
     min-height: 70px;
@@ -521,42 +521,42 @@ background-color: darkorchid;
     background: linear-gradient(90deg, #3f4458, transparent);
     cursor: pointer;
   }
-  /* even event */
-  .events .event:nth-child(even) {
+  /* even task */
+  .tasks .task:nth-child(even) {
     background: transparent;
   }
-  .events .event:hover {
+  .tasks .task:hover {
     background: linear-gradient(90deg, var(--primary-clr), transparent);
   }
-  .events .event .title {
+  .tasks .task .title {
     display: flex;
     align-items: center;
     pointer-events: none;
   }
-  .events .event .title .event-title {
+  .tasks .task .title .task-title {
     font-size: 1rem;
     font-weight: 400;
     margin-left: 20px;
   }
-  .events .event i {
+  .tasks .task i {
     color: var(--primary-clr);
     font-size: 0.5rem;
   }
-  .events .event:hover i {
+  .tasks .task:hover i {
     color: #fff;
   }
-  .events .event .event-time {
+  .tasks .task .task-time {
     font-size: 0.8rem;
     font-weight: 400;
     color: #878895;
     margin-left: 15px;
     pointer-events: none;
   }
-  .events .event:hover .event-time {
+  .taskss .task:hover .event-time {
     color: #fff;
   }
   /* add tick in event after */
-  .events .event::after {
+  .tasks .task::after {
     content: "✓";
     position: absolute;
     top: 50%;
@@ -570,10 +570,10 @@ background-color: darkorchid;
     color: var(--primary-clr);
     transform: translateY(-50%);
   }
-  .events .event:hover::after {
+  .tasks .task:hover::after {
     display: flex;
   }
-  .add-event {
+  .add-task {
     position: absolute;
     bottom: 30px;
     right: 30px;
@@ -590,13 +590,13 @@ background-color: darkorchid;
     background-color: transparent;
     cursor: pointer;
   }
-  .add-event:hover {
+  .add-task:hover {
     opacity: 1;
   }
-  .add-event i {
+  .add-task i {
     pointer-events: none;
   }
-  .events .no-event {
+  .tasks .no-task {
     width: 100%;
     height: 100%;
     display: flex;
@@ -606,7 +606,7 @@ background-color: darkorchid;
     font-weight: 500;
     color: #878895;
   }
-  .add-event-wrapper {
+  .add-task-wrapper {
     position: absolute;
     bottom: 100px;
     left: 50%;
@@ -618,10 +618,10 @@ background-color: darkorchid;
     transform: translateX(-50%);
     transition: max-height 0.5s ease;
   }
-  .add-event-wrapper.active {
+  .add-task-wrapper.active {
     max-height: 300px;
   }
-  .add-event-header {
+  .add-task-header {
     width: 100%;
     height: 50px;
     display: flex;
@@ -631,18 +631,18 @@ background-color: darkorchid;
     color: #373c4f;
     border-bottom: 1px solid #f5f5f5;
   }
-  .add-event-header .close {
+  .add-task-header .close {
     font-size: 1.5rem;
     cursor: pointer;
   }
-  .add-event-header .close:hover {
+  .add-task-header .close:hover {
     color: var(--primary-clr);
   }
-  .add-event-header .title {
+  .add-task-header .title {
     font-size: 1.2rem;
     font-weight: 500;
   }
-  .add-event-body {
+  .add-task-body {
     width: 100%;
     height: 100%;
     display: flex;
@@ -650,7 +650,7 @@ background-color: darkorchid;
     gap: 5px;
     padding: 20px;
   }
-  .add-event-body .add-event-input {
+  .add-task-body .add-task-input {
     width: 100%;
     height: 40px;
     display: flex;
@@ -658,7 +658,7 @@ background-color: darkorchid;
     justify-content: space-between;
     gap: 10px;
   }
-  .add-event-body .add-event-input input {
+  .add-task-body .add-task-input input {
     width: 100%;
     height: 100%;
     outline: none;
@@ -669,22 +669,22 @@ background-color: darkorchid;
     font-weight: 400;
     color: #373c4f;
   }
-  .add-event-body .add-event-input input::placeholder {
+  .add-task-body .add-task-input input::placeholder {
     color: #a5a5a5;
   }
-  .add-event-body .add-event-input input:focus {
+  .add-task-body .add-task-input input:focus {
     border-bottom: 1px solid var(--primary-clr);
   }
-  .add-event-body .add-event-input input:focus::placeholder {
+  .add-task-body .add-task-input input:focus::placeholder {
     color: var(--primary-clr);
   }
-  .add-event-footer {
+  .add-task-footer {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
   }
-  .add-event-footer .add-event-btn {
+  .add-task-footer .add-task-btn {
     height: 40px;
     font-size: 1rem;
     font-weight: 500;
@@ -697,7 +697,7 @@ background-color: darkorchid;
     padding: 5px 10px;
     border: 1px solid var(--primary-clr);
   }
-  .add-event-footer .add-event-btn:hover {
+  .add-task-footer .add-task-btn:hover {
     background-color: transparent;
     color: var(--primary-clr);
   }
