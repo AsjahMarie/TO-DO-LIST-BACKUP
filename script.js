@@ -10,12 +10,12 @@ const calendar = document.querySelector(".calendar"),
   taskDate = document.querySelector(".task-date"),
   tasksContainer = document.querySelector(".tasks"),
   addTaskBtn = document.querySelector(".add-task"),
-  addtaskWrapper = document.querySelector(".add-task-wrapper "),
-  addTaskCloseBtn = document.querySelector(".close "),
-  addTaskTitle = document.querySelector(".task-name "),
-  addTaskFrom = document.querySelector(".task-time-from "),
-  addTaskTo = document.querySelector(".task-time-to "),
-  addTaskSubmit = document.querySelector(".add-task-btn ");
+  addTaskWrapper = document.querySelector(".add-task-wrapper"),
+  addTaskCloseBtn = document.querySelector(".close"),
+  addTaskTitle = document.querySelector(".task-title"),
+  addTaskDescription = document.querySelector(".task-description"),
+  addTaskPriority = document.querySelector(".task-priority"),
+  addTaskSubmit = document.querySelector(".add-task-btn");
 
 let today = new Date();
 let activeDay;
