@@ -65,7 +65,7 @@ body.dark-mode {
     padding-left: 25px;
     color: white;
     background-color: #3d5a80;
-    width: 100%;
+    width: 100vw;
 }
 
 /*moving nav bar to the left side*/
@@ -82,7 +82,7 @@ body.dark-mode {
     position: fixed;
     top: 0;
     left: 0;
-    margin-top: 70px;
+    margin-top: 68px;
     height: 93%; /* Full height of the screen */
     width: 115px; /* Adjust the width based on your design */
     background: #98c1d9; /* Example background color */
@@ -118,7 +118,7 @@ body.dark-mode {
     flex: 1;
     padding: 20px;
 }
-
+/*TASKS -> Task-list.html*/
 .content #tasks{
     border: 1px solid #293241;
     border-radius: 5px;
@@ -189,6 +189,32 @@ body.dark-mode {
 
 #tasks{
     margin: 30px;
+}
+
+#addTaskPageButton{
+    border-radius: 50%;
+    padding: 10px 20px;
+    font-size: 26px;
+    text-align: center;
+    border: none;
+    box-shadow: 2px 2px 5px #293241;
+    color: white;
+    background-color: #ee6c4d;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+#addTaskPageButton:hover{
+    transform: scale(1.07,1.07);
+    cursor: pointer;
+    animation-name: rotateButton;
+    animation-duration: 1s;
+}
+
+@keyframes rotateButton {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
 }
 
 .account-container{
