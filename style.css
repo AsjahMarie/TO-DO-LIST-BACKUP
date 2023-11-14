@@ -231,7 +231,7 @@ body.dark-mode {
 /* styling the calendar*/
 
 :root{
-    --primary-clr: #b38add;
+    --primary-clr: #f3fdfe;
 }
 
 *{
@@ -240,18 +240,6 @@ body.dark-mode {
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
-/* nice scroll bar */
-::-webkit-scrollbar {
-    width: 5px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #f5f5f5;
-    border-radius: 50px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: var(--primary-clr);
-    border-radius: 50px;
-  }
 
 Calendar{
     min-height: 100vh;
@@ -271,7 +259,7 @@ padding: 5px;
 color: #fff;
 display:flex;
 border-radius: 10px;
-background-color: darkorchid;
+background-color:  #f3fdfe;
 }
 .left{
     position:relative;
