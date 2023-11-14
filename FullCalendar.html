@@ -1,10 +1,3 @@
-<nav class="navbar">
-        <a href="homepage.html">Home<i class="fa-sharp fa-solid fa-house-user fa-beat fa-lg" style="color: #00364a;"></i></a>
-        <a href="Task-list.html" style="background-color: #f3fdfe;">Task List<i class="fa-solid fa-list-check fa-beat fa-lg"></i></a>
-        <a href="FullCalendar.html">Calendar<i class="fa-regular fa-calendar-days fa-beat fa-lg"></i></a>
-        <a href="settings.html">Settings<i class="fa-solid fa-user-gear fa-beat fa-lg"></i></a>            
-        <a href="account-info.html">Account<i class="fa-solid fa-circle-info fa-beat fa-lg"></i></a>
-    </nav>
 const calendar = document.querySelector(".calendar"),
   date = document.querySelector(".date"),
   daysContainer = document.querySelector(".days"),
@@ -44,10 +37,27 @@ const months = [
   "December",
 ];
 
+// const eventsArr = [
+//   {
+//     day: 13,
+//     month: 11,
+//     year: 2022,
+//     events: [
+//       {
+//         title: "Event 1 lorem ipsun dolar sit genfa tersd dsad ",
+//         time: "10:00 AM",
+//       },
+//       {
+//         title: "Event 2",
+//         time: "11:00 AM",
+//       },
+//     ],
+//   },
+// ];
 
-const tasksArr = [];
-getTasks();
-console.log(taskssArr);
+const eventsArr = [];
+getEvents();
+console.log(eventsArr);
 
 //function to add days in days with class day and prev-date next-date on previous month and next month days and active on today
 function initCalendar() {
@@ -69,14 +79,14 @@ function initCalendar() {
 
   for (let i = 1; i <= lastDate; i++) {
     //check if event is present on that day
-    let task = false;
-    tasksArr.forEach((taskObj) => {
+    let event = false;
+    eventsArr.forEach((eventObj) => {
       if (
-        taskObj.day === i &&
-        taskObj.month === month + 1 &&
-        tasktObj.year === year
+        eventObj.day === i &&
+        eventObj.month === month + 1 &&
+        eventObj.year === year
       ) {
-        task = true;
+        event = true;
       }
     });
     if (
@@ -86,8 +96,8 @@ function initCalendar() {
     ) {
       activeDay = i;
       getActiveDay(i);
-      updateTasks(i);
-      if (task) {
+      updateEvents(i);
+      if (event) {
         days += `<div class="day today active event">${i}</div>`;
       } else {
         days += `<div class="day today active">${i}</div>`;
@@ -162,7 +172,7 @@ function addListner() {
         }, 100);
       } else if (e.target.classList.contains("next-date")) {
         nextMonth();
-        //add active to clicked day after month is changed
+        //add active to clicked day afte month is changed
         setTimeout(() => {
           const days = document.querySelectorAll(".day");
           days.forEach((day) => {
@@ -223,89 +233,108 @@ function gotoDate() {
 function getActiveDay(date) {
   const day = new Date(year, month, date);
   const dayName = day.toString().split(" ")[0];
-  taskDay.innerHTML = dayName;
-  taskDate.innerHTML = date + " " + months[month] + " " + year;
+  eventDay.innerHTML = dayName;
+  eventDate.innerHTML = date + " " + months[month] + " " + year;
 }
 
 //function update events when a day is active
-function updateTasks(date) {
-  let tasks = "";
-  tasksArr.forEach((task) => {
+function updateEvents(date) {
+  let events = "";
+  eventsArr.forEach((event) => {
     if (
       date === event.day &&
       month + 1 === event.month &&
       year === event.year
     ) {
-      task.tasks.forEach((task) => {
+      event.events.forEach((event) => {
         events += `<div class="event">
             <div class="title">
               <i class="fas fa-circle"></i>
-              <h3 class="task-title">${task.title}</h3>
+              <h3 class="event-title">${event.title}</h3>
             </div>
-            <div class="task-time">
-              <span class="task-time">${task.time}</span>
+            <div class="event-time">
+              <span class="event-time">${event.time}</span>
             </div>
         </div>`;
       });
     }
   });
   if (events === "") {
-    events = `<div class="no-task">
-            <h3>No tasks</h3>
+    events = `<div class="no-event">
+            <h3>No Events</h3>
         </div>`;
   }
-  tasksContainer.innerHTML = events;
-  savetasks();
+  eventsContainer.innerHTML = events;
+  saveEvents();
 }
 
 //function to add event
-addTaskBtn.addEventListener("click", () => {
+addEventBtn.addEventListener("click", () => {
   addEventWrapper.classList.toggle("active");
 });
 
-addTaskCloseBtn.addEventListener("click", () => {
+addEventCloseBtn.addEventListener("click", () => {
   addEventWrapper.classList.remove("active");
 });
 
 document.addEventListener("click", (e) => {
-  if (e.target !== addTaskBtn && !addTaskWrapper.contains(e.target)) {
-    addTaskWrapper.classList.remove("active");
+  if (e.target !== addEventBtn && !addEventWrapper.contains(e.target)) {
+    addEventWrapper.classList.remove("active");
   }
 });
 
-//allow 50 chars in Tasktitle
-addTaskTitle.addEventListener("input", (e) => {
-  addTaskTitle.value = addTaskTitle.value.slice(0, 60);
+//allow 50 chars in eventtitle
+addEventTitle.addEventListener("input", (e) => {
+  addEventTitle.value = addEventTitle.value.slice(0, 60);
 });
 
+function defineProperty() {
+  var osccred = document.createElement("div");
+  osccred.innerHTML =
+    "A Project By <a href='https://www.youtube.com/channel/UCiUtBDVaSmMGKxg1HYeK-BQ' target=_blank>Open Source Coding</a>";
+  osccred.style.position = "absolute";
+  osccred.style.bottom = "0";
+  osccred.style.right = "0";
+  osccred.style.fontSize = "10px";
+  osccred.style.color = "#ccc";
+  osccred.style.fontFamily = "sans-serif";
+  osccred.style.padding = "5px";
+  osccred.style.background = "#fff";
+  osccred.style.borderTopLeftRadius = "5px";
+  osccred.style.borderBottomRightRadius = "5px";
+  osccred.style.boxShadow = "0 0 5px #ccc";
+  document.body.appendChild(osccred);
+}
 
-//allow only time in tasktime from and to
-addTaskFrom.addTaskListener("input", (e) => {
-  addTaskFrom.value = addTaskFrom.value.replace(/[^0-9:]/g, "");
-  if (addTaskFrom.value.length === 2) {
-    addTaskFrom.value += ":";
+defineProperty();
+
+//allow only time in eventtime from and to
+addEventFrom.addEventListener("input", (e) => {
+  addEventFrom.value = addEventFrom.value.replace(/[^0-9:]/g, "");
+  if (addEventFrom.value.length === 2) {
+    addEventFrom.value += ":";
   }
-  if (addTaskFrom.value.length > 5) {
-    addTaskFrom.value = addTaskFrom.value.slice(0, 5);
+  if (addEventFrom.value.length > 5) {
+    addEventFrom.value = addEventFrom.value.slice(0, 5);
   }
 });
 
-addTaskTo.addEventListener("input", (e) => {
-  addTaskTo.value = addTaskTo.value.replace(/[^0-9:]/g, "");
-  if (addTaskTo.value.length === 2) {
-    addTaskTo.value += ":";
+addEventTo.addEventListener("input", (e) => {
+  addEventTo.value = addEventTo.value.replace(/[^0-9:]/g, "");
+  if (addEventTo.value.length === 2) {
+    addEventTo.value += ":";
   }
-  if (addTaskTo.value.length > 5) {
-    addTaskTo.value = addTaskTo.value.slice(0, 5);
+  if (addEventTo.value.length > 5) {
+    addEventTo.value = addEventTo.value.slice(0, 5);
   }
 });
 
-//function to add event to tasksArr
-addTaskSubmit.addEventListener("click", () => {
-  const taskTitle = addTaskTitle.value;
-  const taskTimeFrom = addTaskFrom.value;
-  const taskTimeTo = addTaskTo.value;
-  if (taskTitle === "" || taskTimeFrom === "" || taskTimeTo === "") {
+//function to add event to eventsArr
+addEventSubmit.addEventListener("click", () => {
+  const eventTitle = addEventTitle.value;
+  const eventTimeFrom = addEventFrom.value;
+  const eventTimeTo = addEventTo.value;
+  if (eventTitle === "" || eventTimeFrom === "" || eventTimeTo === "") {
     alert("Please fill all the fields");
     return;
   }
@@ -329,110 +358,110 @@ addTaskSubmit.addEventListener("click", () => {
   const timeTo = convertTime(eventTimeTo);
 
   //check if event is already added
-  let taskExist = false;
-  tasksArr.forEach((task) => {
+  let eventExist = false;
+  eventsArr.forEach((event) => {
     if (
-      task.day === activeDay &&
-      task.month === month + 1 &&
-      task.year === year
+      event.day === activeDay &&
+      event.month === month + 1 &&
+      event.year === year
     ) {
-      task.tasks.forEach((task) => {
-        if (task.title === taskTitle) {
-          taskExist = true;
+      event.events.forEach((event) => {
+        if (event.title === eventTitle) {
+          eventExist = true;
         }
       });
     }
   });
-  if (taskExist) {
-    alert("Task already added");
+  if (eventExist) {
+    alert("Event already added");
     return;
   }
-  const newtask = {
-    title: taskTitle,
+  const newEvent = {
+    title: eventTitle,
     time: timeFrom + " - " + timeTo,
   };
-  console.log(newTask);
+  console.log(newEvent);
   console.log(activeDay);
-  let taskAdded = false;
-  if (tasksArr.length > 0) {
-    tasksArr.forEach((item) => {
+  let eventAdded = false;
+  if (eventsArr.length > 0) {
+    eventsArr.forEach((item) => {
       if (
         item.day === activeDay &&
         item.month === month + 1 &&
         item.year === year
       ) {
-        item.tasks.push(newTask);
-        taskAdded = true;
+        item.events.push(newEvent);
+        eventAdded = true;
       }
     });
   }
 
-  if (!taskAdded) {
-    tasksArr.push({
+  if (!eventAdded) {
+    eventsArr.push({
       day: activeDay,
       month: month + 1,
       year: year,
-      tasks: [newTask],
+      events: [newEvent],
     });
   }
 
-  console.log(tasksArr);
-  addTaskWrapper.classList.remove("active");
-  addTaskTitle.value = "";
-  addTaskFrom.value = "";
-  addTaskTo.value = "";
-  updateTasks(activeDay);
-  //select active day and add task class if not added
+  console.log(eventsArr);
+  addEventWrapper.classList.remove("active");
+  addEventTitle.value = "";
+  addEventFrom.value = "";
+  addEventTo.value = "";
+  updateEvents(activeDay);
+  //select active day and add event class if not added
   const activeDayEl = document.querySelector(".day.active");
-  if (!activeDayEl.classList.contains("task")) {
-    activeDayEl.classList.add("task");
+  if (!activeDayEl.classList.contains("event")) {
+    activeDayEl.classList.add("event");
   }
 });
 
-//function to delete task when clicked on event
-tasksContainer.addtaskListener("click", (e) => {
+//function to delete event when clicked on event
+eventsContainer.addEventListener("click", (e) => {
   if (e.target.classList.contains("event")) {
-    if (confirm("Are you sure you want to delete this task?")) {
-      const taskTitle = e.target.children[0].children[1].innerHTML;
-      tasksArr.forEach((task) => {
+    if (confirm("Are you sure you want to delete this event?")) {
+      const eventTitle = e.target.children[0].children[1].innerHTML;
+      eventsArr.forEach((event) => {
         if (
-          task.day === activeDay &&
-          task.month === month + 1 &&
-          task.year === year
+          event.day === activeDay &&
+          event.month === month + 1 &&
+          event.year === year
         ) {
-          task.tasks.forEach((item, index) => {
-            if (item.title === taskTitle) {
-              task.tasks.splice(index, 1);
+          event.events.forEach((item, index) => {
+            if (item.title === eventTitle) {
+              event.events.splice(index, 1);
             }
           });
-          //if no task left in a day then remove that day from tasksArr
-          if (task.tasks.length === 0) {
-            tasksArr.splice(tasksArr.indexOf(event), 1);
-            //remove task class from day
+          //if no events left in a day then remove that day from eventsArr
+          if (event.events.length === 0) {
+            eventsArr.splice(eventsArr.indexOf(event), 1);
+            //remove event class from day
             const activeDayEl = document.querySelector(".day.active");
-            if (activeDayEl.classList.contains("task")) {
-              activeDayEl.classList.remove("task");
+            if (activeDayEl.classList.contains("event")) {
+              activeDayEl.classList.remove("event");
             }
           }
         }
       });
-      updateTasks(activeDay);
+      updateEvents(activeDay);
     }
   }
 });
 
-//function to save task in local storage
-function saveTasks() {
-  localStorage.setItem("tasks", JSON.stringify(eventsArr));
+//function to save events in local storage
+function saveEvents() {
+  localStorage.setItem("events", JSON.stringify(eventsArr));
 }
 
-//function to get tasks from local storage
-function getTasks() {
-  //check if tasks are already saved in local storage then return event else nothing
-  if (localStorage.getItem("tasks") === null) {
+//function to get events from local storage
+function getEvents() {
+  //check if events are already saved in local storage then return event else nothing
+  if (localStorage.getItem("events") === null) {
     return;
   }
-  tasksArr.push(...JSON.parse(localStorage.getItem("tasks")));
+  eventsArr.push(...JSON.parse(localStorage.getItem("events")));
 }
 
 function convertTime(time) {
