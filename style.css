@@ -50,6 +50,7 @@ body {
     background-color: #f3fdfe;
     color: #293241;
     font-family: sans-serif;
+    display: inline;
 }
 
 /* Dark Mode */
@@ -57,6 +58,14 @@ body.dark-mode {
     background-color: #333;
     color: #fff;
     font-family: sans-serif;
+}
+
+#topBanner{
+    padding: 10px;
+    padding-left: 25px;
+    color: white;
+    background-color: #3d5a80;
+    width: 100%;
 }
 
 /*moving nav bar to the left side*/
@@ -73,7 +82,8 @@ body.dark-mode {
     position: fixed;
     top: 0;
     left: 0;
-    height: 100%; /* Full height of the screen */
+    margin-top: 70px;
+    height: 93%; /* Full height of the screen */
     width: 115px; /* Adjust the width based on your design */
     background: #98c1d9; /* Example background color */
     /* we can add other styling as needed */
@@ -177,8 +187,10 @@ body.dark-mode {
     grid-row-start: 1;
 }
 
+#tasks{
+    margin: 30px;
+}
 
-    
 .account-container{
     max-width: 60px;
     margin: 0 auto;
