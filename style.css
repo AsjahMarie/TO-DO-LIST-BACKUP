@@ -19,7 +19,8 @@ body, html {
     justify-content: space-between;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #f3fdfe;
+    margin-left: 40%;
 }
 
 .login-container .forms {
