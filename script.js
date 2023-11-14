@@ -251,11 +251,11 @@ function updateTasks(date) {
 }
 
 //function to add task
-addTaskBtn.addTaskListener("click", () => {
+addTaskBtn.addEventListener("click", () => {
   addTaskWrapper.classList.toggle("active");
 });
 
-addTaskCloseBtn.addTaskListener("click", () => {
+addTaskCloseBtn.addEventListener("click", () => {
   addTaskWrapper.classList.remove("active");
 });
 
@@ -266,12 +266,12 @@ document.addEventListener("click", (e) => {
 });
 
 //allow 50 chars in tasktitle
-addTaskTitle.addTaskListener("input", (e) => {
+addTaskTitle.addEventListener("input", (e) => {
   addTaskTitle.value = addTaskTitle.value.slice(0, 60);
 });
 
 //allow only time in task time from and to
-addTaskFrom.addTaskListener("input", (e) => {
+addTaskFrom.addEventListener("input", (e) => {
   addTaskFrom.value = addTaskFrom.value.replace(/[^0-9:]/g, "");
   if (addTaskFrom.value.length === 2) {
     addTaskFrom.value += ":";
@@ -281,7 +281,7 @@ addTaskFrom.addTaskListener("input", (e) => {
   }
 });
 
-addTaskTo.addTaskListener("input", (e) => {
+addTaskTo.addEventListener("input", (e) => {
   addTaskTo.value = addTaskTo.value.replace(/[^0-9:]/g, "");
   if (addTaskTo.value.length === 2) {
     addTaskTo.value += ":";
@@ -393,7 +393,7 @@ tasksContainer.addEventListener("click", (e) => {
           task.year === year
         ) {
           task.tasks.forEach((item, index) => {
-            if (item.title === eventTitle) {
+            if (item.title === taskTitle) {
               task.tasks.splice(index, 1);
             }
           });
