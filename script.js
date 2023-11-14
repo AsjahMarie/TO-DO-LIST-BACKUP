@@ -274,5 +274,64 @@ addTaskSubmit.addEventListener("click", () => {
   updateEvents(activeDay);
 
   const activeDayEl = document.querySelector(".day.active");
-  if (!activeDayEl.classList.contains("event")) {
+    if (!activeDayEl.classList.contains("task")) {
+      activeDayEl.classList.add("task");
+    }
+  });
+  
+  //function to delete event when clicked on event
+  tasksContainer.addEventListener("click", (e) => {
+    if (e.target.classList.contains("task")) {
+      if (confirm("Are you sure you want to delete this task?")) {
+        const taskTitle = e.target.children[0].children[1].innerHTML;
+        tasksArr.forEach((task) => {
+          if (
+            task.day === activeDay &&
+            task.month === month + 1 &&
+            task.year === year
+          ) {
+            task.tasks.forEach((item, index) => {
+              if (item.title === eventTitle) {
+                task.tasks.splice(index, 1);
+              }
+            });
+            //if no tasks left in a day then remove that day from tasksArr
+            if (task.tasks.length === 0) {
+              tasksArr.splice(tasksArr.indexOf(event), 1);
+              //remove task class from day
+              const activeDayEl = document.querySelector(".day.active");
+              if (activeDayEl.classList.contains("task")){
+                activeDayEl.classList.remove("task");
+              }
+            }
+          }
+        });
+        updateTasks(activeDay);
+      }
+    }
+  });
+  
+  //function to save tasks in local storage
+  function saveTasks() {
+    localStorage.setItem("tasks", JSON.stringify(tasksArr));
+  }
+  
+  //function to get task from local storage
+  function getTasks() {
+    //check if tasks are already saved in local storage then return event else nothing
+    if (localStorage.getItem("tasks") === null) {
+      return;
+    }
+    tasksArr.push(...JSON.parse(localStorage.getItem("tasks")));
+  }function convertTime(time) {
+    //convert time to 24 hour format
+    let timeArr = time.split(":");
+    let timeHour = timeArr[0];
+    let timeMin = timeArr[1];
+    let timeFormat = timeHour >= 12 ? "PM" : "AM";
+    timeHour = timeHour % 12 || 12;
+    time = timeHour + ":" + timeMin + " " + timeFormat;
+    return time;
+  }
    
+
