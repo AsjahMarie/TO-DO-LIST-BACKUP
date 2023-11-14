@@ -41,7 +41,7 @@ const tasksArr = [];
 getTasks();
 console.log(tasksArr);
 
-//function to add days in days with class day and prev-date next-date on previous month and next month days and active on today
+// function to add days in days with class day and prev-date next-date on previous month and next month days and active on today
 function initCalendar() {
   const firstDay = new Date(year, month, 1);
   const lastDay = new Date(year, month + 1, 0);
@@ -60,11 +60,11 @@ function initCalendar() {
   }
 
   for (let i = 1; i <= lastDate; i++) {
-    //check if event is present on that day
+    // check if task is present on that day
     let task = false;
     tasksArr.forEach((taskObj) => {
       if (
-        tasktObj.day === i &&
+        taskObj.day === i &&
         taskObj.month === month + 1 &&
         taskObj.year === year
       ) {
@@ -88,7 +88,7 @@ function initCalendar() {
       if (task) {
         days += `<div class="day task">${i}</div>`;
       } else {
-        days += `<div class="day ">${i}</div>`;
+        days += `<div class="day">${i}</div>`;
       }
     }
   }
@@ -97,10 +97,10 @@ function initCalendar() {
     days += `<div class="day next-date">${j}</div>`;
   }
   daysContainer.innerHTML = days;
-  addListner();
+  addListener();
 }
 
-//function to add month and year on prev and next button
+// function to add month and year on prev and next button
 function prevMonth() {
   month--;
   if (month < 0) {
@@ -109,6 +109,59 @@ function prevMonth() {
   }
   initCalendar();
 }
+
+function nextMonth() {
+  month++;
+  if (month > 11) {
+    month = 0;
+    year++;
+  }
+  initCalendar();
+}
+
+prev.addEventListener("click", prevMonth);
+next.addEventListener("click", nextMonth);
+
+initCalendar();
+
+// function to add active on day
+function addListener() {
+  const days = document.querySelectorAll(".day");
+  days.forEach((day) => {
+    day.addEventListener("click", (e) => {
+      getActiveDay(e.target.innerHTML);
+      updateTasks(Number(e.target.innerHTML));
+      activeDay = Number(e.target.innerHTML);
+      // remove active
+      days.forEach((day) => {
+        day.classList.remove("active");
+      });
+      // if clicked prev-date or next-date switch to that month
+      if (e.target.classList.contains("prev-date")) {
+        prevMonth();
+        // add active to clicked day after month is change
+        setTimeout(() => {
+          // add active where no prev-date or next-date
+          const days = document.querySelectorAll(".day");
+          days.forEach((day) => {
+            if (
+              !day.classList.contains("prev-date") &&
+              day.innerHTML === e.target.innerHTML
+            ) {
+              day.classList.add("active");
+            }
+          });
+        }, 100);
+      } else if (e.target.classList.contains("next-date")) {
+        nextMonth();
+        // add active to clicked day after month is changed
+        setTimeout(() => {
+          const days = document.querySelectorAll(".day");
+          days.forEach((day) => {
+            if (
+              !day.classList.contains("next-date") &&
+              day.innerHTML === e.target.innerHTML
+
 
 function nextMonth() {
   month++;
