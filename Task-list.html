@@ -32,54 +32,63 @@
         <button onclick="goToAddTaskPage()" id="addTaskPageButton">Add Task Page</button>
     </div>
 
-    <script>
-        function addTask() {
-            const taskInput = document.getElementById('taskInput');
-            const taskColor = document.getElementById('taskColorPicker').value;
-            const dueDate = document.getElementById('dueDateInput').value;
+    <!-- task-list.html -->
+<script>
+    function addTask() {
+        const taskInput = document.getElementById('taskInput');
+        const taskColor = document.getElementById('taskColorPicker').value;
+        const dueDate = document.getElementById('dueDateInput').value;
 
-            if (taskInput.value.trim() !== '') {
-                const taskList = document.getElementById('tasks');
-                const li = document.createElement('li');
-                li.textContent = taskInput.value + (dueDate ? ` (Due: ${dueDate})` : '');
-                li.style.backgroundColor = taskColor; // Set task color
-                li.onclick = function() {
-                    this.remove(); // Delete task on click
-                };
-                taskList.appendChild(li);
-                taskInput.value = ''; // Clear the task input field
-                document.getElementById('dueDateInput').value = ''; // Clear the due date input field
+        if (taskInput.value.trim() !== '') {
+            const taskList = document.getElementById('tasks');
+            const li = document.createElement('li');
+            li.textContent = taskInput.value + (dueDate ? ` (Due: ${dueDate})` : '');
+            li.style.backgroundColor = taskColor;
+            li.onclick = function() {
+                this.remove();
+                removeTaskFromCalendar(taskInput.value);
+            };
+            taskList.appendChild(li);
+            taskInput.value = '';
+            document.getElementById('dueDateInput').value = '';
 
-                // Post message to the main window (FullCalendar.html) when a task is added
-                const taskData = {
-                    type: 'task',
-                    name: taskInput.value,
-                    color: taskColor,
-                    dueDate: dueDate
-                };
-                window.postMessage(taskData, '*');
-            } else {
-                alert('Please enter a task.');
-            }
+            // Post message to the main window (fullCalendar.html) when a task is added
+            const taskData = {
+                type: 'task',
+                name: taskInput.value,
+                color: taskColor,
+                dueDate: dueDate
+            };
+            window.postMessage(taskData, '*');
+        } else {
+            alert('Please enter a task.');
+        }
+    }
+
+    function removeTaskFromCalendar(taskName) {
+        const taskData = {
+            type: 'removeTask',
+            name: taskName
+        };
+        window.postMessage(taskData, '*');
+    }
+
+    function goToAddTaskPage() {
+        window.location.href = 'addTaskPage.html';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const taskButton = document.getElementById('taskButton');
+        const addTaskPageButton = document.getElementById('addTaskPageButton');
+
+        if (taskButton) {
+            taskButton.addEventListener('click', addTask);
         }
 
-        function goToAddTaskPage() {
-            // You can redirect to the add task page or perform any other action here
-            window.location.href = 'addTaskPage.html'; // Update with the correct page URL
+        if (addTaskPageButton) {
+            addTaskPageButton.addEventListener('click', goToAddTaskPage);
         }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const taskButton = document.getElementById('taskButton');
-            const addTaskPageButton = document.getElementById('addTaskPageButton');
-
-            if (taskButton) {
-                taskButton.addEventListener('click', addTask);
-            }
-
-            if (addTaskPageButton) {
-                addTaskPageButton.addEventListener('click', goToAddTaskPage);
-            }
-        });
-    </script>
+    });
+</script>
 </body>
 </html>
