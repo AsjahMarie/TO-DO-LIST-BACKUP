@@ -231,7 +231,7 @@ body.dark-mode {
 /* styling the calendar*/
 
 :root{
-    --primary-clr: #f3fdfe;
+    --primary-clr: #b38add;
 }
 
 *{
@@ -247,7 +247,7 @@ Calendar{
     align-items: center;
     justify-content: center;
     padding-bottom: 30px ;
-    background-color:#98c1d9;
+    background-color:#e2e1dc;
 }
 
 .container-calendar{
@@ -282,7 +282,7 @@ background-color:  #98c1d9;
     width: 12px;
     height: 97%;
     border-radius: 0 5px 5px 0;
-    background-color: aquamarine;
+    background-color: #d3d4d6d7;
     transform:translate(-50%);
 }
 .calendar::before {
