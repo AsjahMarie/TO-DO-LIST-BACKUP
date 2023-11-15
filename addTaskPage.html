@@ -56,13 +56,7 @@
                 taskInput.value = '';
                 document.getElementById('dueDateInput').value = '';
                 
-                const taskData = {
-                    type: 'task',
-                    name: taskName,
-                    color: taskColor,
-                    dueDate: dueDate
-                };
-                
+
                 // Post the task data to the main window
                 window.opener.postMessage(taskData, '*');
             }else{
