@@ -89,12 +89,12 @@
     <script src="script.js"></script>
       <script>
         //Handles the message recieved from addtask.html
-        window.addEventListener('message', function(event){
-          if(event.data.type === 'task'){
+        //window.addEventListener('message', function(event){
+         // if(event.data.type === 'task'){
             //Handles the task data recieved from addtask.html
-            console.log('Recieved task data:', event.data);
+          //  console.log('Recieved task data:', event.data);
             //adding the task to the calendar 
-            addTaskToCalendar(event.data);
+           // addTaskToCalendar(event.data);
           }
         });
       </script>
