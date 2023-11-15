@@ -34,8 +34,8 @@
 
     <!-- task-list.html -->
 <script>
-    function addTask() {
-       const taskInput = document.getElementById('taskInput');
+function addTask() {
+    const taskInput = document.getElementById('taskInput');
     const taskColor = document.getElementById('taskColorPicker').value;
     const dueDate = document.getElementById('dueDateInput').value;
     const tasks = document.getElementById('tasks');
@@ -43,27 +43,34 @@
     if (taskInput.value.trim() !== '') {
         const taskList = document.getElementById('tasks');
         const li = document.createElement('li');
-        li.textContent = taskInput.value + (dueDate ? ` (Due: ${dueDate})` : '');
+        const taskValue = taskInput.value;  // Store the task value before resetting
+        li.textContent = taskValue + (dueDate ? ` (Due: ${dueDate})` : '');
         li.style.backgroundColor = taskColor;
+        // Store the task information in the li element's dataset
+        li.dataset.taskName = taskValue;
+        li.dataset.taskColor = taskColor;
+        li.dataset.dueDate = dueDate;
         li.onclick = function () {
             // Remove the task and save the updated tasks
-            removeTaskFromCalendar(taskInput.value);
-            tasks.removeChild(li);
+            removeTaskFromCalendar(this);  // Pass the li element to the function
+            tasks.removeChild(this);
             saveTasks();
         };
         taskList.appendChild(li);
         taskInput.value = '';
         document.getElementById('dueDateInput').value = '';
-        saveTasks();
 
         // Post message to the main window (fullCalendar.html) when a task is added
         const taskData = {
             type: 'task',
-            name: taskInput.value,
+            name: taskValue,  // Use the stored task value
             color: taskColor,
             dueDate: dueDate
         };
         window.postMessage(taskData, '*');
+
+        // Save the tasks after updating the UI
+        saveTasks();
     } else {
         alert('Please enter a task.');
     }
