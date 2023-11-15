@@ -47,11 +47,11 @@
             li.onclick = function() {
                 this.remove();
                 removeTaskFromCalendar(taskInput.value);
+                saveTasks();
             };
             taskList.appendChild(li);
             taskInput.value = '';
             document.getElementById('dueDateInput').value = '';
-
             // Post message to the main window (fullCalendar.html) when a task is added
             const taskData = {
                 type: 'task',
@@ -60,9 +60,11 @@
                 dueDate: dueDate
             };
             window.postMessage(taskData, '*');
+            saveTasks();
         } else {
             alert('Please enter a task.');
         }
+        saveTasks();
     }
 
     function removeTaskFromCalendar(taskName) {
@@ -71,10 +73,12 @@
             name: taskName
         };
         window.postMessage(taskData, '*');
+        saveTasks();
     }
 
     function goToAddTaskPage() {
         window.location.href = 'addTaskPage.html';
+        saveTasks();
     }
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -83,12 +87,20 @@
 
         if (taskButton) {
             taskButton.addEventListener('click', addTask);
+            saveTasks();
         }
 
         if (addTaskPageButton) {
             addTaskPageButton.addEventListener('click', goToAddTaskPage);
+            saveTasks();
         }
+        saveTasks();
     });
+
+    function saveTasks(){
+        localStorage.setItem("tasks", taskList);
+    }
+
 </script>
 </body>
 </html>
