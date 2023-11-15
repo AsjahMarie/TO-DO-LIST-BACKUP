@@ -288,8 +288,8 @@ addTaskTitle.addEventListener("input", (e) => {
   addTaskTitle.value = addTaskTitle.value.slice(0, 60);
 });
 
-
-//allow only time in taskt ime from and to
+}
+//allow only time in tasktime from and to
 addTaskFrom.addEventListener("input", (e) => {
   addTaskFrom.value = addTaskFrom.value.replace(/[^0-9:]/g, "");
   if (addTaskFrom.value.length === 2) {
