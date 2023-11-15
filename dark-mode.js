@@ -1,9 +1,6 @@
 // dark-mode.js
 function changeTheme() {
-    const darkModeRadio = document.getElementById('darkMode') === 'true';
-    document.setItem('darkMode', !darkModeRadio);
-    const element = document.body;
-    element.classList.toggle('dark-mode', !darkModrRadio);
+    const darkModeRadio = document.getElementById('darkModeRadio');
 
     if (darkModeRadio.checked) {
         document.body.classList.add('dark-mode');
