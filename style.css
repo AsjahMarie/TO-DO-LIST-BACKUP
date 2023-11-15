@@ -6,7 +6,6 @@ body, html {
     height: 100%;
     display:flex;
     justify-content: center;
-    background-color: var(--background-color);
 }
 .index-container{
     display:flex;
@@ -48,7 +47,7 @@ body, html {
     }
 }
 /* Default Light Mode */
-body:not(.dark-mode) {
+body {
     background-color: #f3fdfe;
     color: #293241;
     font-family: sans-serif;
@@ -56,9 +55,9 @@ body:not(.dark-mode) {
 }
 
 /* Dark Mode */
-.dark-mode {
+body.dark-mode {
     background-color: #333;
-    color: #f3fdfe;
+    color: #fff;
     font-family: sans-serif;
 }
 
