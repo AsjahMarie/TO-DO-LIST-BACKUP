@@ -38,15 +38,18 @@
         const taskInput = document.getElementById('taskInput');
         const taskColor = document.getElementById('taskColorPicker').value;
         const dueDate = document.getElementById('dueDateInput').value;
-        const taskList = document.getElementById('tasks');
+        const tasks = document.getElementById('tasks');
 
         if (taskInput.value.trim() !== '') {
+            const taskList = document.getElementById('tasks');
             const li = document.createElement('li');
             li.textContent = taskInput.value + (dueDate ? ` (Due: ${dueDate})` : '');
             li.style.backgroundColor = taskColor;
             li.onclick = function() {
                 this.remove();
                 removeTaskFromCalendar(taskInput.value);
+                saveTasks();
+                displayTasks();
             };
             taskList.appendChild(li);
             taskInput.value = '';
@@ -66,17 +69,9 @@
         saveTasks();
     }
 
-    /*saving tasks to local storage*/
+    
 
-    function saveTasks(){
-        window.localStorage.setItem("taskData", taskList.innerHTML);
-    }
-
-    function displayTasks(){
-        taskList.innerHTML = window.localStorage.getItem("taskData");
-    }
-
-    displayTasks();
+    
 
     function removeTaskFromCalendar(taskName) {
         const taskData = {
@@ -102,6 +97,17 @@
             addTaskPageButton.addEventListener('click', goToAddTaskPage);
         }
     });
+
+    /*saving tasks to local storage*/
+    function saveTasks(){
+        window.localStorage.setItem("taskData", tasks.innerHTML);
+    }
+
+    function displayTasks(){
+        tasks.innerHTML = window.localStorage.getItem("taskData");
+    }
+
+    displayTasks();
 
 
 </script>
