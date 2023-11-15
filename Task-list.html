@@ -38,19 +38,19 @@
         const taskInput = document.getElementById('taskInput');
         const taskColor = document.getElementById('taskColorPicker').value;
         const dueDate = document.getElementById('dueDateInput').value;
+        const taskList = document.getElementById('tasks');
 
         if (taskInput.value.trim() !== '') {
-            const taskList = document.getElementById('tasks');
             const li = document.createElement('li');
             li.textContent = taskInput.value + (dueDate ? ` (Due: ${dueDate})` : '');
             li.style.backgroundColor = taskColor;
             li.onclick = function() {
                 this.remove();
                 removeTaskFromCalendar(taskInput.value);
-                saveTasks();
             };
             taskList.appendChild(li);
             taskInput.value = '';
+            saveTasks();
             document.getElementById('dueDateInput').value = '';
             // Post message to the main window (fullCalendar.html) when a task is added
             const taskData = {
@@ -60,12 +60,23 @@
                 dueDate: dueDate
             };
             window.postMessage(taskData, '*');
-            saveTasks();
         } else {
             alert('Please enter a task.');
         }
         saveTasks();
     }
+
+    /*saving tasks to local storage*/
+
+    function saveTasks(){
+        window.localStorage.setItem("taskData", taskList.innerHTML);
+    }
+
+    function displayTasks(){
+        taskList.innerHTML = window.localStorage.getItem("taskData");
+    }
+
+    displayTasks();
 
     function removeTaskFromCalendar(taskName) {
         const taskData = {
@@ -73,12 +84,10 @@
             name: taskName
         };
         window.postMessage(taskData, '*');
-        saveTasks();
     }
 
     function goToAddTaskPage() {
         window.location.href = 'addTaskPage.html';
-        saveTasks();
     }
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -87,24 +96,13 @@
 
         if (taskButton) {
             taskButton.addEventListener('click', addTask);
-            saveTasks();
         }
 
         if (addTaskPageButton) {
             addTaskPageButton.addEventListener('click', goToAddTaskPage);
-            saveTasks();
         }
-        saveTasks();
     });
 
-    function saveTasks(){
-        localStorage.setItem("tasks", taskList.innerHTML);
-    }
-
-    function displayTasks(){
-        taskList.innerHTML = localStorage.getItem("tasks");
-    }
-    displayTasks();
 
 </script>
 </body>
