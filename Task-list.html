@@ -98,8 +98,13 @@
     });
 
     function saveTasks(){
-        localStorage.setItem("tasks", taskList);
+        localStorage.setItem("tasks", taskList.innerHTML);
     }
+
+    function displayTasks(){
+        taskList.innerHTML = localStorage.getItem("tasks");
+    }
+    displayTasks();
 
 </script>
 </body>
