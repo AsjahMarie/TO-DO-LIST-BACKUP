@@ -442,3 +442,34 @@ function convertTime(time) {
   time = timeHour + ":" + timeMin + " " + timeFormat;
   return time;
 }
+
+// Example function to add a task to the calendar
+function addTaskToCalendar(taskData) {
+    // Access the task name, color, and due date from taskData
+    const taskName = taskData.name;
+    const taskColor = taskData.color;
+    const dueDate = taskData.dueDate;
+
+    // Get the container for days in the calendar
+    const daysContainer = document.querySelector('.days');
+
+    // Create a new task element
+    const taskElement = document.createElement('div');
+    taskElement.className = 'task';
+    taskElement.textContent = taskName;
+    taskElement.style.backgroundColor = taskColor;
+
+    // If there's a due date, add it to the task element
+    if (dueDate) {
+        const dueDateElement = document.createElement('span');
+        dueDateElement.className = 'due-date';
+        dueDateElement.textContent = `Due: ${dueDate}`;
+        taskElement.appendChild(dueDateElement);
+    }
+
+    // Add the task element to the calendar
+    daysContainer.appendChild(taskElement);
+
+    console.log('Adding task to the calendar:', taskData);
+}
+
