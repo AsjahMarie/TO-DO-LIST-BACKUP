@@ -34,11 +34,11 @@
 
     <!-- task-list.html -->
 <script>
+    <script>
     function addTask() {
         const taskInput = document.getElementById('taskInput');
         const taskColor = document.getElementById('taskColorPicker').value;
         const dueDate = document.getElementById('dueDateInput').value;
-        const tasks = document.getElementById('tasks');
 
         if (taskInput.value.trim() !== '') {
             const taskList = document.getElementById('tasks');
@@ -49,12 +49,11 @@
                 this.remove();
                 removeTaskFromCalendar(taskInput.value);
                 saveTasks();
-                displayTasks();
             };
             taskList.appendChild(li);
             taskInput.value = '';
-            saveTasks();
             document.getElementById('dueDateInput').value = '';
+
             // Post message to the main window (fullCalendar.html) when a task is added
             const taskData = {
                 type: 'task',
@@ -66,12 +65,9 @@
         } else {
             alert('Please enter a task.');
         }
+
         saveTasks();
     }
-
-    
-
-    
 
     function removeTaskFromCalendar(taskName) {
         const taskData = {
@@ -98,18 +94,18 @@
         }
     });
 
-    /*saving tasks to local storage*/
-    function saveTasks(){
-        window.localStorage.setItem("taskData", tasks.innerHTML);
+    /* Saving tasks to local storage */
+    function saveTasks() {
+        const tasks = document.getElementById('tasks').innerHTML;
+        window.localStorage.setItem('taskData', tasks);
     }
 
-    function displayTasks(){
-        tasks.innerHTML = window.localStorage.getItem("taskData");
+    function displayTasks() {
+        const tasks = document.getElementById('tasks');
+        tasks.innerHTML = window.localStorage.getItem('taskData');
     }
 
     displayTasks();
-
-
 </script>
 </body>
 </html>
