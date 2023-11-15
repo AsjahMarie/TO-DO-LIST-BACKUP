@@ -37,24 +37,6 @@ const months = [
   "December",
 ];
 
-// const tasksArr = [
-//   {
-//     day: 13,
-//     month: 11,
-//     year: 2022,
-//     tasks: [
-//       {
-//         title: "Task 1 lorem ipsun dolar sit genfa tersd dsad ",
-//         time: "10:00 AM",
-//       },
-//       {
-//         title: "Task 2",
-//         time: "11:00 AM",
-//       },
-//     ],
-//   },
-// ];
-
 const tasksArr = [];
 getTasks();
 console.log(tasksArr);
@@ -289,7 +271,7 @@ addTaskTitle.addEventListener("input", (e) => {
 });
 
 
-//allow only time in taskt ime from and to
+//allow only time in task time from and to
 addTaskFrom.addEventListener("input", (e) => {
   addTaskFrom.value = addTaskFrom.value.replace(/[^0-9:]/g, "");
   if (addTaskFrom.value.length === 2) {
@@ -434,6 +416,11 @@ tasksContainer.addEventListener("click", (e) => {
 //function to save tasks in local storage
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasksArr));
+  window.localStorage.setItem("taskData", tasks.innerHTML);
+}
+
+function displayTasks(){
+  tasks.innerHTML = window.localStorage.getItem("taskData");
 }
 
 //function to get tasks from local storage
