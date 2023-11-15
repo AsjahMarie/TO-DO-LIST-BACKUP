@@ -43,16 +43,19 @@ function addTask() {
     if (taskInput.value.trim() !== '') {
         const taskList = document.getElementById('tasks');
         const li = document.createElement('li');
-        const taskValue = taskInput.value;  // Store the task value before resetting
+        const taskValue = taskInput.value;
         li.textContent = taskValue + (dueDate ? ` (Due: ${dueDate})` : '');
         li.style.backgroundColor = taskColor;
-        // Store the task information in the li element's dataset
         li.dataset.taskName = taskValue;
         li.dataset.taskColor = taskColor;
         li.dataset.dueDate = dueDate;
         li.onclick = function () {
-            // Remove the task and save the updated tasks
-            removeTaskFromCalendar(this);  // Pass the li element to the function
+            // Pass the task information directly to the function
+            removeTaskFromCalendar({
+                name: this.dataset.taskName,
+                color: this.dataset.taskColor,
+                dueDate: this.dataset.dueDate
+            });
             tasks.removeChild(this);
             saveTasks();
         };
@@ -60,16 +63,14 @@ function addTask() {
         taskInput.value = '';
         document.getElementById('dueDateInput').value = '';
 
-        // Post message to the main window (fullCalendar.html) when a task is added
         const taskData = {
             type: 'task',
-            name: taskValue,  // Use the stored task value
+            name: taskValue,
             color: taskColor,
             dueDate: dueDate
         };
         window.postMessage(taskData, '*');
 
-        // Save the tasks after updating the UI
         saveTasks();
     } else {
         alert('Please enter a task.');
