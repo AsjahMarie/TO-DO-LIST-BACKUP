@@ -26,6 +26,6 @@ function darkmode() {
     element.classList.toggle('dark-mode', !wasDark);
 }
 
-function onload(){
+function onclick(){
     document.body.classList.toggle('dark-mode', localStorage.getItem('darkmode') == 'true');
 }
