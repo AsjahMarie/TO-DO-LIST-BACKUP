@@ -337,7 +337,7 @@ addTaskSubmit.addEventListener("click", () => {
   }
   console.log(tasksArr);
   addTaskWrapper.classList.remove("active");
-  addTasskTitle.value = "";
+  addTaskTitle.value = "";
   addTaskFrom.value = "";
   addTaskTo.value = "";
   updateTasks(activeDay);
