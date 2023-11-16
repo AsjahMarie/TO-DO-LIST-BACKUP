@@ -240,7 +240,7 @@ body.dark-mode {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-body {
+calendar {
   position: relative;
   min-height: 100vh;
   display: flex;
