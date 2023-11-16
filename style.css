@@ -6,6 +6,7 @@ body, html {
     height: 100%;
     display:flex;
     justify-content: center;
+    background-color: var(background-color);
 }
 .index-container{
     display:flex;
@@ -56,8 +57,8 @@ body {
 
 /* Dark Mode */
 body.dark-mode {
-    background-color: #333;
-    color: #fff;
+    background-color: #293241;;
+    color: #f3fdfe;
     font-family: sans-serif;
 }
 
