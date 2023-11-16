@@ -15,7 +15,9 @@ const calendar = document.querySelector(".calendar"),
   addTaskTitle = document.querySelector(".task-title"),
   addTaskDescription = document.querySelector(".task-description"),
   addTaskPriority = document.querySelector(".task-priority"),
-  addTaskSubmit = document.querySelector(".add-task-btn");
+  addTaskSubmit = document.querySelector(".add-task-btn"),
+  addTaskStart = document.querySelector(".task-start"),
+  addTaskEnd = document.querySelector(".task-end");
 
 let today = new Date();
 let activeDay;
@@ -293,9 +295,9 @@ addTaskTo.addEventListener("input", (e) => {
 //function to add task to eventsArr
 addTaskSubmit.addEventListener("click", () => {
   const taskTitle = addTaskTitle.value;
-  const taskTimeFrom = addTaskFrom.value;
-  const taskTimeTo = addTaskTo.value;
-  if (taskTitle === "" || taskTimeFrom === "" || taskTimeTo === "") {
+  const taskStart = addTaskStart.value;
+  const taskEnd = addTaskEnd.value;
+  if (taskTitle === "" || taskStart === "" || taskEnd === "") {
     alert("Please fill all the fields");
     return;
   }
@@ -339,7 +341,8 @@ addTaskSubmit.addEventListener("click", () => {
   }
   const newTask = {
     title: taskTitle,
-    time: timeFrom + " - " + timeTo,
+    start: timeFrom ,
+    end: timeto,
   };
   console.log(newTask);
   console.log(activeDay);
