@@ -1,4 +1,3 @@
-/*
 // dark-mode.js
 function changeTheme() {
     const darkModeRadio = document.getElementById('darkModeRadio');
@@ -14,10 +13,10 @@ const darkModeRadio = document.getElementById('darkModeRadio');
 if (darkModeRadio) {
     darkModeRadio.addEventListener('change', changeTheme);
 }
-*/
 
 
-// Just trying something out
+
+/* Just trying something out
 
 function darkmode() {
     const wasDark = localStorage.getItem('darkmode') == 'true';
@@ -29,3 +28,4 @@ function darkmode() {
 function onclick(){
     document.body.classList.toggle('dark-mode', localStorage.getItem('darkmode') == 'true');
 }
+*/
