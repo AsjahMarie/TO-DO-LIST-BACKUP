@@ -48,10 +48,10 @@ body, html {
 }
 /* Default Light Mode */
 body {
-    background-color: #f3fdfe;
-    color: #293241;
-    font-family: sans-serif;
-    display: inline;
+    --background-color: #f3fdfe;
+    --color: #293241;
+    --font-family: sans-serif;
+    --display: inline;
 }
 
 /* Dark Mode */
