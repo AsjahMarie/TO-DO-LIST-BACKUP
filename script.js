@@ -1,4 +1,4 @@
-const calendar = document.querySelector(".calendar"),
+if i want to change it from task time from to start and task time to, to end how would i implement that?:const calendar = document.querySelector(".calendar"),
   date = document.querySelector(".date"),
   daysContainer = document.querySelector(".days"),
   prev = document.querySelector(".prev"),
@@ -15,9 +15,7 @@ const calendar = document.querySelector(".calendar"),
   addTaskTitle = document.querySelector(".task-title"),
   addTaskDescription = document.querySelector(".task-description"),
   addTaskPriority = document.querySelector(".task-priority"),
-  addTaskSubmit = document.querySelector(".add-task-btn"),
-  addTaskStart = document.querySelector(".task-start"),
-  addTaskEnd = document.querySelector(".task-end");
+  addTaskSubmit = document.querySelector(".add-task-btn");
 
 let today = new Date();
 let activeDay;
@@ -295,9 +293,9 @@ addTaskTo.addEventListener("input", (e) => {
 //function to add task to eventsArr
 addTaskSubmit.addEventListener("click", () => {
   const taskTitle = addTaskTitle.value;
-  const taskStart = addTaskStart.value;
-  const taskEnd = addTaskEnd.value;
-  if (taskTitle === "" || taskStart === "" || taskEnd === "") {
+  const taskTimeFrom = addTaskFrom.value;
+  const taskTimeTo = addTaskTo.value;
+  if (taskTitle === "" || taskTimeFrom === "" || taskTimeTo === "") {
     alert("Please fill all the fields");
     return;
   }
@@ -341,8 +339,7 @@ addTaskSubmit.addEventListener("click", () => {
   }
   const newTask = {
     title: taskTitle,
-    start: timeFrom ,
-    end: timeto,
+    time: timeFrom + " - " + timeTo,
   };
   console.log(newTask);
   console.log(activeDay);
