@@ -8,7 +8,7 @@
     <script src="script.js"></script>
     <script src="https://kit.fontawesome.com/4b5b4d807f.js" crossorigin="anonymous"></script>
 </head>
-<body onload ="onload()">
+<body onclick ="onclick()">
     <header id="topBanner"><h1>CheckMate - A ToDo List Application</h1></header>
     <nav class="navbar">
         <a href="homepage.html">Home<i class="fa-sharp fa-solid fa-house-user fa-beat fa-lg" style="color: #00364a;"></i></a>
@@ -45,11 +45,13 @@
             <label for="radio"></label>
         </div>
     </div>
-
+    
+/*
     <script>
 // Select all radio buttons with name 'theme'
 const themeRadios = document.querySelectorAll('input[type="radio"][name="theme"]');
 
+        
 // Function to handle theme change
 function changeTheme() {
     // Loop through each radio button
@@ -71,7 +73,7 @@ themeRadios.forEach(radio => {
 
 
     </script>
-
+*/
     <script>
         function changeTaskColor() {
             const color = document.getElementById('taskColorPicker').value;
