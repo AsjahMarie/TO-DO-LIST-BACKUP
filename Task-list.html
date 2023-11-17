@@ -30,54 +30,12 @@
         <ul id="tasks"></ul>
         <!-- Button to navigate to addTaskPage -->
         <button onclick="goToAddTaskPage()" id="addTaskPageButton">+</button>
-        <button onclick="clearAll()">Clear All Tasks</button>
+        <button onclick="clearAll()" id="clearAllBtn">Clear All Tasks</button>
     </div>
 
     <!-- task-list.html -->
 <script>
-/*function addTask() {
-    const taskInput = document.getElementById('taskInput');
-    const taskColor = document.getElementById('taskColorPicker').value;
-    const dueDate = document.getElementById('dueDateInput').value;
-    const tasks = document.getElementById('tasks');
 
-    if (taskInput.value.trim() !== '') {
-        const taskList = document.getElementById('tasks');
-        const li = document.createElement('li');
-        const taskValue = taskInput.value;
-        li.textContent = taskValue + (dueDate ? ` (Due: ${dueDate})` : '');
-        li.style.backgroundColor = taskColor;
-        li.dataset.taskName = taskValue;
-        li.dataset.taskColor = taskColor;
-        li.dataset.dueDate = dueDate;
-        li.onclick = function () {
-            // Pass the task information directly to the function
-            removeTaskFromCalendar({
-                name: this.dataset.taskName,
-                color: this.dataset.taskColor,
-                dueDate: this.dataset.dueDate
-            });
-            tasks.removeChild(this);
-            saveTasks();
-        };
-        taskList.appendChild(li);
-        taskInput.value = '';
-        document.getElementById('dueDateInput').value = '';
-
-        const taskData = {
-            type: 'task',
-            name: taskValue,
-            color: taskColor,
-            dueDate: dueDate
-        };
-        window.postMessage(taskData, '*');
-
-        saveTasks();
-    } else {
-        alert('Please enter a task.');
-    }
-}
-*/
 
     function addTask(){
         
@@ -155,7 +113,49 @@
         }
     });
 
+/*function addTask() {
+    const taskInput = document.getElementById('taskInput');
+    const taskColor = document.getElementById('taskColorPicker').value;
+    const dueDate = document.getElementById('dueDateInput').value;
+    const tasks = document.getElementById('tasks');
 
+    if (taskInput.value.trim() !== '') {
+        const taskList = document.getElementById('tasks');
+        const li = document.createElement('li');
+        const taskValue = taskInput.value;
+        li.textContent = taskValue + (dueDate ? ` (Due: ${dueDate})` : '');
+        li.style.backgroundColor = taskColor;
+        li.dataset.taskName = taskValue;
+        li.dataset.taskColor = taskColor;
+        li.dataset.dueDate = dueDate;
+        li.onclick = function () {
+            // Pass the task information directly to the function
+            removeTaskFromCalendar({
+                name: this.dataset.taskName,
+                color: this.dataset.taskColor,
+                dueDate: this.dataset.dueDate
+            });
+            tasks.removeChild(this);
+            saveTasks();
+        };
+        taskList.appendChild(li);
+        taskInput.value = '';
+        document.getElementById('dueDateInput').value = '';
+
+        const taskData = {
+            type: 'task',
+            name: taskValue,
+            color: taskColor,
+            dueDate: dueDate
+        };
+        window.postMessage(taskData, '*');
+
+        saveTasks();
+    } else {
+        alert('Please enter a task.');
+    }
+}
+*/
 </script>
 </body>
 </html>
