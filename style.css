@@ -120,6 +120,11 @@ body.dark-mode {
     padding: 20px;
 }
 /*TASKS -> Task-list.html*/
+.taskContent{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
 .content #tasks{
     border: 1px solid #293241;
     border-radius: 5px;
@@ -143,23 +148,24 @@ body.dark-mode {
 /*centering the task-list information -> Task-list.html*/
 
 .task-container{
-    display: grid;
-    column-gap: 4px;
-    row-gap: 3px;
+    display: flex;
+    max-width: fit-content;
 }
 
 #taskInput{
-    grid-column-start: 1;
-    grid-column-end: 2;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 3px;
+    border: 1px solid black;
 }
 
 #taskColorPicker{
-    grid-column-start: 3;
-    grid-column-end: 4;
+    margin: 3px;
     border-radius: 5px;
     height: 40px;
     padding: 0;
     background-color: transparent;
+    border: 1px solid black;
 }
 
 #taskColorPicker:hover{
@@ -167,8 +173,7 @@ body.dark-mode {
 }
 
 #taskButton{
-    grid-column-start: 4;
-    grid-column-end: 6;
+    margin: 3px;
     background-color: #ee6c4d;
     color: white;
     border: none;
@@ -183,14 +188,21 @@ body.dark-mode {
 }
 
 #dueDateInput{
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 1;
+    margin: 3px;
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.taskList{
+    display: flex;
+    justify-content: center;
 }
 
 #tasks{
     margin: 30px;
     max-width: fit-content;
+    display: flexbox;
 }
 
 #tasks li{
