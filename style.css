@@ -62,7 +62,7 @@ body {
 }
 
 /* Dark Mode */
-.dark-mode {
+body.dark-mode {
     background-color: #333;
     color: #fff;
     font-family: sans-serif;
