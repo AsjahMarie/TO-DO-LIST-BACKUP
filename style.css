@@ -121,7 +121,6 @@ body.dark-mode {
 }
 
 .content{
-    margin-left: 110px;
     padding: 20 px;
 }
 
@@ -160,21 +159,31 @@ body.dark-mode {
 .task-container{
     display: flex;
     max-width: fit-content;
+    text-align: center;
+    justify-content: center;
 }
 
-.taskContent #taskForm{
-    display: flex;
+#taskForm{
+    display: grid;
+    text-align: left;
+    min-width: 500px;
+    grid-template-columns: auto auto;
 }
 
 .shareElement{
-    display: flex;
-    text-align: center;
-    align-items: center;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    margin-left: 4px;
+}
+
+.subTaskBox{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    margin-left: 4px;
 }
 
 #collaborate{
-    margin-left: 5px;
-    margin-right: 5px;
+    background-color: pink;
 }
 
 #submit{
@@ -201,6 +210,9 @@ body.dark-mode {
     margin: 3px;
     border: 1px solid black;
     background-color: transparent;
+    grid-template-columns: 2fr 1fr;
+    grid-column-start: 1;
+    grid-column-end: 2;
 }
 
 #taskColorPicker{
@@ -210,6 +222,9 @@ body.dark-mode {
     padding: 0;
     background-color: transparent;
     border: 1px solid black;
+    grid-column-start: 1;
+    width: 500px;
+    grid-row-start: 3;
 }
 
 #taskColorPicker:hover{
@@ -224,6 +239,7 @@ body.dark-mode {
     padding: 8px 13px;
     box-shadow: 2px 2px 5px #293241;
     border-radius: 4px;
+    grid-column-start: 1;
 }
 
 #taskButton:hover{
@@ -237,6 +253,8 @@ body.dark-mode {
     padding: 5px;
     border: 1px solid black;
     background-color: transparent;
+    grid-column-start: 1;
+    grid-column-end: 2;
 }
 
 .taskList{
@@ -247,7 +265,7 @@ body.dark-mode {
 #tasks{
     margin: 30px;
     max-width: fit-content;
-    display: flexbox;
+    text-align: left;
 }
 
 #tasks li{
