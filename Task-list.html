@@ -73,7 +73,7 @@
         const dueDate = document.getElementById('dueDateInput').value;
         const emailAddress = document.getElementById('emailAddress').value;
         const task = document.getElementById('taskInput').value;
-        const encodedSubject = encodeURIComponent('tasks');
+        const encodedSubject = encodeURIComponent(tasks);
 
         const body = 'My task: ' + task + ' Is due on: ' + dueDate;
         window.open(`mailto:${emailAddress}?subject=${encodedSubject}&body=${body}`);
