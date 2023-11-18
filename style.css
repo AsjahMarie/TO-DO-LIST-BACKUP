@@ -248,6 +248,11 @@ body {
     bottom: 20px;
 }
 
+#clearAllBtn:hover{
+    cursor: pointer;
+    transform: scale(1.03,1.03);
+}
+
 #addTaskPageButton{
     border-radius: 50%;
     padding: 10px 20px;
