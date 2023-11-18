@@ -145,13 +145,18 @@
         const checkBox = document.getElementById('collaborate');
         const shareForm = document.getElementById('shareForm');
         const addTaskBtn = document.getElementById('taskButton');
+        const addSubBtn = document.getElementById('subtaskButton');
 
         if(checkBox.checked){
             shareForm.classList.remove('hiddenElement');
+            shareForm.classList.add('displayGrid');
             addTaskBtn.classList.add('hiddenElement');
+            addSubBtn.classList.add('hiddenElement');
         } else {
             shareForm.classList.add('hiddenElement');
+            shareForm.classList.remove('displayGrid');
             addTaskBtn.classList.remove('hiddenElement');
+            addSubBtn.classList.remove('hiddenElement');
         }
     }
 
@@ -174,9 +179,11 @@
 
         if(subCheck.checked){
             subTaskForm.classList.remove('hiddenElement');
+            subTaskForm.classList.add('displayGrid');
             addTaskBtn.classList.add('hiddenElement');
         } else {
             subTaskForm.classList.add('hiddenElement');
+            subTaskForm.classList.remove('displayGrid');
             addTaskBtn.classList.remove('hiddenElement');
         }
     }
