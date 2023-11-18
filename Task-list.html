@@ -25,6 +25,14 @@
                 <input type="text" id="taskInput" placeholder="Enter a task">
                 <input type="color" value="#f3fdfe" id="taskColorPicker">
                 <input type="date" id="dueDateInput">
+                <label for="subTask">Check the box to add a subtask:</label>
+                <input type="checkbox" value="no" id="subTask" onchange="showSubtaskForm()">
+                <div class="hiddenElement" id="subTaskForm">
+                    <input type="text" id="subtaskInput" placeholder="Enter a task">
+                    <input type="color" value="#f3fdfe" id="subtaskColorPicker">
+                    <input type="date" id="subtaskdueDateInput">
+                    <button onclick="addSubtaskTask()" id="subtaskButton">Add Task & Subtask</button>
+                </div>
                 <div class="shareElement">
                     <label for="collaborate">Share task?</label>
                     <input type="checkbox" value="no" id="collaborate" onchange="displayHidden()">
@@ -47,98 +55,97 @@
     <!-- task-list.html -->
 <script>
 
+    const taskInput = document.getElementById('taskInput');
+    const tasks = document.getElementById('tasks');
+    const taskColor = document.getElementById('taskColorPicker').value;
+    const dueDate = document.getElementById('dueDateInput').value;
 
-const taskInput = document.getElementById('taskInput');
+    function composeEmail(event){
+        event.preventDefault();
+        const dueDate = document.getElementById('dueDateInput').value;
+        const emailAddress = document.getElementById('emailAddress').value;
+        const task = document.getElementById('taskInput').value;
+        const encodedSubject = encodeURIComponent(task);
+
+        const body = 'My task: ' + task + ' Is due on: ' + dueDate;
+        window.open(`mailto:${emailAddress}?subject=${encodedSubject}&body=${body}`);
+    }
+
+    function addTask(){
+
+        const taskInput = document.getElementById('taskInput');
         const tasks = document.getElementById('tasks');
         const taskColor = document.getElementById('taskColorPicker').value;
         const dueDate = document.getElementById('dueDateInput').value;
 
-        function composeEmail(event){
-            event.preventDefault();
-            const dueDate = document.getElementById('dueDateInput').value;
-            const emailAddress = document.getElementById('emailAddress').value;
-            const task = document.getElementById('taskInput').value;
-            const encodedSubject = encodeURIComponent(task);
+        if (taskInput.value.trim() !== ''){
+            const deleteBtn = "<button onclick='deleteTask(this)' id='deleteBtn'>remove</button>";
+            const taskValue = taskInput.value;
 
-            const body = 'My task: ' + task + ' Is due on: ' + dueDate;
-            window.open(`mailto:${emailAddress}?subject=${encodedSubject}&body=${body}`);
-        }
+            const li = document.createElement('li');
+            li.textContent = taskValue + (dueDate ? ` (Due: ${dueDate})` : '');
+            li.innerHTML += `${deleteBtn}`;
+            li.style.backgroundColor = taskColor;
+            li.dataset.taskName = taskValue;
+            li.dataset.taskColor = taskColor;
+            li.dataset.dueDate = dueDate;
+            tasks.appendChild(li);
 
-        function addTask(){
-
-            const taskInput = document.getElementById('taskInput');
-            const tasks = document.getElementById('tasks');
-            const taskColor = document.getElementById('taskColorPicker').value;
-            const dueDate = document.getElementById('dueDateInput').value;
-
-            if (taskInput.value.trim() !== ''){
-                const deleteBtn = "<button onclick='deleteTask(this)' id='deleteBtn'>remove</button>";
-                const taskValue = taskInput.value;
-
-                const li = document.createElement('li');
-                li.textContent = taskValue + (dueDate ? ` (Due: ${dueDate})` : '');
-                li.innerHTML += `${deleteBtn}`;
-                li.style.backgroundColor = taskColor;
-                li.dataset.taskName = taskValue;
-                li.dataset.taskColor = taskColor;
-                li.dataset.dueDate = dueDate;
-                tasks.appendChild(li);
-
-                taskInput.value='';
-                saveTasks();
+            taskInput.value='';
+            saveTasks();
             
-            } else {
-                alert("please enter a task")
-            }
-            saveTasks();
+        } else {
+            alert("please enter a task")
         }
+        saveTasks();
+    }
 
-        /*function that gets delete button's parent node (li) and deletes it from it's parent node (ul)*/
-        function deleteTask(dBtn){
-            var taskListed = dBtn.parentNode;
-            taskListed.parentNode.removeChild(taskListed);
-            saveTasks();
+    /*function that gets delete button's parent node (li) and deletes it from it's parent node (ul)*/
+    function deleteTask(dBtn){
+        var taskListed = dBtn.parentNode;
+        taskListed.parentNode.removeChild(taskListed);
+        saveTasks();
+    }
+
+    function saveTasks(){
+        window.localStorage.setItem("tasks", tasks.innerHTML)
+    }
+
+    function displayTasks(){
+        tasks.innerHTML = window.localStorage.getItem("tasks");
+    }
+
+    function clearAll(){
+        window.localStorage.clear();
+        location.reload();
+    }
+
+    displayTasks();
+
+    function submitForm(){
+        const checkBox = document.getElementById('collaborate');
+
+        if (checkBox.checked){
+            addTask();
+            composeEmail(event);
+        } else {
+            addTask();
         }
+    }
 
-        function saveTasks(){
-            window.localStorage.setItem("tasks", tasks.innerHTML)
+    function displayHidden(){
+        const checkBox = document.getElementById('collaborate');
+        const shareForm = document.getElementById('shareForm');
+        const addTaskBtn = document.getElementById('taskButton');
+
+        if(checkBox.checked){
+            shareForm.classList.remove('hiddenElement');
+            addTaskBtn.classList.add('hiddenElement');
+        } else {
+            shareForm.classList.add('hiddenElement');
+            addTaskBtn.classList.remove('hiddenElement');
         }
-
-        function displayTasks(){
-            tasks.innerHTML = window.localStorage.getItem("tasks");
-        }
-
-        function clearAll(){
-            window.localStorage.clear();
-            location.reload();
-        }
-
-        displayTasks();
-
-        function submitForm(){
-            const checkBox = document.getElementById('collaborate');
-
-            if (checkBox.checked){
-                addTask();
-                composeEmail(event);
-            } else {
-                addTask();
-            }
-        }
-
-        function displayHidden(){
-            const checkBox = document.getElementById('collaborate');
-            const shareForm = document.getElementById('shareForm');
-            const addTaskBtn = document.getElementById('taskButton');
-
-            if(checkBox.checked){
-                shareForm.classList.remove('hiddenElement');
-                addTaskBtn.classList.add('hiddenElement');
-            } else {
-                shareForm.classList.add('hiddenElement');
-                addTaskBtn.classList.remove('hiddenElement');
-            }
-        }
+    }
 
     function removeTaskFromCalendar(taskName) {
         const taskData = {
@@ -150,6 +157,69 @@ const taskInput = document.getElementById('taskInput');
 
     function goToAddTaskPage() {
         window.location.href = 'addTaskPage.html';
+    }
+
+    function showSubtaskForm(){
+        const subCheck = document.getElementById('subTask');
+        const addTaskBtn = document.getElementById('taskButton');
+        const subTaskForm = document.getElementById('subTaskForm');
+
+        if(subCheck.checked){
+            subTaskForm.classList.remove('hiddenElement');
+            addTaskBtn.classList.add('hiddenElement');
+        } else {
+            subTaskForm.classList.add('hiddenElement');
+            addTaskBtn.classList.remove('hiddenElement');
+        }
+    }
+
+    function addSubtaskTask(parentListTask){
+        /*Main task variables*/
+        const taskInput = document.getElementById('taskInput');
+        const tasks = document.getElementById('tasks');
+        const taskColor = document.getElementById('taskColorPicker').value;
+        const dueDate = document.getElementById('dueDateInput').value;
+        const li = document.createElement('li');
+        /*Sub task variables*/
+        const subInput = document.getElementById('subtaskInput');
+        const subDueDate = document.getElementById('subtaskdueDateInput').value;
+        const subColor = document.getElementById('subtaskColorPicker').value;
+        const subCheck = document.getElementById('subTask');
+
+        if (taskInput.value.trim() !== '' && subInput.value.trim() !== ''){
+            const deleteBtn = "<button onclick='deleteTask(this)' id='deleteBtn'>remove</button>";
+            const taskValue = taskInput.value;
+            const subValue = subInput.value;
+
+            li.textContent = taskValue + (dueDate ? ` (Due: ${dueDate})` : '');
+            li.innerHTML += `${deleteBtn}`;
+            li.style.backgroundColor = taskColor;
+            li.dataset.taskName = taskValue;
+            li.dataset.taskColor = taskColor;
+            li.dataset.dueDate = dueDate;
+
+            const subul = document.createElement('ul');
+            const subli = document.createElement('li');
+            subli.textContent = subValue + (subDueDate ? ` (Due: ${subDueDate})` : '');
+            subli.innerHTML += `${deleteBtn}`;
+            subli.style.backgroundColor = subColor;
+            subli.dataset.taskName = subValue;
+            subli.dataset.taskColor = subColor;
+            subli.dataset.dueDate = subDueDate;
+            subul.appendChild(subli);
+            li.appendChild(subul);
+            tasks.appendChild(li);
+
+            taskInput.value='';
+            subInput.value='';
+            saveTasks();
+        
+        } else {
+            alert("please enter a task")
+        }
+
+        saveTasks();
+
     }
     /*
     document.addEventListener('DOMContentLoaded', function() {
