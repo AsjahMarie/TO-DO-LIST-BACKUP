@@ -6,6 +6,7 @@
     <title>CheckMate - Settings</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <script src="dark-mode.js"></script>
     <script src="https://kit.fontawesome.com/4b5b4d807f.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -18,16 +19,20 @@
         <a href="account-info.html">Account<i class="fa-solid fa-circle-info fa-beat fa-lg"></i></a>
     </nav>
     </div>
-    <div class="content">
+    <div class="settingsContent">
         <h1>Settings</h1>
         <div>
             <h2>Theme</h2>
+            <!--
             <label>
                 <input type="radio" name="theme" value="light" checked> Light Mode
             </label>
             <label>
                 <input type="radio" name="theme" value="dark"> Dark Mode
             </label>
+            -->
+            <label for="darkMode">Dark Mode?</label>
+            <input type="checkbox" name="darkMode" id="darkMode" value="no" onchange="changeMode()">
         </div>
         <div>
             <h2>Task Color Customization</h2>

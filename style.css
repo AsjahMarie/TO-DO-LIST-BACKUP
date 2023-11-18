@@ -54,11 +54,19 @@ body {
     display: inline;
 }
 
+.light-mode {
+    background-color: #f3fdfe;
+    color: #293241;
+    font-family: sans-serif;
+    display: inline;
+}
+
 /* Dark Mode */
-body.dark-mode {
+.dark-mode {
     background-color: #333;
     color: #fff;
     font-family: sans-serif;
+    display: inline;
 }
 
 #topBanner{
@@ -75,6 +83,10 @@ body.dark-mode {
     width: 100%; /* Full width of the page */
     max-width: 1200px; /* Adjust as needed */
     margin: 0 auto; /* Center the content */
+}
+
+.settingsContent{
+    margin-left: 130px;
 }
 
 .navbar {
@@ -123,7 +135,7 @@ body.dark-mode {
 .taskContent{
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 .content #tasks{
     border: 1px solid #293241;
