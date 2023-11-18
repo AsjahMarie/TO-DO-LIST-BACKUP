@@ -10,9 +10,12 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     //toggles dark mode on button click
-
+    
     const darkModeToggle = document.createElement('button');
     darkModetoggle.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
+    darkModeToggle.style.position = 'fixed';
+    darkModeToggle.style.top = '10px';
+    darkModeToggle.style.right = '10px';
 
     document.body.appendChild(darkModeToggle);
 
@@ -31,4 +34,3 @@ document.addEventListener('DOMContentLoaded', function(){
      darkModeToggle.textContent = currentMode ? 'Light Mode' " 'Dark Mode';  
     });      
 });
-                         )
