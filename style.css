@@ -91,13 +91,10 @@ body.dark-mode {
 
 .navbar {
     display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
+    justify-content: center;
+    top:67px;
     left: 0;
-    margin-top: 68px;
-    height: 93%; /* Full height of the screen */
-    width: 115px; /* Adjust the width based on your design */
+    width: 100%; /* Adjust the width based on your design */
     background: #98c1d9; /* Example background color */
     /* we can add other styling as needed */
 
@@ -107,7 +104,7 @@ body.dark-mode {
     text-align: center;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    padding: 10px 25px 10px 25px;
     color: #293241;
     text-decoration: none;
 }
