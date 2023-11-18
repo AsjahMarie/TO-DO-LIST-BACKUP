@@ -20,8 +20,8 @@
 
     <div class="content">
         <h1 id="taskTitle">Task List</h1>
-        <div class="taskContent">
-            <form id="taskForm" onsubmit="submitForm()">
+        <div id="divSection" >
+            <form class="taskContent" id="taskForm" onsubmit="submitForm()">
                 <input type="text" id="taskInput" placeholder="Enter a task">
                 <input type="color" value="#98c1d9" id="taskColorPicker">
                 <input type="date" id="dueDateInput">
@@ -50,12 +50,18 @@
             <ul id="tasks"></ul>
         </div>
         <!-- Button to navigate to addTaskPage -->
-        <button onclick="goToAddTaskPage()" id="addTaskPageButton">+</button>
+        <button onclick="showTaskForm()" id="addTaskPageButton">+</button>
         <button onclick="clearAll()" id="clearAllBtn">Clear All Tasks</button>
     </div>
 
     <!-- task-list.html -->
 <script>
+
+    document.addEventListener('DOMContentLoaded', function(){
+        const divSection = document.getElementById('divSection');
+        divSection.style.display = 'none';
+        console.log('this ran');
+    });
 
     const taskInput = document.getElementById('taskInput');
     const tasks = document.getElementById('tasks');
@@ -223,6 +229,31 @@
         saveTasks();
 
     }
+
+    function showTaskForm(){
+        const divSection = document.getElementById('divSection');
+        divSection.style.display = 'block';
+        console.log('script ran');
+    }
+
+    // document.getElementById('addTaskPageButton').addEventListener('click', function(){
+    //     alert('you clicked me');
+    //     taskForm.classList.remove('hiddenElement');
+    //     taskForm.classList.add('taskContent');
+    // })
+
+    // function showTaskForm(){
+    //     const taskForm = document.getElementById('taskForm');
+    //     taskForm.classList.toggle('taskContent');
+    //     // if(taskForm.classList === 'hiddenElement'){
+    //     //     alert('i am hidden');
+    //     //     taskForm.classList.remove('hiddenElement');
+    //     //     taskForm.classList.add('taskContent');
+    //     // } else {
+    //     //     alert('I am also hidden');
+    //     //     taskForm.classList.add('hiddenElement');
+    //     // }
+    // }
 </script>
     <!--  Dark Mode toggle button script -->
     <script>
