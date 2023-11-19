@@ -296,6 +296,9 @@ addTaskSubmit.addEventListener("click", () => {
   const taskTitle = addTaskTitle.value;
   const taskTimeFrom = addTaskFrom.value;
   const taskTimeTo = addTaskTo.value;
+  const taskColor = addTaskWrapper.querySelector(".task-color").value;
+  const subtask = addTaskWrapper.querySelector(".subtask").value;
+  const shareTask = addTaskWrapper.querySelector(".share-task").value;
   if (taskTitle === "" || taskTimeFrom === "" || taskTimeTo === "") {
     alert("Please fill all the fields");
     return;
@@ -341,6 +344,9 @@ addTaskSubmit.addEventListener("click", () => {
   const newTask = {
     title: taskTitle,
     time: timeFrom + " - " + timeTo,
+    color: taskColor,
+    subtask: subtask,
+    shareTask: shareTask,
   };
   console.log(newTask);
   console.log(activeDay);
