@@ -102,7 +102,10 @@
             if (isDarkMode) {
                 document.body.classList.add('dark-mode');
             }
+            //intializes the calendar
 
+            initCalendar();
+            
             // Toggle dark mode on button click
             const darkModeToggle = document.createElement('button');
             darkModeToggle.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
