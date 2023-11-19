@@ -135,17 +135,34 @@ body.dark-mode {
     margin-top: 10px;
 }
 .content #tasks{
+    display: flex;
+    flex-direction: column;
     border: 1px solid #293241;
     border-radius: 5px;
     padding: 0;
 }
 
-.content #tasks li{
+.content #tasks li {
     padding: 7px;
     margin: 3px;
     list-style-type: none;
     border-radius: 5px;
-    
+    overflow: auto;
+}
+
+.content #tasks li ul li{
+    margin-top: 13px;
+    margin-left: 15px;
+}
+
+.content #tasks li ul li button{
+    margin-right: 0px;
+    float: right;
+}
+
+.content #tasks li button{
+    margin-right: 0px;
+    float: right;
 }
 
 #taskTitle{
@@ -197,6 +214,11 @@ body.dark-mode {
     padding: 8px 13px;
     box-shadow: 2px 2px 5px #293241;
     border-radius: 4px;
+}
+
+#submit:hover{
+    transform: scale(1.03, 1.03);
+    cursor: pointer;
 }
 
 #emailAddress{
