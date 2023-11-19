@@ -59,6 +59,7 @@
 
     document.addEventListener('DOMContentLoaded', function(){
         const divSection = document.getElementById('divSection');
+        const taskList = document.getElementById('tasks');
         divSection.style.display = 'none';
         console.log('this ran');
     });
@@ -72,10 +73,12 @@
         event.preventDefault();
         const dueDate = document.getElementById('dueDateInput').value;
         const emailAddress = document.getElementById('emailAddress').value;
-        const task = document.getElementById('taskInput').value;
-        const encodedSubject = encodeURIComponent(tasks);
+        const task = document.getElementById('taskInput');
+        const taskValue = task.value;
+        const subject = "Sharing my task with you!"
+        const encodedSubject = encodeURIComponent(subject);
 
-        const body = 'My task: ' + task + ' Is due on: ' + dueDate;
+        const body = 'My task: ' + taskValue + ' Is due on: ' + dueDate;
         window.open(`mailto:${emailAddress}?subject=${encodedSubject}&body=${body}`);
     }
 
@@ -240,9 +243,8 @@
     function showTaskForm(){
         const divSection = document.getElementById('divSection');
         divSection.style.display = 'block';
-        console.log('script ran');
     }
-    
+
 </script>
     <!--  Dark Mode toggle button script -->
     <script>
