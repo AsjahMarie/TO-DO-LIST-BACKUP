@@ -253,6 +253,7 @@
 
     function displayHidden(){
         const checkBox = document.getElementById('collaborate');
+        const subBox = document.getElementById('subTask');
         const shareForm = document.getElementById('shareForm');
         const addTaskBtn = document.getElementById('taskButton');
         const addSubBtn = document.getElementById('subtaskButton');
@@ -262,6 +263,10 @@
             shareForm.classList.add('displayGrid');
             addTaskBtn.classList.add('hiddenElement');
             addSubBtn.classList.add('hiddenElement');
+        } else if (!checkBox.checked && subBox.checked){
+            addTaskBtn.classList.add('hiddenElement');
+            shareForm.classList.add('hiddenElement');
+            addSubBtn.classList.remove('hiddenElement');
         } else {
             shareForm.classList.add('hiddenElement');
             shareForm.classList.remove('displayGrid');
