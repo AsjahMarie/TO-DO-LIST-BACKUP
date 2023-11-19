@@ -71,15 +71,33 @@
 
     function composeEmail(event){
         event.preventDefault();
+
+        /*Subtask inputs and variables*/
+        const subInput = document.getElementById('subtaskInput');
+        const subDueDate = document.getElementById('subtaskdueDateInput').value;
+        const subTask = document.getElementById('subTask');
+        /*main task inputs and variables*/
         const dueDate = document.getElementById('dueDateInput').value;
         const emailAddress = document.getElementById('emailAddress').value;
         const task = document.getElementById('taskInput');
-        const taskValue = task.value;
-        const subject = "Sharing my task with you!"
-        const encodedSubject = encodeURIComponent(subject);
+        if(subTask.checked){
+            const subject = "Sharing my tasks with you!";
+            const encodedSubject = encodeURIComponent(subject);
 
-        const body = 'My task: ' + taskValue + ' Is due on: ' + dueDate;
-        window.open(`mailto:${emailAddress}?subject=${encodedSubject}&body=${body}`);
+            const subInputValue = subInput.value;
+            const taskValue = task.value;
+            const body = "my task: "+ taskValue + "  is due on: " + dueDate + " and my subtask: " + subInputValue + "  is due on: " + subDueDate;
+            window.open(`mailto:${emailAddress}?subject=${encodedSubject}&body=${body}`);
+        } else {
+            const subject = "Sharing my task with you!";
+            const encodedSubject = encodeURIComponent(subject);
+            const taskValue = task.value;
+
+            const body = "my task: "+ taskValue + "  is due on: " + dueDate;
+            window.open(`mailto:${emailAddress}?subject=${encodedSubject}&body=${body}`);
+        }
+
+
     }
 
     function addTask(){
@@ -135,12 +153,19 @@
 
     function submitForm(){
         const checkBox = document.getElementById('collaborate');
+        const subTask = document.getElementById('subTask');
 
-        if (checkBox.checked){
-            addTask();
+        if (subTask.checked){
             composeEmail(event);
+            addSubtaskTask();
+            location.reload();
+        } else if(checkBox.checked){
+            composeEmail(event);
+            addTask();
+            location.reload();
         } else {
             addTask();
+            location.reload();
         }
     }
 
@@ -191,7 +216,7 @@
         }
     }
 
-    function addSubtaskTask(parentListTask){
+    function addSubtaskTask(){
         /*Main task variables*/
         const taskInput = document.getElementById('taskInput');
         const tasks = document.getElementById('tasks');
