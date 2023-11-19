@@ -25,6 +25,8 @@
                 <input type="text" id="taskInput" placeholder="Enter a task">
                 <input type="color" value="#98c1d9" id="taskColorPicker">
                 <input type="date" id="dueDateInput">
+                <input class="task-time-from" type="text" placeholder="Start Time">
+                <input class="task-time-to" type="text" placeholder="End Time">
                 <div class="subTaskBox">
                     <label for="subTask">Add a subtask?</label>
                     <input type="checkbox" value="no" id="subTask" onchange="showSubtaskForm()">
@@ -99,12 +101,36 @@
 
     }
 
+    const addTaskFrom = document.querySelector(".task-time-from ");
+    const addTaskTo = document.querySelector(".task-time-to ");
+    addTaskFrom.addEventListener("input", (e) => {
+        addTaskFrom.value = addTaskFrom.value.replace(/[^0-9:]/g, "");
+        if (addTaskFrom.value.length === 2) {
+            addTaskFrom.value += ":";
+        }
+        if (addTaskFrom.value.length > 5) {
+            addTaskFrom.value = addTaskFrom.value.slice(0, 5);
+        }
+        });
+
+    addTaskTo.addEventListener("input", (e) => {
+        addTaskTo.value = addTaskTo.value.replace(/[^0-9:]/g, "");
+        if (addTaskTo.value.length === 2) {
+            addTaskTo.value += ":";
+        }
+        if (addTaskTo.value.length > 5) {
+            addTaskTo.value = addTaskTo.value.slice(0, 5);
+        }
+    });
+
     function addTask(){
 
         const taskInput = document.getElementById('taskInput');
         const tasks = document.getElementById('tasks');
         const taskColor = document.getElementById('taskColorPicker').value;
         const dueDate = document.getElementById('dueDateInput').value;
+        const addTaskFrom = document.querySelector(".task-time-from ");
+        const addTaskTo = document.querySelector(".task-time-to ");
 
         if (taskInput.value.trim() !== ''){
             const deleteBtn = "<button onclick='deleteTask(this)' id='deleteBtn'>complete & remove</button>";
@@ -359,6 +385,18 @@
         const divSection = document.getElementById('divSection');
         divSection.style.display = 'block';
     }
+
+    function convertTime(time) {
+        //convert time to 24 hour format
+        let timeArr = time.split(":");
+        let timeHour = timeArr[0];
+        let timeMin = timeArr[1];
+        let timeFormat = timeHour >= 12 ? "PM" : "AM";
+        timeHour = timeHour % 12 || 12;
+        time = timeHour + ":" + timeMin + " " + timeFormat;
+        return time;
+    }
+    
 
 </script>
     <!--  Dark Mode toggle button script -->
