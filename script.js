@@ -253,10 +253,10 @@ addTaskTitle.addEventListener("input", (e) => {
   addTaskTitle.value = addTaskTitle.value.slice(0, 60);
 });
 
-//allow only time in tasktime from and to
+// Allow only time in tasktime from and to
 addTaskFrom.addEventListener("input", (e) => {
   addTaskFrom.value = addTaskFrom.value.replace(/[^0-9:]/g, "");
-  if (addTaskFrom.value.length === 2) {
+  if (addTaskFrom.value.length === 2 && e.inputType !== "deleteContentBackward") {
     addTaskFrom.value += ":";
   }
   if (addTaskFrom.value.length > 5) {
@@ -266,13 +266,14 @@ addTaskFrom.addEventListener("input", (e) => {
 
 addTaskTo.addEventListener("input", (e) => {
   addTaskTo.value = addTaskTo.value.replace(/[^0-9:]/g, "");
-  if (addTaskTo.value.length === 2) {
+  if (addTaskTo.value.length === 2 && e.inputType !== "deleteContentBackward") {
     addTaskTo.value += ":";
   }
   if (addTaskTo.value.length > 5) {
     addTaskTo.value = addTaskTo.value.slice(0, 5);
   }
 });
+
 
 //function to add task to tasksArr
 addTaskSubmit.addEventListener("click", () => {
