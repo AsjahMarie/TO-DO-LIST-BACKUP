@@ -228,6 +228,7 @@ function updateTasks(date) {
     } else {
       taks = '<div class = "no task"><h3>No Tasks</h3></div>';
     }
+    tasksContainer.innerHTML = "";
     tasksContainer.innerHTML = tasks;
     saveTasks();
 }
