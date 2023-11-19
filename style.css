@@ -147,9 +147,6 @@ body.dark-mode {
     border-radius: 5px;
     
 }
-.content #tasks li:hover{
-    cursor: pointer;
-}
 
 #taskTitle{
     text-align: center;
@@ -278,6 +275,20 @@ body.dark-mode {
     text-align: left;
 }
 
+#editBtn{
+    background-color: white;
+    border-radius: 5px;
+    border: none;
+    color: #ee6c4d;
+    padding: 5px 12px;
+    margin-left: 10px;
+}
+
+#editBtn:hover{
+    transform: scale(1.03, 1.03);
+    cursor: pointer;
+}
+
 #deleteBtn{
     background-color: #ee6c4d;
     border-radius: 5px;
@@ -354,6 +365,11 @@ body.dark-mode {
     box-shadow: 2px 2px 5px #293241;
     border-radius: 4px;
     grid-column-start: 1;
+}
+
+#subtaskButton:hover{
+    transform: scale(1.03, 1.03);
+    cursor: pointer;
 }
 
 #addTaskPageButton{

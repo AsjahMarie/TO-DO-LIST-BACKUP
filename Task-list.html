@@ -61,7 +61,6 @@
         const divSection = document.getElementById('divSection');
         const taskList = document.getElementById('tasks');
         divSection.style.display = 'none';
-        console.log('this ran');
     });
 
     const taskInput = document.getElementById('taskInput');
@@ -108,11 +107,13 @@
         const dueDate = document.getElementById('dueDateInput').value;
 
         if (taskInput.value.trim() !== ''){
-            const deleteBtn = "<button onclick='deleteTask(this)' id='deleteBtn'>remove</button>";
+            const deleteBtn = "<button onclick='deleteTask(this)' id='deleteBtn'>complete & remove</button>";
+            const editBtn = "<button onclick='editTask(this)' id='editBtn'>edit task</button>";
             const taskValue = taskInput.value;
 
             const li = document.createElement('li');
             li.textContent = taskValue + (dueDate ? ` (Due: ${dueDate})` : '');
+            li.innerHTML += `${editBtn}`;
             li.innerHTML += `${deleteBtn}`;
             li.style.backgroundColor = taskColor;
             li.dataset.taskName = taskValue;
@@ -134,6 +135,28 @@
         var taskListed = dBtn.parentNode;
         taskListed.parentNode.removeChild(taskListed);
         saveTasks();
+    }
+
+    function editTask(eBtn){
+        const taskListed = eBtn.parentNode;
+        const divSection = document.getElementById('divSection');
+        divSection.style.display = 'block';
+
+        const oldInput = taskListed.getAttribute('data-task-name');
+        const oldColor = taskListed.getAttribute('data-task-color');
+        const oldDate = taskListed.getAttribute('data-due-date');
+
+        taskListed.remove();
+
+        const taskInput = document.getElementById('taskInput');
+        const taskColor = document.getElementById('taskColorPicker');
+        const dueDate = document.getElementById('dueDateInput');
+
+        taskInput.value = oldInput;
+        taskColor.value = oldColor;
+        dueDate.value = oldDate;
+        saveTasks();
+
     }
 
     function saveTasks(){
@@ -231,10 +254,12 @@
 
         if (taskInput.value.trim() !== '' && subInput.value.trim() !== ''){
             const deleteBtn = "<button onclick='deleteTask(this)' id='deleteBtn'>remove</button>";
+            const editBtn = "<button onclick='editTask(this)' id='editBtn'>edit task</button>";
             const taskValue = taskInput.value;
             const subValue = subInput.value;
 
             li.textContent = taskValue + (dueDate ? ` (Due: ${dueDate})` : '');
+            li.innerHTML += `${editBtn}`;
             li.innerHTML += `${deleteBtn}`;
             li.style.backgroundColor = taskColor;
             li.dataset.taskName = taskValue;
@@ -244,6 +269,7 @@
             const subul = document.createElement('ul');
             const subli = document.createElement('li');
             subli.textContent = subValue + (subDueDate ? ` (Due: ${subDueDate})` : '');
+            subli.innerHTML += `${editBtn}`;
             subli.innerHTML += `${deleteBtn}`;
             subli.style.backgroundColor = subColor;
             subli.dataset.taskName = subValue;
