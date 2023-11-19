@@ -86,7 +86,7 @@
 
             const subInputValue = subInput.value;
             const taskValue = task.value;
-            const body = "my task: "+ taskValue + "  is due on: " + dueDate + " and my subtask: " + subInputValue + "  is due on: " + subDueDate;
+            const body = "my task: '"+ taskValue + "'' is due on: " + dueDate + " and my subtask: '" + subInputValue + "'' is due on: " + subDueDate;
             window.open(`mailto:${emailAddress}?subject=${encodedSubject}&body=${body}`);
         } else {
             const subject = "Sharing my task with you!";
