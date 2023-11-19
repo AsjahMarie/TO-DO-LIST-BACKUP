@@ -94,6 +94,10 @@
     <script src="script.js"></script>
          <!--  Dark Mode toggle button script -->
     <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+          displayTasks();
+          });
         document.addEventListener('DOMContentLoaded' , function() {
             //Checks if Dark Mode Preference is Stored
             const isDarkMode = localStorage.getItem('darkMode') === 'true';
@@ -102,6 +106,9 @@
             if (isDarkMode) {
                 document.body.classList.add('dark-mode');
             }
+            //intializes the calendar
+
+            initCalendar();
 
             // Toggle dark mode on button click
             const darkModeToggle = document.createElement('button');
@@ -126,4 +133,3 @@
      </script>
   </body>
 </html>
-<script>

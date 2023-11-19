@@ -302,7 +302,11 @@ addTaskSubmit.addEventListener("click", () => {
   if (taskTitle === "" || taskTimeFrom === "" || taskTimeTo === "") {
     alert("Please fill all the fields");
     return;
+
+  updateTasks(activeDay);
+  initCalendar();
   }
+
 
   //check correct time format 24 hour
   const timeFromArr = taskTimeFrom.split(":");
