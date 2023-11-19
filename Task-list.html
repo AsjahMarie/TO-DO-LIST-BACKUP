@@ -219,6 +219,11 @@
 
     function saveTasks(){
         window.localStorage.setItem("tasks", tasks.innerHTML)
+        localStorage.setItem("tasks", JSON.stringify(tasksArr));
+
+         // Broadcast a custom event when tasks are saved
+        const event = new Event("tasksUpdated");
+        document.dispatchEvent(event);
     }
 
     function displayTasks(){

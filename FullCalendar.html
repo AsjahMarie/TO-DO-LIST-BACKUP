@@ -131,5 +131,20 @@
             });
         });
      </script>
+     <script>
+      // function to get tasks from local storage
+      function getTasks() {
+        const storedTasks = JSON.parse(localStorage.getItem("tasks"));
+        if (storedTasks && Array.isArray(storedTasks) && storedTasks.length > 0) {
+          tasksArr.push(...storedTasks);
+  }
+
+      // Listen for the custom event to update tasks
+      document.addEventListener("tasksUpdated", function () {
+       updateTasksInFullCalendar();
+  });
+  getTasks();
+}
+     </script>
   </body>
 </html>
