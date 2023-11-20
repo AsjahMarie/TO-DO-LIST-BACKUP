@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CheckMate - Settings</title>
+    <title>CheckMate - Preferences</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
     <script src="dark-mode.js" defer></script>
@@ -15,43 +15,15 @@
         <a href="homepage.html">Home<i class="fa-sharp fa-solid fa-house-user fa-beat fa-lg" style="color: #00364a;"></i></a>
         <a href="Task-list.html">Task List<i class="fa-solid fa-list-check fa-beat fa-lg"></i></a>
         <a href="FullCalendar.html">Calendar<i class="fa-regular fa-calendar-days fa-beat fa-lg"></i></a>
-        <a href="preferences.html" style="background-color: #f3fdfe;">Settings<i class="fa-solid fa-user-gear fa-beat fa-lg"></i></a>            
+        <a href="settings.html">Settings<i class="fa-solid fa-user-gear fa-beat fa-lg"></i></a>            
         <a href="account-info.html">Account<i class="fa-solid fa-circle-info fa-beat fa-lg"></i></a>
     </nav>
-    </div>
     <div class="settingsContent">
-        <h1>Settings</h1>
+        <h1>Preferences</h1>
         <div>
-            <h2>Theme</h2>
-        </div>
-        <div>
-            <h2>Task Color Customization</h2>
-            <label>Choose Task Color:
-                <input type="color" id="taskColorPicker">
-            </label>
-        </div>
-        <button onclick="changeTaskColor()">Apply Color</button>
-        <div>
-            <h2>User</h2>
-            <button onclick="logout()">Log Out</button>
-        </div>
-    </div>
-    <script>
-        function changeTaskColor() {
-            const color = document.getElementById('taskColorPicker').value;
-            // Apply the color change logic for tasks
-            // For instance, you might have a class for tasks and update their color
-            document.querySelectorAll('.task').forEach(task => task.style.backgroundColor = color);
-        }
-
-        function logout() {
-            // Implement logout functionality here
-            // Redirect to logout page or perform necessary actions
-        }
-    </script>
-       <!--  Dark Mode toggle button script -->
-    <script>
-        document.addEventListener('DOMContentLoaded' , function() {
+            <h2>Dark Mode or Light Mode? Click the button above</h2>
+            <script>
+                  document.addEventListener('DOMContentLoaded' , function() {
             //Checks if Dark Mode Preference is Stored
             const isDarkMode = localStorage.getItem('darkMode') === 'true';
 
@@ -80,6 +52,73 @@
                 darkModeToggle.textContent = currentMode ? 'Light Mode' : 'Dark Mode';
             });
         });
-     </script>
+            </script>
+        </div>
+        <div>
+        <div>
+            <h2>User</h2>
+            <button onclick="logout()">Log Out</button>
+
+            <!-- Update Email Section -->
+            <div>
+                <h2>Update Email</h2>
+                <label>New Email:
+                    <input type="email" id="newEmail">
+                </label>
+                <button onclick="updateEmail()">Update Email</button>
+            </div>
+
+            <!-- Change Username Section -->
+            <div>
+                <h2>Change Username</h2>
+                <label>New Username:
+                    <input type="text" id="newUsername">
+                </label>
+                <button onclick="changeUsername()">Change Username</button>
+            </div>
+
+            <!-- Change Password Section -->
+            <div>
+                <h2>Change Password</h2>
+                <label>New Password:
+                    <input type="password" id="newPassword">
+                </label>
+                <button onclick="changePassword()">Change Password</button>
+            </div>
+        </div>
+
+        <!-- Notification Preferences Section  -->
+        <div>
+            <h2>Notification Preferences</h2>
+            <label>
+                <input type="checkbox" id="enableNotifications"> Enable Notifications
+            </label>
+        </div>
+    </div>
+
+    <script>
+
+        // New script for handling user updates
+        function updateEmail() {
+            const newEmail = document.getElementById('newEmail').value;
+            // Implement update email functionality here
+            // For instance, you might send a request to the server to update the email
+            console.log(`Updating email to: ${newEmail}`);
+        }
+
+        function changeUsername() {
+            const newUsername = document.getElementById('newUsername').value;
+            // Implement change username functionality here
+            // For instance, you might send a request to the server to change the username
+            console.log(`Changing username to: ${newUsername}`);
+        }
+
+        function changePassword() {
+            const newPassword = document.getElementById('newPassword').value;
+            // Implement change password functionality here
+            // For instance, you might send a request to the server to change the password
+            console.log(`Changing password to: ${newPassword}`);
+        }
+    </script>
 </body>
 </html>
