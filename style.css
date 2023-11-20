@@ -70,6 +70,19 @@ body.dark-mode {
     display: inline;
 }
 
+#darkModeButton{
+    padding: 3px 5px 3px 5px;
+    border-radius: 5px;
+    border: none;
+    color: #3d5a80;
+    background-color: #f3fdfe;
+}
+
+#darkModeButton:hover{
+    cursor: pointer;
+    transform: scale(1.03,1.03);
+}
+
 #topBanner{
     padding: 10px;
     padding-left: 25px;
