@@ -6,10 +6,12 @@
     <title>User Registration</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/4b5b4d807f.js" crossorigin="anonymous"></script>
-     <script src="dark-mode.js"></script>
-  <div class="registrationContent">
+    <script src="dark-mode.js"></script>
+</head>
+<body>
+    <div class="registrationContent">
         <h2>Create an Account</h2>
-        <form>
+        <form onsubmit="validateForm()">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
 
@@ -25,13 +27,12 @@
             <label for="confirmPassword">Confirm Password:</label>
             <input type="password" id="confirmPassword" name="confirmPassword" required>
 
-            <button type="submit">Register</button
+            <button type="submit">Register</button>
         </form>
-      </div>
-      <script>
-          
+    </div>
+
+    <script>
         function validateForm() {
-            var fullName = document.getElementById("fullName").value;
             var username = document.getElementById("username").value;
             var email = document.getElementById("email").value;
             var phone = document.getElementById("phone").value;
@@ -39,17 +40,20 @@
             var confirmPassword = document.getElementById("confirmPassword").value;
 
             // Perform basic validation
-            if (fullName === "" || username === "" || email === "" || password === "" || confirmPassword === "") {
+            if (username === "" || email === "" || password === "" || confirmPassword === "") {
                 alert("All required fields must be filled out.");
-                return;
+                event.preventDefault(); // Prevent the form from submitting
+                return false;
             }
 
             if (password !== confirmPassword) {
                 alert("Passwords do not match.");
-                return;
+                event.preventDefault(); // Prevent the form from submitting
+                return false;
             }
 
             alert("Registration successful!");
+            return true; // Allow the form to submit
         }
     </script>
 </body>
