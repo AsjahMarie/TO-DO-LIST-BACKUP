@@ -209,7 +209,6 @@ function gotoDate() {
     }
   }
   alert("Invalid Date");
-  return;
 }
 
 //function get active day day name and date and update taskday taskdate
@@ -227,7 +226,7 @@ function updateTasks(date) {
     === month + 1 && task.year === year);
     if (taskForDate && taskForDate.tasks.length > 0){
     } else {
-      tasks = '<div class = "no task"><h3>No Tasks</h3></div>';
+      taks = '<div class = "no task"><h3>No Tasks</h3></div>';
     }
     tasksContainer.innerHTML = "";
     tasksContainer.innerHTML = tasks;
@@ -287,7 +286,7 @@ addTaskSubmit.addEventListener("click", () => {
   if (taskTitle === "" || taskTimeFrom === "" || taskTimeTo === "") {
     alert("Please fill all the fields");
     return;
-  }
+
   updateTasks(activeDay);
   initCalendar();
   }
@@ -415,9 +414,9 @@ function saveTasks() {
 //function to get tasks from local storage
 function getTasks() {
   const storedTasks=JSON.parse(localStorage.getItem("tasks"));
-  if (storedTasks && Array.isArray(storedTasks) && storedTasks.length > 0) {
-  tasksArr.push(...storedTasks);
-}
+  if (storedTasks && Array.isArray(storedTasks)&& storedTasks.length > 0){
+    tasksArr.push(...storedTasks);
+  }
 }
 
 function convertTime(time) {
