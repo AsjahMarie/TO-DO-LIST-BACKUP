@@ -37,7 +37,6 @@ const months = [
   "December",
 ];
 
-
 const eventsArr = [];
 getEvents();
 console.log(eventsArr);
