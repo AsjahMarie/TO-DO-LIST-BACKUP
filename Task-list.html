@@ -147,7 +147,6 @@
         // first check if there is a subtask and add values from there
         // if not only add values from main task
         if(taskListed.querySelector('ul') !== null) {
-            console.log('i went to the if statement');
             // show subtask form
             const subCheck = document.getElementById('subTask');
             const addTaskBtn = document.getElementById('taskButton');
@@ -195,7 +194,6 @@
             saveTasks();
 
         } else {
-            console.log('i went to the else');
             // get values of saved task
             const oldInput = taskListed.getAttribute('data-task-name');
             const oldColor = taskListed.getAttribute('data-task-color');
@@ -221,9 +219,11 @@
         window.localStorage.setItem("tasks", tasks.innerHTML)
         localStorage.setItem("tasks", JSON.stringify(tasksArr));
 
-         // Broadcast a custom event when tasks are saved
+        // Broadcast a custom event when tasks are saved
         const event = new Event("tasksUpdated");
         document.dispatchEvent(event);
+
+        location.reload();
     }
 
     function displayTasks(){
@@ -363,17 +363,6 @@
     function showTaskForm(){
         const divSection = document.getElementById('divSection');
         divSection.style.display = 'block';
-    }
-
-    function convertTime(time) {
-        //convert time to 24 hour format
-        let timeArr = time.split(":");
-        let timeHour = timeArr[0];
-        let timeMin = timeArr[1];
-        let timeFormat = timeHour >= 12 ? "PM" : "AM";
-        timeHour = timeHour % 12 || 12;
-        time = timeHour + ":" + timeMin + " " + timeFormat;
-        return time;
     }
     
 
