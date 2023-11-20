@@ -21,6 +21,7 @@
     <div class="content">
         <h1 id="taskTitle">Task List</h1>
         <div id="divSection" >
+            <!--Form to create a task, subtask, and share with friend via email-->
             <form class="taskContent" id="taskForm" onsubmit="submitForm()">
                 <input type="text" id="taskInput" placeholder="Enter a task">
                 <input type="color" value="#98c1d9" id="taskColorPicker">
@@ -99,18 +100,23 @@
 
     }
 
+    // add task to page as li within ul
     function addTask(){
 
+        // input variables
         const taskInput = document.getElementById('taskInput');
         const tasks = document.getElementById('tasks');
         const taskColor = document.getElementById('taskColorPicker').value;
         const dueDate = document.getElementById('dueDateInput').value;
 
+        // if task is not empty
         if (taskInput.value.trim() !== ''){
+            // remove and edit buttons to add to li
             const deleteBtn = "<button onclick='deleteTask(this)' id='deleteBtn'>complete & remove</button>";
             const editBtn = "<button onclick='editTask(this)' id='editBtn'>edit task</button>";
             const taskValue = taskInput.value;
 
+            // add elements to li tag
             const li = document.createElement('li');
             li.textContent = taskValue + (dueDate ? ` (Due: ${dueDate})` : '');
             li.innerHTML += `${deleteBtn}`;
@@ -119,13 +125,16 @@
             li.dataset.taskName = taskValue;
             li.dataset.taskColor = taskColor;
             li.dataset.dueDate = dueDate;
+            // append li to ul
             tasks.appendChild(li);
 
+            // reset taskInput value
             taskInput.value='';
             
         } else {
             alert("please enter a task")
         }
+        // save page and reload to get rid of task form
         saveTasks();
         location.reload();
     }
@@ -215,26 +224,30 @@
 
     }
 
+    // save tasks to local storage
     function saveTasks(){
         window.localStorage.setItem("tasks", tasks.innerHTML)
-        localStorage.setItem("tasks", JSON.stringify(tasksArr));
+        // localStorage.setItem("tasks", JSON.stringify(tasksArr));
 
-        // Broadcast a custom event when tasks are saved
-        const event = new Event("tasksUpdated");
-        document.dispatchEvent(event);
+        // // Broadcast a custom event when tasks are saved
+        // const event = new Event("tasksUpdated");
+        // document.dispatchEvent(event);
 
-        location.reload();
+        // location.reload();
     }
 
+    // get tasks from local storage 
     function displayTasks(){
         tasks.innerHTML = window.localStorage.getItem("tasks");
     }
 
+    // erase all localStorage
     function clearAll(){
         window.localStorage.clear();
         location.reload();
     }
 
+    // call function to show tasks
     displayTasks();
 
     function submitForm(){
