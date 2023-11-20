@@ -226,8 +226,8 @@ function updateTasks(date) {
     === month + 1 && task.year === year);
     if (taskForDate && taskForDate.tasks.length > 0){
     } else {
-      taks = '<div class = "no task"><h3>No Tasks</h3></div>';
-    }
+      tasks = '<div class = "no task"><h3>No Tasks</h3></div>';
+}
     tasksContainer.innerHTML = "";
     tasksContainer.innerHTML = tasks;
     saveTasks();
@@ -286,9 +286,10 @@ addTaskSubmit.addEventListener("click", () => {
   if (taskTitle === "" || taskTimeFrom === "" || taskTimeTo === "") {
     alert("Please fill all the fields");
     return;
-
+  }
   updateTasks(activeDay);
   initCalendar();
+  
   }
 
 
