@@ -6,16 +6,16 @@ const calendar = document.querySelector(".calendar"),
   todayBtn = document.querySelector(".today-btn"),
   gotoBtn = document.querySelector(".goto-btn"),
   dateInput = document.querySelector(".date-input"),
-  taskDay = document.querySelector(".task-day"),
-  taskDate = document.querySelector(".task-date"),
-  tasksContainer = document.querySelector(".tasks"),
-  addTaskBtn = document.querySelector(".add-task"),
-  addTaskWrapper = document.querySelector(".add-task-wrapper "),
-  addTaskCloseBtn = document.querySelector(".close "),
-  addTaskTitle = document.querySelector(".task-name "),
-  addTaskFrom = document.querySelector(".task-time-from "),
-  addTaskTo = document.querySelector(".task-time-to "),
-  addTaskSubmit = document.querySelector(".add-task-btn ");
+  eventDay = document.querySelector(".event-day"),
+  eventDate = document.querySelector(".event-date"),
+  eventsContainer = document.querySelector(".events"),
+  addEventBtn = document.querySelector(".add-event"),
+  addEventWrapper = document.querySelector(".add-event-wrapper "),
+  addEventCloseBtn = document.querySelector(".close "),
+  addEventTitle = document.querySelector(".event-name "),
+  addEventFrom = document.querySelector(".event-time-from "),
+  addEventTo = document.querySelector(".event-time-to "),
+  addEventSubmit = document.querySelector(".add-event-btn ");
 
 let today = new Date();
 let activeDay;
@@ -37,9 +37,10 @@ const months = [
   "December",
 ];
 
-const tasksArr = [];
-getTasks();
-console.log(tasksArr);
+
+const eventsArr = [];
+getEvents();
+console.log(eventsArr);
 
 //function to add days in days with class day and prev-date next-date on previous month and next month days and active on today
 function initCalendar() {
@@ -60,15 +61,15 @@ function initCalendar() {
   }
 
   for (let i = 1; i <= lastDate; i++) {
-    //check if task is present on that day
-    let task = false;
-    tasksArr.forEach((taskObj) => {
+    //check if event is present on that day
+    let event = false;
+    eventsArr.forEach((eventObj) => {
       if (
-        taskObj.day === i &&
-        taskObj.month === month + 1 &&
-        taskObj.year === year
+        eventObj.day === i &&
+        eventObj.month === month + 1 &&
+        eventObj.year === year
       ) {
-        task = true;
+        event = true;
       }
     });
     if (
@@ -78,15 +79,15 @@ function initCalendar() {
     ) {
       activeDay = i;
       getActiveDay(i);
-      updateTasks(i);
-      if (task) {
-        days += `<div class="day today active task">${i}</div>`;
+      updateEvents(i);
+      if (event) {
+        days += `<div class="day today active event">${i}</div>`;
       } else {
         days += `<div class="day today active">${i}</div>`;
       }
     } else {
-      if (task) {
-        days += `<div class="day task">${i}</div>`;
+      if (event) {
+        days += `<div class="day event">${i}</div>`;
       } else {
         days += `<div class="day ">${i}</div>`;
       }
@@ -130,7 +131,7 @@ function addListner() {
   days.forEach((day) => {
     day.addEventListener("click", (e) => {
       getActiveDay(e.target.innerHTML);
-      updateTasks(Number(e.target.innerHTML));
+      updateEvents(Number(e.target.innerHTML));
       activeDay = Number(e.target.innerHTML);
       //remove active
       days.forEach((day) => {
@@ -211,91 +212,99 @@ function gotoDate() {
   alert("Invalid Date");
 }
 
-//function get active day day name and date and update taskday taskdate
+//function get active day day name and date and update eventday eventdate
 function getActiveDay(date) {
   const day = new Date(year, month, date);
   const dayName = day.toString().split(" ")[0];
-  taskDay.innerHTML = dayName;
-  taskDate.innerHTML = date + " " + months[month] + " " + year;
+  eventDay.innerHTML = dayName;
+  eventDate.innerHTML = date + " " + months[month] + " " + year;
 }
 
-//function update tasks when a day is active
-function updateTasks(date) {
-  let tasks = "";
-  const taskForDate = tasksArr.find(task => task.day === date && task.month 
-    === month + 1 && task.year === year);
-    if (taskForDate && taskForDate.tasks.length > 0){
-    } else {
-      tasks = '<div class = "no task"><h3>No Tasks</h3></div>';
-}
-    tasksContainer.innerHTML = tasks;
-    saveTasks();
-    initCalendar();
+//function update events when a day is active
+function updateEvents(date) {
+  let events = "";
+  eventsArr.forEach((event) => {
+    if (
+      date === event.day &&
+      month + 1 === event.month &&
+      year === event.year
+    ) {
+      event.events.forEach((event) => {
+        events += `<div class="event">
+            <div class="title">
+              <i class="fas fa-circle"></i>
+              <h3 class="event-title">${event.title}</h3>
+            </div>
+            <div class="event-time">
+              <span class="event-time">${event.time}</span>
+            </div>
+        </div>`;
+      });
+    }
+  });
+  if (events === "") {
+    events = `<div class="no-event">
+            <h3>No Events</h3>
+        </div>`;
+  }
+  eventsContainer.innerHTML = events;
+  saveEvents();
 }
 
-//function to add task
-addTaskBtn.addEventListener("click", () => {
-  addTaskWrapper.classList.toggle("active");
+//function to add event
+addEventBtn.addEventListener("click", () => {
+  addEventWrapper.classList.toggle("active");
 });
 
-addTaskCloseBtn.addEventListener("click", () => {
-  addTaskWrapper.classList.remove("active");
+addEventCloseBtn.addEventListener("click", () => {
+  addEventWrapper.classList.remove("active");
 });
 
 document.addEventListener("click", (e) => {
-  if (e.target !== addTaskBtn && !addTaskWrapper.contains(e.target)) {
-    addTaskWrapper.classList.remove("active");
+  if (e.target !== addEventBtn && !addEventWrapper.contains(e.target)) {
+    addEventWrapper.classList.remove("active");
   }
 });
 
-//allow 50 chars in tasktitle
-addTaskTitle.addEventListener("input", (e) => {
-  addTaskTitle.value = addTaskTitle.value.slice(0, 60);
+//allow 50 chars in eventtitle
+addEventTitle.addEventListener("input", (e) => {
+  addEventTitle.value = addEventTitle.value.slice(0, 60);
 });
 
-// Allow only time in tasktime from and to
-addTaskFrom.addEventListener("input", (e) => {
-  addTaskFrom.value = addTaskFrom.value.replace(/[^0-9:]/g, "");
-  if (addTaskFrom.value.length === 2 && e.inputType !== "deleteContentBackward") {
-    addTaskFrom.value += ":";
+//allow only time in eventtime from and to
+addEventFrom.addEventListener("input", (e) => {
+  addEventFrom.value = addEventFrom.value.replace(/[^0-9:]/g, "");
+  if (addEventFrom.value.length === 2) {
+    addEventFrom.value += ":";
   }
-  if (addTaskFrom.value.length > 5) {
-    addTaskFrom.value = addTaskFrom.value.slice(0, 5);
-  }
-});
-
-addTaskTo.addEventListener("input", (e) => {
-  addTaskTo.value = addTaskTo.value.replace(/[^0-9:]/g, "");
-  if (addTaskTo.value.length === 2 && e.inputType !== "deleteContentBackward") {
-    addTaskTo.value += ":";
-  }
-  if (addTaskTo.value.length > 5) {
-    addTaskTo.value = addTaskTo.value.slice(0, 5);
+  if (addEventFrom.value.length > 5) {
+    addEventFrom.value = addEventFrom.value.slice(0, 5);
   }
 });
 
+addEventTo.addEventListener("input", (e) => {
+  addEventTo.value = addEventTo.value.replace(/[^0-9:]/g, "");
+  if (addEventTo.value.length === 2) {
+    addEventTo.value += ":";
+  }
+  if (addEventTo.value.length > 5) {
+    addEventTo.value = addEventTo.value.slice(0, 5);
+  }
+});
 
-//function to add task to tasksArr
-addTaskSubmit.addEventListener("click", () => {
-  const taskTitle = addTaskTitle.value;
-  const taskTimeFrom = addTaskFrom.value;
-  const taskTimeTo = addTaskTo.value;
-  const taskColor = addTaskWrapper.querySelector(".task-color").value;
-  const subtask = addTaskWrapper.querySelector(".subtask").value;
-  const shareTask = addTaskWrapper.querySelector(".share-task").value;
-  if (taskTitle === "" || taskTimeFrom === "" || taskTimeTo === "") {
+//function to add event to eventsArr
+addEventSubmit.addEventListener("click", () => {
+  const eventTitle = addEventTitle.value;
+  const eventTimeFrom = addEventFrom.value;
+  const eventTimeTo = addEventTo.value;
+  if (eventTitle === "" || eventTimeFrom === "" || eventTimeTo === "") {
     alert("Please fill all the fields");
     return;
   }
-  updateTasks(activeDay);
-  initCalendar();
-  
-  }
-
 
   //check correct time format 24 hour
-  const timeFromArr = taskTimeFrom.split(":");
-  const timeToArr = taskTimeTo.split(":");
+  const timeFromArr = eventTimeFrom.split(":");
+  const timeToArr = eventTimeTo.split(":");
   if (
     timeFromArr.length !== 2 ||
     timeToArr.length !== 2 ||
@@ -308,117 +317,114 @@ addTaskSubmit.addEventListener("click", () => {
     return;
   }
 
-  const timeFrom = convertTime(taskTimeFrom);
-  const timeTo = convertTime(taskTimeTo);
+  const timeFrom = convertTime(eventTimeFrom);
+  const timeTo = convertTime(eventTimeTo);
 
-  //check if task is already added
-  let taskExist = false;
-  tasksArr.forEach((task) => {
+  //check if event is already added
+  let eventExist = false;
+  eventsArr.forEach((event) => {
     if (
-      task.day === activeDay &&
-      task.month === month + 1 &&
-      task.year === year
+      event.day === activeDay &&
+      event.month === month + 1 &&
+      event.year === year
     ) {
-      task.tasks.forEach((task) => {
-        if (task.title === taskTitle) {
-          taskExist = true;
+      event.events.forEach((event) => {
+        if (event.title === eventTitle) {
+          eventExist = true;
         }
       });
     }
   });
-  if (taskExist) {
-    alert("Task already added");
+  if (eventExist) {
+    alert("Event already added");
     return;
   }
-  const newTask = {
-    title: taskTitle,
+  const newEvent = {
+    title: eventTitle,
     time: timeFrom + " - " + timeTo,
-    color: taskColor,
-    subtask: subtask,
-    shareTask: shareTask,
   };
-  console.log(newTask);
+  console.log(newEvent);
   console.log(activeDay);
-  let taskAdded = false;
-  if (tasksArr.length > 0) {
-    tasksArr.forEach((item) => {
+  let eventAdded = false;
+  if (eventsArr.length > 0) {
+    eventsArr.forEach((item) => {
       if (
         item.day === activeDay &&
         item.month === month + 1 &&
         item.year === year
       ) {
-        item.tasks.push(newTask);
-        taskAdded = true;
+        item.events.push(newEvent);
+        eventAdded = true;
       }
     });
   }
 
-  if (!taskAdded) {
-    tasksArr.push({
+  if (!eventAdded) {
+    eventsArr.push({
       day: activeDay,
       month: month + 1,
       year: year,
-      tasks: [newTask],
+      events: [newEvent],
     });
   }
 
-  console.log(tasksArr);
-  addTaskWrapper.classList.remove("active");
-  addTaskTitle.value = "";
-  addTaskFrom.value = "";
-  addTaskTo.value = "";
-  updateTasks(activeDay);
-  //select active day and add task class if not added
+  console.log(eventsArr);
+  addEventWrapper.classList.remove("active");
+  addEventTitle.value = "";
+  addEventFrom.value = "";
+  addEventTo.value = "";
+  updateEvents(activeDay);
+  //select active day and add event class if not added
   const activeDayEl = document.querySelector(".day.active");
-  if (!activeDayEl.classList.contains("task")) {
-    activeDayEl.classList.add("task");
+  if (!activeDayEl.classList.contains("event")) {
+    activeDayEl.classList.add("event");
   }
 });
 
-//function to delete task when clicked on task
-tasksContainer.addEventListener("click", (e) => {
-  if (e.target.classList.contains("task")) {
-    if (confirm("Are you sure you want to delete this task?")) {
-      const taskTitle = e.target.children[0].children[1].innerHTML;
-      tasksArr.forEach((task) => {
+//function to delete event when clicked on event
+eventsContainer.addEventListener("click", (e) => {
+  if (e.target.classList.contains("event")) {
+    if (confirm("Are you sure you want to delete this event?")) {
+      const eventTitle = e.target.children[0].children[1].innerHTML;
+      eventsArr.forEach((event) => {
         if (
-          task.day === activeDay &&
-          task.month === month + 1 &&
-          task.year === year
+          event.day === activeDay &&
+          event.month === month + 1 &&
+          event.year === year
         ) {
-          task.tasks.forEach((item, index) => {
-            if (item.title === taskTitle) {
-              task.tasks.splice(index, 1);
+          event.events.forEach((item, index) => {
+            if (item.title === eventTitle) {
+              event.events.splice(index, 1);
             }
           });
-          //if no tasks left in a day then remove that day from tasksArr
-          if (task.tasks.length === 0) {
-            tasksArr.splice(tasksArr.indexOf(task), 1);
-            //remove task class from day
+          //if no events left in a day then remove that day from eventsArr
+          if (event.events.length === 0) {
+            eventsArr.splice(eventsArr.indexOf(event), 1);
+            //remove event class from day
             const activeDayEl = document.querySelector(".day.active");
-            if (activeDayEl.classList.contains("task")) {
-              activeDayEl.classList.remove("task");
+            if (activeDayEl.classList.contains("event")) {
+              activeDayEl.classList.remove("event");
             }
           }
         }
       });
-      updateTasks(activeDay);
+      updateEvents(activeDay);
     }
   }
 });
 
-//function to save tasks in local storage
-function saveTasks() {
-  localStorage.setItem("tasks", JSON.stringify(tasksArr));
+//function to save events in local storage
+function saveEvents() {
+  localStorage.setItem("events", JSON.stringify(eventsArr));
 }
 
-//function to get tasks from local storage
-function getTasks() {
-  tasksArr.length = 0;
-  const storedTasks=JSON.parse(localStorage.getItem("tasks"));
-  if (storedTasks && Array.isArray(storedTasks)&& storedTasks.length > 0){
-    tasksArr.push(...storedTasks);
+//function to get events from local storage
+function getEvents() {
+  //check if events are already saved in local storage then return event else nothing
+  if (localStorage.getItem("events") === null) {
+    return;
   }
+  eventsArr.push(...JSON.parse(localStorage.getItem("events")));
 }
 
 function convertTime(time) {
