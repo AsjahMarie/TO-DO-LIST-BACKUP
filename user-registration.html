@@ -24,15 +24,9 @@
 
             <button type="submit">Register</button
         </form>
+       </div>
       <script>
-        function validateForm() {
-            var fullName = document.getElementById("fullName").value;
-            var username = document.getElementById("username").value;
-            var email = document.getElementById("email").value;
-            var phone = document.getElementById("phone").value;
-            var password = document.getElementById("password").value;
-            var confirmPassword = document.getElementById("confirmPassword").value;
-
+        
             // Perform basic validation
             if (fullName === "" || username === "" || email === "" || password === "" || confirmPassword === "") {
                 alert("All required fields must be filled out.");
@@ -44,13 +38,12 @@
                 return;
             }
 
-            // Additional validation logic can be added as needed
+            
 
-            // If validation passes, you can submit the form or perform other actions
+           
             alert("Registration successful!");
             // You can submit the form here if needed: document.getElementById("registrationForm").submit();
         }
     </script>
-    </div>
 </body>
 </html>
