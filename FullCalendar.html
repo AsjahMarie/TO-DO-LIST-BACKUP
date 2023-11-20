@@ -15,7 +15,8 @@
         <a href="homepage.html">Home<i class="fa-sharp fa-solid fa-house-user fa-beat fa-lg" style="color: #00364a;"></i></a>
         <a href="Task-list.html">Task List<i class="fa-solid fa-list-check fa-beat fa-lg"></i></a>
         <a href="FullCalendar.html" style="background-color: #f3fdfe;">Calendar<i class="fa-regular fa-calendar-days fa-beat fa-lg"></i></a>
-        <a href="preferences.html">Preferences<i class="fa-solid fa-user-gear fa-beat fa-lg"></i></a>  
+        <a href="settings.html">Settings<i class="fa-solid fa-user-gear fa-beat fa-lg"></i></a>            
+        <a href="account-info.html">Account<i class="fa-solid fa-circle-info fa-beat fa-lg"></i></a>
     </nav>
     <div class="content">
         <h1 id="calendar">Checkmate-Calendar</h1>
@@ -66,7 +67,7 @@
                 type="text"
                 placeholder="Start Time"
                 class="task-time-from"
-              >
+              />
             </div>
             <div class="add-task-input">
               <input
@@ -75,9 +76,9 @@
                 class="task-time-to"
             >
                 <!-- New fields -->
-            <input type="color" class="task-color" placeholder="Color">
-            <input type="text" class="subtask" placeholder="Subtask">
-            <input type="text" class="share-task" placeholder="Share Task">
+  <input type="color" class="task-color" placeholder="Color">
+  <input type="text" class="subtask" placeholder="Subtask">
+  <input type="text" class="share-task" placeholder="Share Task">
             </div>
           </div>
           <div class="add-task-footer">
@@ -93,11 +94,6 @@
     <script src="script.js"></script>
          <!--  Dark Mode toggle button script -->
     <script>
-
-        document.addEventListener('DOMContentLoaded', function() {
-          displayTasks();
-          getTasks();
-          });
         document.addEventListener('DOMContentLoaded' , function() {
             //Checks if Dark Mode Preference is Stored
             const isDarkMode = localStorage.getItem('darkMode') === 'true';
@@ -106,18 +102,14 @@
             if (isDarkMode) {
                 document.body.classList.add('dark-mode');
             }
-            //intializes the calendar
 
-            initCalendar();
-
-       // Toggle dark mode on button click
+            // Toggle dark mode on button click
            // const darkModeToggle = document.createElement('button');
-           // darkModeToggle.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
-            //darkModeToggle.style.position = 'fixed';
+            //darkModeToggle.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
+          //  darkModeToggle.style.position = 'fixed';
            // darkModeToggle.style.top = '10px';
-           // darkModeToggle.style.right = '10px';
-            //darkModeToggle.setAttribute('id','darkModeButton');
-           // document.body.appendChild(darkModeToggle);
+            //darkModeToggle.style.right = '10px';
+            //document.body.appendChild(darkModeToggle);
 
             darkModeToggle.addEventListener('click', function () {
                 // Toggle dark mode class
@@ -126,22 +118,12 @@
                 // Update and store the preference
                 const currentMode = document.body.classList.contains('dark-mode');
                 localStorage.setItem('darkMode', currentMode.toString());
+
+                // Update button text
+                darkModeToggle.textContent = currentMode ? 'Light Mode' : 'Dark Mode';
             });
         });
      </script>
-     <script>
-      // function to get tasks from local storage
-      function getTasks() {
-        const storedTasks = JSON.parse(localStorage.getItem("tasks"));
-        if (storedTasks && Array.isArray(storedTasks) && storedTasks.length > 0) {
-          tasksArr.push(...storedTasks);
-  }
-
-      // Listen for the custom event to update tasks
-      document.addEventListener("tasksUpdated", function () {
-       updateTasksInFullCalendar();
-  });
-}
-     </script>
   </body>
 </html>
+<script>
