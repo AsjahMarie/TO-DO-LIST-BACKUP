@@ -13,9 +13,9 @@ document.addEventListener('DOMContentLoaded', function(){
     
     const darkModeToggle = document.createElement('button');
     darkModeToggle.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
-    darkModeToggle.style.position = 'fixed';
-    darkModeToggle.style.top = '10px';
-    darkModeToggle.style.right = '10px';
+   // darkModeToggle.style.position = 'fixed';
+   // darkModeToggle.style.top = '10px';
+   // darkModeToggle.style.right = '10px';
 
     document.body.appendChild(darkModeToggle);
 
