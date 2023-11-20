@@ -222,32 +222,15 @@ function getActiveDay(date) {
 //function update tasks when a day is active
 function updateTasks(date) {
   let tasks = "";
-  tasksArr.forEach((task) => {
-    if (
-      date === task.day &&
-      month + 1 === task.month &&
-      year === task.year
-    ) {
-      task.tasks.forEach((task) => {
-        tasks += `<div class="task">
-            <div class="title">
-              <i class="fas fa-circle"></i>
-              <h3 class="task-title">${task.title}</h3>
-            </div>
-            <div class="task-time">
-              <span class="task-time">${task.time}</span>
-            </div>
-        </div>`;
-      });
+  const taskForDate = tasksArr.find(task => task.day === date && task.month 
+    === month + 1 && task.year === year);
+    if (taskForDate && taskForDate.tasks.length > 0){
+    } else {
+      taks = '<div class = "no task"><h3>No Tasks</h3></div>';
     }
-  });
-  if (tasks === "") {
-    tasks = `<div class="no-task">
-            <h3>No Tasks</h3>
-        </div>`;
-  }
-  tasksContainer.innerHTML = tasks;
-  saveTasks();
+    tasksContainer.innerHTML = "";
+    tasksContainer.innerHTML = tasks;
+    saveTasks();
 }
 
 //function to add task
@@ -270,10 +253,10 @@ addTaskTitle.addEventListener("input", (e) => {
   addTaskTitle.value = addTaskTitle.value.slice(0, 60);
 });
 
-//allow only time in tasktime from and to
+// Allow only time in tasktime from and to
 addTaskFrom.addEventListener("input", (e) => {
   addTaskFrom.value = addTaskFrom.value.replace(/[^0-9:]/g, "");
-  if (addTaskFrom.value.length === 2) {
+  if (addTaskFrom.value.length === 2 && e.inputType !== "deleteContentBackward") {
     addTaskFrom.value += ":";
   }
   if (addTaskFrom.value.length > 5) {
@@ -283,7 +266,7 @@ addTaskFrom.addEventListener("input", (e) => {
 
 addTaskTo.addEventListener("input", (e) => {
   addTaskTo.value = addTaskTo.value.replace(/[^0-9:]/g, "");
-  if (addTaskTo.value.length === 2) {
+  if (addTaskTo.value.length === 2 && e.inputType !== "deleteContentBackward") {
     addTaskTo.value += ":";
   }
   if (addTaskTo.value.length > 5) {
@@ -291,15 +274,23 @@ addTaskTo.addEventListener("input", (e) => {
   }
 });
 
+
 //function to add task to tasksArr
 addTaskSubmit.addEventListener("click", () => {
   const taskTitle = addTaskTitle.value;
   const taskTimeFrom = addTaskFrom.value;
   const taskTimeTo = addTaskTo.value;
+  const taskColor = addTaskWrapper.querySelector(".task-color").value;
+  const subtask = addTaskWrapper.querySelector(".subtask").value;
+  const shareTask = addTaskWrapper.querySelector(".share-task").value;
   if (taskTitle === "" || taskTimeFrom === "" || taskTimeTo === "") {
     alert("Please fill all the fields");
     return;
   }
+  updateTasks(activeDay);
+  initCalendar();
+  }
+
 
   //check correct time format 24 hour
   const timeFromArr = taskTimeFrom.split(":");
@@ -341,6 +332,9 @@ addTaskSubmit.addEventListener("click", () => {
   const newTask = {
     title: taskTitle,
     time: timeFrom + " - " + timeTo,
+    color: taskColor,
+    subtask: subtask,
+    shareTask: shareTask,
   };
   console.log(newTask);
   console.log(activeDay);
@@ -419,11 +413,10 @@ function saveTasks() {
 
 //function to get tasks from local storage
 function getTasks() {
-  //check if tasks are already saved in local storage then return task else nothing
-  if (localStorage.getItem("tasks") === null) {
-    return;
+  const storedTasks=JSON.parse(localStorage.getItem("tasks"));
+  if (storedTasks && Array.isArray(storedTasks)&& storedTasks.length > 0){
+    tasksArr.push(...storedTasks);
   }
-  tasksArr.push(...JSON.parse(localStorage.getItem("tasks")));
 }
 
 function convertTime(time) {
