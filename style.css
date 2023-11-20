@@ -137,7 +137,7 @@ body.dark-mode {
 .content #tasks{
     display: flex;
     flex-direction: column;
-    border: 1px solid #293241;
+    border: 1px solid #98c1d9;
     border-radius: 5px;
     padding: 0;
 }

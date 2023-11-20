@@ -240,9 +240,9 @@
         tasks.innerHTML = window.localStorage.getItem("tasks");
     }
 
-    // erase all localStorage
+    // erase tasks from localStorage
     function clearAll(){
-        window.localStorage.clear();
+        window.localStorage.removeItem("tasks");
         location.reload();
     }
 
