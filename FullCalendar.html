@@ -96,6 +96,7 @@
 
         document.addEventListener('DOMContentLoaded', function() {
           displayTasks();
+          getTasks();
           });
         document.addEventListener('DOMContentLoaded' , function() {
             //Checks if Dark Mode Preference is Stored
@@ -140,7 +141,6 @@
       document.addEventListener("tasksUpdated", function () {
        updateTasksInFullCalendar();
   });
-  getTasks();
 }
      </script>
   </body>
