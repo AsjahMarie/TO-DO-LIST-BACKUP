@@ -228,9 +228,9 @@ function updateTasks(date) {
     } else {
       tasks = '<div class = "no task"><h3>No Tasks</h3></div>';
 }
-    tasksContainer.innerHTML = "";
     tasksContainer.innerHTML = tasks;
     saveTasks();
+    initCalendar();
 }
 
 //function to add task
@@ -414,6 +414,7 @@ function saveTasks() {
 
 //function to get tasks from local storage
 function getTasks() {
+  tasksArr.length = 0;
   const storedTasks=JSON.parse(localStorage.getItem("tasks"));
   if (storedTasks && Array.isArray(storedTasks)&& storedTasks.length > 0){
     tasksArr.push(...storedTasks);
