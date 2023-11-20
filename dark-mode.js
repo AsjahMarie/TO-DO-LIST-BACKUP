@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     //toggles dark mode on button click
     
-    const darkModeToggle = document.createElement('button');
+    //const darkModeToggle = document.createElement('button');
     darkModeToggle.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
    // darkModeToggle.style.position = 'fixed';
    // darkModeToggle.style.top = '10px';
@@ -31,6 +31,6 @@ document.addEventListener('DOMContentLoaded', function(){
      localStorage.setItem('darkMode', currentMode.toString());
 
         //Update button text
-     darkModeToggle.textContent = currentMode ? 'Light Mode' : 'Dark Mode';  
+     //darkModeToggle.textContent = currentMode ? 'Light Mode' : 'Dark Mode';  
     });      
 });
