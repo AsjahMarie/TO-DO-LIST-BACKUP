@@ -28,9 +28,10 @@
             <button type="submit">Register</button
         </form>
       <script>
-            alert("Registration successful!");
-         
-        }
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return;
+            }
     </script>
       </div>
 </body>
