@@ -83,7 +83,14 @@ function addTask(){
     }
     
     saveTasks();
-    location.reload();
+    updateCalendarTasks();
+
+    function updateCalendarTasks(){
+        const calTaskList = document.getElementById('calTasks');
+        calTaskList.innerHTML = window.localStorage.getItem("calTasks");
+}
+    }
+   // location.reload();
 
 }
 
