@@ -1,5 +1,3 @@
-When the add task button is clicked I want there to be a color option as well as a subtask and share task option. How old I implement this in my script?  
-
 const calendar = document.querySelector(".calendar"),
   date = document.querySelector(".date"),
   daysContainer = document.querySelector(".days"),
