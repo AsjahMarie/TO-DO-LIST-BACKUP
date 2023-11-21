@@ -319,6 +319,12 @@ function addSubtaskTask(){
     const subDate = document.getElementById('subtaskdueDateInput').value;
     const subDueDate = formatDate(subDate);
 
+    //checks if date is not chosen
+    if(!date || !subDate){
+        alert("please enter a date for the task.")
+        return;
+    }
+
     if (taskInput.value.trim() !== '' && subInput.value.trim() !== ''){
         const deleteBtn = "<button onclick='deleteTask(this)' id='deleteBtn'>complete & remove</button>";
         const editBtn = "<button onclick='editTask(this)' id='editBtn'>edit task</button>";
