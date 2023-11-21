@@ -115,6 +115,17 @@
             }
         }
 
+        function logout() {
+            // Perform actions to log the user out
+        // clearing stored user data,and redirecting them to the login page
+        window.localStorage.removeItem('email');
+        window.localStorage.removeItem('username');
+        
+        // Redirect to the login page 
+        window.location.href = 'index.html';
+    }
+            
+
         document.addEventListener('DOMContentLoaded' , function() {
 
             //display stored user details
