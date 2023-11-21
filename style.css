@@ -571,7 +571,7 @@ background-color: darkorchid;
     font-weight: 500;
     text-transform: capitalize;
   }
-  .calendar .month .prev,
+.calendar .month .prev,
 .calendar .month .next {
   cursor: pointer;
 }
