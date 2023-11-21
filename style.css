@@ -203,13 +203,11 @@ body.dark-mode {
 }
 
 .container #tasks li ul li button{
-    margin-right: 0px;
-    float: right;
+    display: none;
 }
 
 .container #tasks li button{
-    margin-right: 0px;
-    float: right;
+    display: none;
 }
 
 #taskTitle{
