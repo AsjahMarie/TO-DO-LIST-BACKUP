@@ -82,6 +82,7 @@ function addTask(){
     //checks if date is not chosen
     if(!date){
         alert("please enter a date for the task.")
+        return;
     }
     
      const dueDate = formatDate(date);
