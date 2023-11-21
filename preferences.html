@@ -64,6 +64,18 @@
                 <input type="checkbox" id="enableNotifications"> Enable Notifications
             </label>
         </div>
+            <div>
+                <h4>Time Zone</h4>
+                <label for="timezone">Select Time Zone:</label>
+                <select id="timezone" onchange="updateTimeZone()">
+                <option value="America/New_York">Eastern Time (ET)</option>
+                <option value="America/Chicago">Central Time (CT)</option>
+                <option value="America/Denver">Mountain Time (MT)</option>
+                <option value="America/Los_Angeles">Pacific Time (PT)</option>
+                <option value="Europe/London">GMT (London)</option>
+                <option value="Europe/Paris">Central European Time (CET)</option>
+                </select>
+            </div>
     </div>
 
     <script>
@@ -127,6 +139,14 @@
         function deactivate(){
             window.localStorage.clear();
             window.location.href = 'index.html';
+        }
+
+        function updateTimeZone() {
+            const selectedTimeZone = document.getElementById('timezone').value;
+            // Implement functionality to update time zone as needed
+            // store the selected time zone in localStorage
+            window.localStorage.setItem('timezone', selectedTimeZone);
+            console.log(`Updating time zone to: ${selectedTimeZone}`);
         }
             
 
