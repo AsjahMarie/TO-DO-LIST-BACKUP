@@ -85,14 +85,15 @@
             window.localStorage.setItem('username', newUsername);
             displayUser();
             location.reload();
-            console.log(`Changing username to: ${newUsername}`);
         }
 
         function changePassword() {
             const newPassword = document.getElementById('newPassword').value;
             // Implement change password functionality here
             // For instance, you might send a request to the server to change the password
-            console.log(`Changing password to: ${newPassword}`);
+            window.localStorage.setItem('password', newPassword);
+            alert(`Changing password to: ${newPassword}`);
+            location.reload();
         }
 
         function displayEmail(){
@@ -117,12 +118,12 @@
 
         function logout() {
             // Perform actions to log the user out
-        // clearing stored user data,and redirecting them to the login page
-        window.localStorage.removeItem('email');
-        window.localStorage.removeItem('username');
-        
-        // Redirect to the login page 
-        window.location.href = 'index.html';
+            // clearing stored user data,and redirecting them to the login page
+            window.localStorage.removeItem('email');
+            window.localStorage.removeItem('username');
+            
+            // Redirect to the login page 
+            window.location.href = 'index.html';
     }
             
 
