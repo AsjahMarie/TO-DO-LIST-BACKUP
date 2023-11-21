@@ -79,7 +79,6 @@ function initCalendar() {
     ) {
       activeDay = i;
       getActiveDay(i);
-      //updateTasks(i);
       if (task) {
         days += `<div class="day today active task">${i}</div>`;
       } else {
