@@ -1023,7 +1023,7 @@ background-color: darkorchid;
       padding: 20px;
     }
       // adding display for congratulortary message
-    .add-deleteTask(){
+    .deleteTask{
         position: fixed:
         top: 50%;
         left: 50%;
@@ -1035,7 +1035,18 @@ background-color: darkorchid;
         justify-content: cent;
         align-items: center;
         padding: 40px;
+        visability: hidden;
+        
     }
+      .close{
+          position: absoulte:
+          top:0;
+          right:0;
+          padding 10px, 20px;
+          background: #f00;
+          color: #fff;
+          cursor: pointer;
+      }
       
   }
   
