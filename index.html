@@ -33,6 +33,10 @@
                     <i class="fab fa-facebook"></i>
                     <i class="fab fa-google"></i>
                 </div>
+                <div class="robot">
+                    <label for="robot">Are you a robot?</label>
+                    <input type="checkbox" id="robot">
+                </div>
                 <div class="forgot">
                    <a href="forgot-username.html">Forgot username?</a>
                    <a href="forgot-password.html">Forgot password?</a>
@@ -53,16 +57,19 @@
     <script>
         //function to test if user is stored in localStorage
         function checkUser(){
-            const inputUsername = document.getElementById('loginUser').value;
-            const storedUsername = window.localStorage.getItem('username');
-            if(storedUsername === null){
-                alert('you do not have an account, please sign up.');
-            } else if(storedUsername !== inputUsername){
-                alert('username does not match our data, please reenter.')
-            } else {
-                console.log('here i am');
-                setTimeout(3000);
-                checkPass();
+            const robotCheck = document.getElementById('robot');
+            if(robotCheck.checked){
+                const inputUsername = document.getElementById('loginUser').value;
+                const storedUsername = window.localStorage.getItem('username');
+                if(storedUsername === null){
+                    alert('you do not have an account, please sign up.');
+                } else if(storedUsername !== inputUsername){
+                    alert('username does not match our data, please reenter.')
+                } else {
+                    console.log('here i am');
+                    setTimeout(3000);
+                    checkPass();
+                }
             }
 
             return false; // form failed
