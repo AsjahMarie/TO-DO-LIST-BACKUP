@@ -9,10 +9,12 @@ function composeEmail(event){
 
     /*Subtask inputs and variables*/
     const subInput = document.getElementById('subtaskInput');
-    const subDueDate = document.getElementById('subtaskdueDateInput').value;
+    const subDate = document.getElementById('subtaskdueDateInput').value;
+    const subDueDate = formatDate(subDate);
     const subTask = document.getElementById('subTask');
     /*main task inputs and variables*/
-    const dueDate = document.getElementById('dueDateInput').value;
+    const date = document.getElementById('dueDateInput').value;
+    const dueDate = formatDate(date);
     const emailAddress = document.getElementById('emailAddress').value;
     const task = document.getElementById('taskInput');
     if(subTask.checked){
@@ -35,8 +37,8 @@ function composeEmail(event){
 
 }
 
-function formatDate(){
-    const date = document.getElementById('dueDateInput').value;
+function formatDate(date){
+
     // date is in YYYY-MM-DD format, want it to be 19 November 2023 to match Calendar 
     const separateDate = date.split('-');
 
@@ -72,7 +74,8 @@ function addTask(){
     const taskInput = document.getElementById('taskInput');
     const tasks = document.getElementById('tasks');
     const taskColor = document.getElementById('taskColorPicker').value;
-    const dueDate = formatDate();
+    const date = document.getElementById('dueDateInput').value;
+    const dueDate = formatDate(date);
 
     // if task is not empty
     if (taskInput.value.trim() !== ''){
@@ -102,18 +105,8 @@ function addTask(){
 
     // save page and reload to get rid of task form
     saveTasks();
-    //location.reload();
+    location.reload();
 }
-
-// function saveArray(){
-//     // get all li of #tasks and store to array
-//     const nodeList = document.querySelectorAll('#tasks li');
-//     const taskArray = Array.from(nodeList);
-//     console.log(taskArray);
-
-//     // save array to localStorage
-//     window.localStorage.setItem("array", JSON.stringify(taskArray));
-// }
 
 /*function that gets delete button's parent node (li) and deletes it from it's parent node (ul)*/
 function deleteTask(dBtn){
@@ -204,7 +197,7 @@ function editTask(eBtn){
 function saveTasks(){
     window.localStorage.setItem("tasks", tasks.innerHTML)
 
-    location.reload();
+    //location.reload();
 }
 
 // get tasks from local storage 
@@ -300,13 +293,14 @@ function addSubtaskTask(){
     const taskInput = document.getElementById('taskInput');
     const tasks = document.getElementById('tasks');
     const taskColor = document.getElementById('taskColorPicker').value;
-    const dueDate = document.getElementById('dueDateInput').value;
+    const date = document.getElementById('dueDateInput').value;
+    const dueDate = formatDate(date);
     const li = document.createElement('li');
     /*Sub task variables*/
     const subInput = document.getElementById('subtaskInput');
-    const subDueDate = document.getElementById('subtaskdueDateInput').value;
     const subColor = document.getElementById('subtaskColorPicker').value;
-    const subCheck = document.getElementById('subTask');
+    const subDate = document.getElementById('subtaskdueDateInput').value;
+    const subDueDate = formatDate(subDate);
 
     if (taskInput.value.trim() !== '' && subInput.value.trim() !== ''){
         const deleteBtn = "<button onclick='deleteTask(this)' id='deleteBtn'>complete & remove</button>";

@@ -72,6 +72,7 @@ function displayCalTasks(){
         taskUl.innerHTML += taskArray[i];
     }
 
+
     console.log(taskUl);
 
     for (i=0; i<taskArray.length; i++){
