@@ -103,6 +103,21 @@ body.dark-mode {
     margin-left: 130px;
 }
 
+.userRegistrationContent{
+    padding: 10px;
+}
+
+#registerSubmit{
+    margin: 3px;
+    margin-left: 8px;
+    background-color: #ee6c4d;
+    color: white;
+    border: none;
+    padding: 4px 6px;
+    box-shadow: 2px 2px 5px #293241;
+    border-radius: 4px;
+}
+
 .navbar {
     display: flex;
     justify-content: center;
