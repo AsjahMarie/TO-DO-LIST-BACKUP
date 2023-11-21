@@ -24,6 +24,7 @@
         <div>
             <h2>User</h2>
             <button onclick="logout()" id="logBtn">Log Out</button>
+            <button onclick="deactivate()" id="logBtn">Deactivate Account</button>
 
             <!-- Update Email Section -->
             <div>
@@ -118,13 +119,15 @@
 
         function logout() {
             // Perform actions to log the user out
-            // clearing stored user data,and redirecting them to the login page
-            window.localStorage.removeItem('email');
-            window.localStorage.removeItem('username');
             
             // Redirect to the login page 
             window.location.href = 'index.html';
-    }
+        }
+
+        function deactivate(){
+            window.localStorage.clear();
+            window.location.href = 'index.html';
+        }
             
 
         document.addEventListener('DOMContentLoaded' , function() {
