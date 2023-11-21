@@ -12,7 +12,7 @@
     <div class="content">
         <h2>Create an Account</h2>
         <div class="userRegistrationContent">
-            <form onsubmit="validateForm()">
+            <form onsubmit="return validateForm()">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
 
@@ -30,7 +30,6 @@
 
                 <button type="submit" id="registerSubmit">Register</button>
             </form>
-            <button onclick="goToHomepage()" id="homeBtn">Go to Homepage</button>
         </div>
     </div>
 
@@ -45,14 +44,11 @@
             // Perform basic validation
             if (username === "" || email === "" || password === "" || confirmPassword === "") {
                 alert("All required fields must be filled out.");
-                event.preventDefault(); // Prevent the form from submitting
                 return false;
             }
 
             if (password !== confirmPassword) {
-            
                 alert("Passwords do not match.");
-                event.preventDefault(); // Prevent the form from submitting
                 return false;
             }
             else {
@@ -63,12 +59,13 @@
             }
 
             alert("Registration successful!");
-            return true; // Allow the form to submit
-            
-        }
 
-        function goToHomepage() {
-            window.location.href = 'homepage.html'; // Redirect to the home page
+            setTimeout(function() {
+                // Redirect to the home page
+                window.location.href = 'homepage.html';
+            }, 3000);
+
+            return false; // Prevent the form from submitting
         }
     </script>
 </body>
