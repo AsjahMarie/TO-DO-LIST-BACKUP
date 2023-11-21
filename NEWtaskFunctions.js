@@ -1,3 +1,5 @@
+// TASK FUNCTIONS
+
 document.addEventListener('DOMContentLoaded', function(){
     const divSection = document.getElementById('divSection');
     const taskList = document.getElementById('tasks');
