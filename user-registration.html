@@ -56,14 +56,16 @@
                 localStorage.setItem('email', email);
                 localStorage.setItem('phone', phone);
                 localStorage.setItem('password', password);
+
+                alert("Registration successful!");
+
+                setTimeout(function() {
+                    // Redirect to the home page
+                    window.location.href = 'homepage.html';
+                }, 1000);
             }
 
-            alert("Registration successful!");
 
-            setTimeout(function() {
-                // Redirect to the home page
-                window.location.href = 'homepage.html';
-            }, 3000);
 
             return false; // Prevent the form from submitting
         }

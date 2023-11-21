@@ -9,21 +9,21 @@
 </head>
 <body>
     <header id="topBanner"><h1>CheckMate</h1></header>
-    <nav class="navbar">
+    <!-- <nav class="navbar">
         <a href="homepage.html">Home<i class="fa-sharp fa-solid fa-house-user fa-beat fa-lg" style="color: #00364a;"></i></a>
         <a href="NEWtaskList.html">Task List<i class="fa-solid fa-list-check fa-beat fa-lg"></i></a>
         <a href="NEWcalendarView.html">Calendar<i class="fa-regular fa-calendar-days fa-beat fa-lg"></i></a>
         <a href="preferences.html">Preferences<i class="fa-solid fa-user-gear fa-beat fa-lg"></i></a>            
-    </nav>
+    </nav> -->
     <div class="index-container">
       <div class="login-container">
         <div class="forms">
             <div id="loginForm" class="form active">
                 <h2>Login</h2>
-                <form>
-                    <input type="text" placeholder="Username" required>
-                    <input type="password" placeholder="Password" required>
-                    <button type="submit">Login</button>
+                <form onsubmit="return checkUser()">
+                    <input type="text" placeholder="Username" id="loginUser" required>
+                    <input type="password" placeholder="Password" id="loginPass" required>
+                    <button type="submit" id="logBtn">Login</button>
                 </form>
                 <div class="social-login">
                     <span>Login with: </span>
@@ -39,7 +39,7 @@
                 </div>
                 <p>Don't have an account? <a href="user-registration.html">Sign Up</a></p>
             </div>
-            <div id="signupForm" class="form">
+            <!-- <div id="signupForm" class="form">
                 <h2>Sign Up</h2>
                 <form>
                     <input type="text" placeholder="Username" required>
@@ -47,9 +47,41 @@
                     <button type="submit">Sign Up</button>
                 </form>
                 <p>Already have an account?<a href="#"onclick="showLoginForm()">Log in</a></p>
-            </div>
+            </div> -->
         </div>
     </div>
+    <script>
+        //function to test if user is stored in localStorage
+        function checkUser(){
+            const inputUsername = document.getElementById('loginUser').value;
+            const storedUsername = window.localStorage.getItem('username');
+            if(storedUsername === null){
+                alert('you do not have an account, please sign up.');
+            } else if(storedUsername !== inputUsername){
+                alert('username does not match our data, please reenter.')
+            } else {
+                console.log('here i am');
+                setTimeout(3000);
+                checkPass();
+            }
+
+            return false; // form failed
+        }
+        // function to test password
+        function checkPass(){
+            const inputPassword = document.getElementById('loginPass').value;
+            const storedPassword = window.localStorage.getItem('password');
+            if (storedPassword !== inputPassword){
+                alert('incorrect password please try again.');
+            } else {
+                console.log('checked pass');
+                setTimeout(function() {
+                    // Redirect to the home page
+                    window.location.href = 'homepage.html';
+                }, 0.5);
+            }
+        }
+    </script>
 </body>
 </html>
 
