@@ -552,13 +552,11 @@ background-color: darkorchid;
     width: 12px;
     height: 97%;
     border-radius: 0 5px 5px 0;
-    background-color: aquamarine;
     transform:translate(-50%);
 }
 .calendar::before {
     height: 94%;
     left: calc(100% + 12px);
-    background-color: rgb(153, 153, 153);
   }
   .calendar .month {
     width: 100%;
