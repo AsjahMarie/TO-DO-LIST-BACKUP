@@ -560,7 +560,7 @@ background-color: darkorchid;
     left: calc(100% + 12px);
     background-color: rgb(153, 153, 153);
   }
-  .calendar .month {
+  .calendar #month {
     width: 100%;
     height: 150px;
     display: flex;
@@ -571,12 +571,12 @@ background-color: darkorchid;
     font-weight: 500;
     text-transform: capitalize;
   }
-.calendar .month .prev,
-.calendar .month .next {
+.calendar #month .prev,
+.calendar #month .next {
   cursor: pointer;
 }
-.calendar .month .prev:hover,
-.calendar .month .next:hover {
+.calendar #month .prev:hover,
+.calendar #month .next:hover {
   color: var(--primary-clr);
 }
 .calendar .weekdays {
@@ -1003,7 +1003,7 @@ background-color: darkorchid;
     }
   }
   @media screen and (max-width: 500px) {
-    .calendar .month {
+    .calendar #month {
       height: 75px;
     }
     .calendar .weekdays {
