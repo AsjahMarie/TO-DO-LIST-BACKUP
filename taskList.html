@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/4b5b4d807f.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <header id="topBanner"><h1>CheckMate</h1></header>
+    <nav class="navbar">
+        <a href="taskList.html" style="background-color: #f3fdfe;">Task List<i class="fa-solid fa-list-check fa-beat fa-lg"></i></a>
+        <a href="calendarView.html">Calendar<i class="fa-regular fa-calendar-days fa-beat fa-lg"></i></a>
+    </nav>
+
+    <div class="content">
+        <h1 id="taskTitle">Task List</h1>
+        <div id="divSection" >
+            <!--Form to create a task, subtask, and share with friend via email-->
+            <form class="taskContent" id="taskForm" onsubmit="submitForm()">
+                <input type="text" id="taskInput" placeholder="Enter a task">
+                <input type="color" value="#98c1d9" id="taskColorPicker">
+                <input type="date" id="dueDateInput">
+                <div class="subTaskBox">
+                    <label for="subTask">Add a subtask?</label>
+                    <input type="checkbox" value="no" id="subTask" onchange="showSubtaskForm()">
+                </div>
+                <div class="hiddenElement" id="subTaskForm">
+                    <input type="text" id="subtaskInput" placeholder="Enter a subtask">
+                    <input type="color" value="#98c1d9" id="subtaskColorPicker">
+                    <input type="date" id="subtaskdueDateInput">
+                    <button type="button" onclick="addSubtaskTask()" id="subtaskButton">Add Task & Subtask</button>
+                </div>
+                <div class="shareElement">
+                    <label for="collaborate">Share task?</label>
+                    <input type="checkbox" value="no" id="collaborate" onchange="displayHidden()">
+                </div>
+                <button type="button" onclick="addTask()" id="taskButton">Add Task</button>
+                <div class="hiddenElement" id="shareForm">
+                    <input type="email" id="emailAddress" placeholder="Email Address">
+                    <button type="submit" id="submit">Send Email & Add Task</button>
+                </div>
+            </form>
+        </div>
+        <div class="taskList">
+            <ul id="tasks"></ul>
+        </div>
+        <!-- Button to navigate to addTaskPage -->
+        <button onclick="showTaskForm()" id="addTaskPageButton">+</button>
+        <button onclick="clearAll()" id="clearAllBtn">Clear All Tasks</button>
+    </div>
+    <script src="sharedFunctions.js"></script>
+    <script src="taskFunctions.js"></script>
+    <!-- <script src="calendarFunctions.js"></script> -->
+</body>
+</html>
