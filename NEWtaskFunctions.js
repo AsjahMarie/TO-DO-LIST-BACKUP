@@ -77,7 +77,14 @@ function addTask(){
     const tasks = document.getElementById('tasks');
     const taskColor = document.getElementById('taskColorPicker').value;
     const date = document.getElementById('dueDateInput').value;
-    const dueDate = formatDate(date);
+  
+
+    //checks if date is not chosen
+    if(!date){
+        alert("please enter a date for the task.")
+    }
+    
+     const dueDate = formatDate(date);
 
     // if task is not empty
     if (taskInput.value.trim() !== ''){
