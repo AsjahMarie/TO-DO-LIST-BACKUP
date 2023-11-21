@@ -1022,5 +1022,20 @@ background-color: darkorchid;
     .right .today-date {
       padding: 20px;
     }
+      // adding display for congratulortary message
+    .add-displayCongratulatoryMessage(){
+        position: fixed:
+        top: 50%;
+        left: 50%;
+        transform: translated(-50%, -50%);
+        background: #fff;
+        wdith: 450px;
+        box-shadow: 0 25px 50 px rgba(0,0,0.1),0 0 1000px rgba(0,0,0,0.95);
+        display:flex;
+        justify-content: cent;
+        align-items: center;
+        padding: 40px;
+    }
+      
   }
   
