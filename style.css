@@ -1023,7 +1023,7 @@ background-color: darkorchid;
       padding: 20px;
     }
       // adding display for congratulortary message
-    .add-displayCongratulatoryMessage(){
+    .add-deleteTask(){
         position: fixed:
         top: 50%;
         left: 50%;
