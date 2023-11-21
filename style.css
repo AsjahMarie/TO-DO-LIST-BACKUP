@@ -70,6 +70,10 @@ body.dark-mode {
     display: inline;
 }
 
+.indent{
+    margin-left: 100px;
+}
+
 #darkModeButton{
     padding: 3px 5px 3px 5px;
     border-radius: 5px;
@@ -497,7 +501,7 @@ body.dark-mode {
 /* styling the calendar*/
 
 :root{
-    --primary-clr: #b38add;
+    --primary-clr: #3d5a80;
 }
 
 *{
