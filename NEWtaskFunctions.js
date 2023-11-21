@@ -110,10 +110,17 @@ function addTask(){
     location.reload();
 }
 
+function displayCongratulatoryMessage() {
+    alert("Congratulations! Task completed and removed successfully! WELL DONE");
+    // You can customize the message or use a different method to display it.
+}
+
+
 /*function that gets delete button's parent node (li) and deletes it from it's parent node (ul)*/
 function deleteTask(dBtn){
     var taskListed = dBtn.parentNode;
     taskListed.parentNode.removeChild(taskListed);
+    displayCongratulatoryMessage();
     saveTasks();
 }
 
