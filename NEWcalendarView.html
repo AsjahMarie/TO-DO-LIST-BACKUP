@@ -64,6 +64,7 @@
     <script src="NEWcalendarFunctions.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded' , function() {
+            displayCalTasks(); //display tasks for current day
             //Checks if Dark Mode Preference is Stored
             const isDarkMode = localStorage.getItem('darkMode') === 'true';
 
