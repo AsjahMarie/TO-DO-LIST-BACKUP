@@ -22,6 +22,7 @@
         </div>
     </div>
     <script>
+        // function to verify input matches stored data
         function verifyEmail(){
             const emailInput = document.getElementById('email').value;
             const storedEmail = window.localStorage.getItem('email');
@@ -41,28 +42,6 @@
 
             return false;
         }
-        // function validateForm() {
-        //     var email = document.getElementById('email').value;
-
-        //     // Email validation
-        //     if (!isValidEmail(email)) {
-        //         alert('Please enter a valid email address.');
-        //         return false;
-        //     }
-
-        //     document.getElementById('confirmationMessage').style.display = 'block';
-        //     setTimeout(function () {
-        //         window.location.href = 'index.html';
-        //     }, 3000); // Redirect after 3 seconds
-            
-        //     return false;
-        // }
-
-        // function isValidEmail(email) {
-        //     // Basic email validation regex
-        //     var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        //     return emailRegex.test(email);
-        // }
     </script>
 </body>
 </html>

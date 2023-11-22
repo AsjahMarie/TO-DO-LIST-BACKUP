@@ -219,5 +219,3 @@ function getActiveDay(date) {
   console.log('active day: ' + taskDate.innerHTML);
   return taskDate;
 }
-
-//getActiveDay(today);
